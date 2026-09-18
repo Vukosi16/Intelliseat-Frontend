@@ -1,0 +1,40 @@
+PR Request
+
+Author: Evril
+Date: 2026-09-18
+
+
+Branch: Evril (https://github.com/Vukosi16/IntelliSeat-Assessment-System-Codebase/tree/Evril)
+
+
+
+Please review and merge when approved.
+
+Regards,
+Evril
+
+---
+
+How to create the branch and open a PR
+
+- Clone the repo (if you don't have it locally):
+	git clone https://github.com/Vukosi16/IntelliSeat-Assessment-System-Codebase.git
+	cd IntelliSeat-Assessment-System-Codebase
+
+- Checkout the existing remote branch `Evril` (recommended):
+	git fetch origin
+	git checkout -b Evril origin/Evril
+
+- Or create a new local branch named `Evril` and push it:
+	git checkout -b Evril
+	git push -u origin Evril
+
+- Create a PR using the GitHub CLI (after `gh auth login`):
+	gh pr create --base main --head Evril --title "[Short PR title]" --body-file PR_request.txt
+
+- Open the compare/PR URL in a browser (Windows PowerShell):
+	Start-Process "https://github.com/Vukosi16/IntelliSeat-Assessment-System-Codebase/compare/main...Evril?expand=1"
+
+Notes:
+- Replace `main` in the commands above with your repository's default branch if different.
+- Update the PR title and body as needed before creating the PR.
