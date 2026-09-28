@@ -1,20 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import ScreenIndex from './screens/ScreenIndex';
+import { screens } from './screens/registry';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Intelliseat Assessment System Yeah </Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="ScreenIndex">
+        <Stack.Screen name="ScreenIndex" component={ScreenIndex} options={{ title: 'IntelliSeat Screens' }} />
+        {screens.map((s) => (
+          <Stack.Screen key={s.name} name={s.name} component={s.component} />
+        ))}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
