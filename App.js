@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Intelliseat Assessment System </Text>
+      <Text>Intelliseat Assessment System Yeah </Text>
       <StatusBar style="auto" />
     </View>
   );
