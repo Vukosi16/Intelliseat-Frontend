@@ -1,0 +1,1 @@
+// Scan a student. Camera and QR code.

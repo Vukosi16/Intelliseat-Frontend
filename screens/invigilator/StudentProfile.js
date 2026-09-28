@@ -1,0 +1,1 @@
+// Post scanning a student QR code.
