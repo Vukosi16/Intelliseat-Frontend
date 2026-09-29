@@ -190,3 +190,69 @@
 {"_e":"metro:bundling:progress","_t":1790597068355,"id":"2","progress":0.999,"total":953,"current":953}
 {"_e":"metro:bundling:done","_t":1790597068833,"id":"2","total":953,"ms":1420.8863}
 {"_e":"metro:client_log","_t":1790597073157,"level":"error","data":["[ReferenceError: Property 'React' doesn't exist]"]}
+{"_e":"root:init","_t":1790673571150,"format":"v0-jsonl","version":"57.0.27"}
+{"_e":"env:mode","_t":1790673571154,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1790673571163,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1790673572705,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1790673574834,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1790673576029,"plugins":[]}
+{"_e":"metro:instantiate","_t":1790673590866,"atlas":false,"workers":8,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1790673594153,"id":"1","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1790673594154,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790673594162,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790673594264,"id":"1","progress":0.034792880345781096,"total":193,"current":36}
+{"_e":"metro:bundling:progress","_t":1790673594363,"id":"1","progress":0.10531861872552509,"total":265,"current":86}
+{"_e":"metro:bundling:progress","_t":1790673594463,"id":"1","progress":0.203214915595868,"total":315,"current":142}
+{"_e":"metro:bundling:progress","_t":1790673594563,"id":"1","progress":0.20736873523975094,"total":437,"current":199}
+{"_e":"metro:bundling:progress","_t":1790673594663,"id":"1","progress":0.24626870905749834,"total":534,"current":265}
+{"_e":"metro:bundling:progress","_t":1790673594763,"id":"1","progress":0.32054184939213093,"total":597,"current":338}
+{"_e":"metro:bundling:progress","_t":1790673594863,"id":"1","progress":0.45196278690177744,"total":653,"current":439}
+{"_e":"metro:bundling:progress","_t":1790673594963,"id":"1","progress":0.570575991453149,"total":699,"current":528}
+{"_e":"metro:bundling:progress","_t":1790673595064,"id":"1","progress":0.6756091747624142,"total":747,"current":614}
+{"_e":"metro:bundling:progress","_t":1790673595165,"id":"1","progress":0.7977685352202727,"total":777,"current":694}
+{"_e":"metro:bundling:progress","_t":1790673595265,"id":"1","progress":0.8077793019356806,"total":810,"current":728}
+{"_e":"metro:bundling:progress","_t":1790673595365,"id":"1","progress":0.8091688045698682,"total":866,"current":779}
+{"_e":"metro:bundling:progress","_t":1790673595465,"id":"1","progress":0.8720718070525827,"total":907,"current":847}
+{"_e":"metro:bundling:progress","_t":1790673595565,"id":"1","progress":0.9389941284973337,"total":936,"current":907}
+{"_e":"metro:bundling:progress","_t":1790673595665,"id":"1","progress":0.9978958448753462,"total":950,"current":949}
+{"_e":"metro:bundling:progress","_t":1790673597308,"id":"1","progress":0.999,"total":950,"current":950}
+{"_e":"metro:bundling:failed","_t":1790673597326,"id":"1","message":"Unable to resolve \"./auth/ForgotPasswordScreen\" from \"screens\\registry.js\"\n  1 | import LoginScreen from './auth/LoginScreen';\n> 2 | import ForgotPasswordScreen from './auth/ForgotPasswordScreen';\n    |                                   ^\n  3 | import NewPasswordScreen from './auth/NewPasswordScreen';\n  4 |\n  5 | import StudentDashboard from './student/StudentDashboard';","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mscreens\\registry.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./auth/ForgotPasswordScreen\"\u001b[39m\n\n\u001b[90m \u001b[39mApp.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/registry\"\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90mnode_modules\\expo\\AppEntry.js\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"../../App\"\u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"./node_modules/\u001b[1mexpo\u001b[22m/AppEntry\"\u001b[39m\u001b[90m\u001b[39m\n","filename":null,"targetModuleName":"./auth/ForgotPasswordScreen","originModulePath":"screens\\registry.js"}
+{"_e":"metro:bundling:started","_t":1790673804872,"id":"2","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1790673804872,"id":"2","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790673804887,"id":"2","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790673805001,"id":"2","progress":0.03628117913832199,"total":42,"current":8}
+{"_e":"metro:bundling:progress","_t":1790673805102,"id":"2","progress":0.03628117913832199,"total":153,"current":19}
+{"_e":"metro:bundling:progress","_t":1790673805204,"id":"2","progress":0.06085893380426556,"total":227,"current":56}
+{"_e":"metro:bundling:progress","_t":1790673805304,"id":"2","progress":0.12337970992150665,"total":279,"current":98}
+{"_e":"metro:bundling:progress","_t":1790673805420,"id":"2","progress":0.20349490989063482,"total":317,"current":143}
+{"_e":"metro:bundling:progress","_t":1790673805520,"id":"2","progress":0.20349490989063482,"total":415,"current":176}
+{"_e":"metro:bundling:progress","_t":1790673805620,"id":"2","progress":0.20785387677805192,"total":533,"current":243}
+{"_e":"metro:bundling:progress","_t":1790673805720,"id":"2","progress":0.2549750024507401,"total":606,"current":306}
+{"_e":"metro:bundling:progress","_t":1790673805822,"id":"2","progress":0.2915647645228851,"total":613,"current":331}
+{"_e":"metro:bundling:progress","_t":1790673805922,"id":"2","progress":0.36702783318905496,"total":652,"current":395}
+{"_e":"metro:bundling:progress","_t":1790673806022,"id":"2","progress":0.48698307541017544,"total":695,"current":485}
+{"_e":"metro:bundling:progress","_t":1790673806122,"id":"2","progress":0.6103515625,"total":736,"current":575}
+{"_e":"metro:bundling:progress","_t":1790673806222,"id":"2","progress":0.7011811336570702,"total":744,"current":623}
+{"_e":"metro:bundling:progress","_t":1790673806358,"id":"2","progress":0.7998599448230898,"total":814,"current":728}
+{"_e":"metro:bundling:progress","_t":1790673806461,"id":"2","progress":0.8085896402152363,"total":893,"current":803}
+{"_e":"metro:bundling:progress","_t":1790673806561,"id":"2","progress":0.8814228020409292,"total":932,"current":875}
+{"_e":"metro:bundling:progress","_t":1790673806661,"id":"2","progress":0.9254927095016825,"total":948,"current":912}
+{"_e":"metro:bundling:progress","_t":1790673806771,"id":"2","progress":0.985589483300321,"total":968,"current":961}
+{"_e":"metro:bundling:progress","_t":1790673808342,"id":"2","progress":0.9876417252919882,"total":968,"current":962}
+{"_e":"metro:bundling:progress","_t":1790673808445,"id":"2","progress":0.9979349515060447,"total":968,"current":967}
+{"_e":"metro:bundling:done","_t":1790673808579,"id":"2","total":968,"ms":3706.8292}
+{"_e":"metro:client_log","_t":1790673813664,"level":"error","data":["[Error: Got an invalid value for 'component' prop for the screen 'ForgotPassword'. It must be a valid React Component.]"]}
+{"_e":"metro:client_log","_t":1790673851681,"level":"error","data":["[Error: Got an invalid value for 'component' prop for the screen 'NewPassword'. It must be a valid React Component.]"]}
+{"_e":"metro:client_log","_t":1790673866082,"level":"error","data":["[Error: Got an invalid value for 'component' prop for the screen 'NextExam'. It must be a valid React Component.]"]}
+{"_e":"metro:client_log","_t":1790673881149,"level":"error","data":["[Error: Got an invalid value for 'component' prop for the screen 'NextExam'. It must be a valid React Component.]"]}
+{"_e":"metro:client_log","_t":1790673891935,"level":"error","data":["[Error: Got an invalid value for 'component' prop for the screen 'NextExam'. It must be a valid React Component.]"]}
+{"_e":"metro:client_log","_t":1790673905408,"level":"error","data":["[Error: Got an invalid value for 'component' prop for the screen 'NextExam'. It must be a valid React Component.]"]}
+{"_e":"metro:client_log","_t":1790673913888,"level":"error","data":["[Error: Got an invalid value for 'component' prop for the screen 'NextExam'. It must be a valid React Component.]"]}
+{"_e":"metro:client_log","_t":1790673922678,"level":"error","data":["[Error: Got an invalid value for 'component' prop for the screen 'NextExam'. It must be a valid React Component.]"]}
+{"_e":"metro:client_log","_t":1790673929607,"level":"error","data":["[Error: Got an invalid value for 'component' prop for the screen 'NextExam'. It must be a valid React Component.]"]}
+{"_e":"metro:client_log","_t":1790673938451,"level":"error","data":["[Error: Got an invalid value for 'component' prop for the screen 'NextExam'. It must be a valid React Component.]"]}
+{"_e":"metro:client_log","_t":1790673979600,"level":"error","data":["[Error: Got an invalid value for 'component' prop for the screen 'NextExam'. It must be a valid React Component.]"]}
+{"_e":"metro:client_log","_t":1790673987640,"level":"error","data":["[Error: Got an invalid value for 'component' prop for the screen 'StudentAlert'. It must be a valid React Component.]"]}
+{"_e":"metro:client_log","_t":1790673995680,"level":"error","data":["[Error: Got an invalid value for 'component' prop for the screen 'StudentProfile'. It must be a valid React Component.]"]}
+{"_e":"metro:client_log","_t":1790674002354,"level":"error","data":["[Error: Got an invalid value for 'component' prop for the screen 'StudentQRCode'. It must be a valid React Component.]"]}
+{"_e":"metro:client_log","_t":1790674008625,"level":"error","data":["[Error: Got an invalid value for 'component' prop for the screen 'StudentSupport'. It must be a valid React Component.]"]}
