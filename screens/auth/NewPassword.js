@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function LoginScreen() {
+export default function NewPassword() {
   return (
     <View style={styles.container}>
       <Text>New Password Page</Text>

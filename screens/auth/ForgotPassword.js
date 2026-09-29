@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function LoginScreen() {
+export default function ForgotPassword() {
   return (
     <View style={styles.container}>
       <Text>Forgot Password Page</Text>

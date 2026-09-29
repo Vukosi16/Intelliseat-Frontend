@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function LoginScreen() {
+export default function StudentQRCode() {
   return (
     <View style={styles.container}>
       <Text>Student QR Code Page</Text>
