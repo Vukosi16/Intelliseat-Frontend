@@ -1,6 +1,7 @@
 import LoginScreen from './auth/LoginScreen';
 import ForgotPasswordScreen from './auth/ForgotPassword';
 import NewPasswordScreen from './auth/NewPassword';
+import OTPVerificationScreen from './auth/OTPVerification';
 
 import StudentDashboard from './student/StudentDashboard';
 import NextExam from './student/NextExam';
@@ -23,6 +24,7 @@ export const screens = [
   { name: 'Login', component: LoginScreen, group: 'Auth' },
   { name: 'ForgotPassword', component: ForgotPasswordScreen, group: 'Auth' },
   { name: 'NewPassword', component: NewPasswordScreen, group: 'Auth' },
+  { name: 'OTPVerification', component: OTPVerificationScreen, group: 'Auth' },
   { name: 'StudentDashboard', component: StudentDashboard, group: 'Student' },
   { name: 'NextExam', component: NextExam, group: 'Student' },
   { name: 'StudentAlert', component: StudentAlert, group: 'Student' },

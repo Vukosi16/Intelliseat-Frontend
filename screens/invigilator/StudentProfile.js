@@ -1,7 +1,7 @@
 // Post scanning a student QR code.
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function LoginScreen() {
+export default function StudentProfile() {
   return (
     <View style={styles.container}>
       <Text>Student Profile Page</Text>
