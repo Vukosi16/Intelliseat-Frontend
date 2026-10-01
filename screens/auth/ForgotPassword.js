@@ -3,15 +3,15 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, StatusBar } from '
 import TopLogoSection from '../../components/TopLogoSection';
 
 export const Palette = {
-  bg: '#0B1E4A',          // Canvas outer background (from OTP container)
-  noteBg: '#E7ECF9',      // Info banner background (from OTP pinInput background)
+  bg: '#0B1E4A',          // Canvas outer background 
+  noteBg: '#E7ECF9',      // Info banner background 
   noteText: '#0B1E4A',    // Banner text color
-  inputBg: '#E7ECF9',     // Input field background (from OTP pinInput)
-  inputBorder: '#122B63', // Input field border (from OTP pinInput border)
-  btnBg: '#122B63',       // Primary button background (from OTP codeVerificationButton)
+  inputBg: '#E7ECF9',     // Input field background
+  inputBorder: '#122B63', // Input field border 
+  btnBg: '#122B63',       // Primary button background
   white: '#FFFFFF',
-  muted: '#6B7280',       // Muted gray text (from OTP subtitle)
-  link: '#3B82F6',        // Link color (from OTP Resend Code text)
+  muted: '#6B7280',       // Muted gray text 
+  link: '#3B82F6',        // Link color
   brandBlue: '#0B1E4A',
   brandRed: '#D2232A',
 };
@@ -24,7 +24,7 @@ export default function ForgotPasswordScreen() {
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
 
-      {/* Moved Logo Up via wrapper margin */}
+      {/* Logo */}
       <View style={styles.logoWrapper}>
         <TopLogoSection />
       </View>
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   logoWrapper: {
-    marginBottom: 24, // Moves logo up and adds space above the card
+    marginBottom: 24, // logo up
     alignItems: 'center',
   },
   hScreen: {
