@@ -579,3 +579,177 @@
 {"_e":"metro:bundling:started","_t":1790680549984,"id":"9","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
 {"_e":"metro:bundling:progress","_t":1790680549984,"id":"9","progress":0,"total":1,"current":0}
 {"_e":"metro:bundling:done","_t":1790680550107,"id":"9","total":1,"ms":123.4759}
+{"_e":"root:init","_t":1790932061761,"format":"v0-jsonl","version":"57.0.27"}
+{"_e":"env:mode","_t":1790932061764,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1790932061769,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1790932062562,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1790932063518,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1790932064239,"plugins":[]}
+{"_e":"metro:instantiate","_t":1790932074110,"atlas":false,"workers":8,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1790932176653,"id":"1","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1790932176653,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790932176659,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790932176760,"id":"1","progress":0.007678818152832394,"total":194,"current":17}
+{"_e":"metro:bundling:progress","_t":1790932176860,"id":"1","progress":0.07746043715503609,"total":309,"current":86}
+{"_e":"metro:bundling:progress","_t":1790932176960,"id":"1","progress":0.18117028270874425,"total":390,"current":166}
+{"_e":"metro:bundling:progress","_t":1790932177061,"id":"1","progress":0.2971400783227295,"total":521,"current":284}
+{"_e":"metro:bundling:progress","_t":1790932177161,"id":"1","progress":0.3585200426764213,"total":648,"current":388}
+{"_e":"metro:bundling:progress","_t":1790932177264,"id":"1","progress":0.4524273975505602,"total":727,"current":489}
+{"_e":"metro:bundling:progress","_t":1790932177364,"id":"1","progress":0.620752984389348,"total":792,"current":624}
+{"_e":"metro:bundling:progress","_t":1790932177465,"id":"1","progress":0.7661302796430723,"total":866,"current":758}
+{"_e":"metro:bundling:progress","_t":1790932177564,"id":"1","progress":0.837758583339082,"total":909,"current":832}
+{"_e":"metro:bundling:progress","_t":1790932177664,"id":"1","progress":0.8401223650481376,"total":983,"current":901}
+{"_e":"metro:bundling:progress","_t":1790932177780,"id":"1","progress":0.9160691418822126,"total":1026,"current":982}
+{"_e":"metro:bundling:progress","_t":1790932177881,"id":"1","progress":0.9981105341962042,"total":1058,"current":1057}
+{"_e":"metro:bundling:progress","_t":1790932179006,"id":"1","progress":0.999,"total":1058,"current":1058}
+{"_e":"metro:bundling:done","_t":1790932179190,"id":"1","total":1058,"ms":2537.6241}
+{"_e":"metro:bundling:started","_t":1790932456452,"id":"2","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1790932456452,"id":"2","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1790932456588,"id":"2","total":1,"ms":135.6938}
+{"_e":"metro:bundling:failed","_t":1790933022131,"id":null,"message":"Unable to resolve \"../assets/logo.png\" from \"components\\NavBar.js\"\n   5 |     <View style={styles.container}>\n   6 |       <View style={styles.logoContainer}>\n>  7 |         <Image source={require('../assets/logo.png')} style={styles.logo} />\n     |                                 ^\n   8 |       </View>\n   9 |       <View style={styles.leftContainer}>\n  10 |","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mcomponents\\NavBar.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../assets/logo.png\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\student\\StudentDashboard.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../../components/NavBar\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\registry.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./student/StudentDashboard\"\u001b[39m\n\n\u001b[90m \u001b[39mApp.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/registry\"\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90mnode_modules\\expo\\AppEntry.js\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"../../App\"\u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"./node_modules/\u001b[1mexpo\u001b[22m/AppEntry\"\u001b[39m\u001b[90m\u001b[39m\n","filename":null,"targetModuleName":"../assets/logo.png","originModulePath":"components\\NavBar.js"}
+{"_e":"metro:bundling:failed","_t":1790933022348,"id":null,"message":"Unable to resolve \"../assets/logo.png\" from \"components\\NavBar.js\"\n   5 |     <View style={styles.container}>\n   6 |       <View style={styles.logoContainer}>\n>  7 |         <Image source={require('../assets/logo.png')} style={styles.logo} />\n     |                                 ^\n   8 |       </View>\n   9 |       <View style={styles.leftContainer}>\n  10 |","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mcomponents\\NavBar.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../assets/logo.png\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\student\\StudentDashboard.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../../components/NavBar\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\registry.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./student/StudentDashboard\"\u001b[39m\n\n\u001b[90m \u001b[39mApp.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/registry\"\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90mnode_modules\\expo\\AppEntry.js\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"../../App\"\u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"./node_modules/\u001b[1mexpo\u001b[22m/AppEntry\"\u001b[39m\u001b[90m\u001b[39m\n","filename":null,"targetModuleName":"../assets/logo.png","originModulePath":"components\\NavBar.js"}
+{"_e":"metro:bundling:failed","_t":1790933023279,"id":null,"message":"Unable to resolve \"../assets/logo.png\" from \"components\\NavBar.js\"\n   5 |     <View style={styles.container}>\n   6 |       <View style={styles.logoContainer}>\n>  7 |         <Image source={require('../assets/logo.png')} style={styles.logo} />\n     |                                 ^\n   8 |       </View>\n   9 |       <View style={styles.leftContainer}>\n  10 |","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mcomponents\\NavBar.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../assets/logo.png\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\student\\StudentDashboard.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../../components/NavBar\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\registry.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./student/StudentDashboard\"\u001b[39m\n\n\u001b[90m \u001b[39mApp.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/registry\"\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90mnode_modules\\expo\\AppEntry.js\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"../../App\"\u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"./node_modules/\u001b[1mexpo\u001b[22m/AppEntry\"\u001b[39m\u001b[90m\u001b[39m\n","filename":null,"targetModuleName":"../assets/logo.png","originModulePath":"components\\NavBar.js"}
+{"_e":"metro:bundling:failed","_t":1790933023619,"id":null,"message":"Unable to resolve \"../assets/logo.png\" from \"components\\NavBar.js\"\n   5 |     <View style={styles.container}>\n   6 |       <View style={styles.logoContainer}>\n>  7 |         <Image source={require('../assets/logo.png')} style={styles.logo} />\n     |                                 ^\n   8 |       </View>\n   9 |       <View style={styles.leftContainer}>\n  10 |","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mcomponents\\NavBar.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../assets/logo.png\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\student\\StudentDashboard.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../../components/NavBar\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\registry.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./student/StudentDashboard\"\u001b[39m\n\n\u001b[90m \u001b[39mApp.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/registry\"\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90mnode_modules\\expo\\AppEntry.js\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"../../App\"\u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"./node_modules/\u001b[1mexpo\u001b[22m/AppEntry\"\u001b[39m\u001b[90m\u001b[39m\n","filename":null,"targetModuleName":"../assets/logo.png","originModulePath":"components\\NavBar.js"}
+{"_e":"metro:bundling:failed","_t":1790933032269,"id":null,"message":"Unable to resolve \"../assets/logo.png\" from \"components\\NavBar.js\"\n   5 |     <View style={styles.container}>\n   6 |       <View style={styles.logoContainer}>\n>  7 |         <Image source={require('../assets/logo.png')} style={styles.logo} />\n     |                                 ^\n   8 |       </View>\n   9 |       <View style={styles.leftContainer}>\n  10 |","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mcomponents\\NavBar.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../assets/logo.png\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\student\\StudentDashboard.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../../components/NavBar\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\registry.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./student/StudentDashboard\"\u001b[39m\n\n\u001b[90m \u001b[39mApp.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/registry\"\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90mnode_modules\\expo\\AppEntry.js\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"../../App\"\u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"./node_modules/\u001b[1mexpo\u001b[22m/AppEntry\"\u001b[39m\u001b[90m\u001b[39m\n","filename":null,"targetModuleName":"../assets/logo.png","originModulePath":"components\\NavBar.js"}
+{"_e":"metro:bundling:failed","_t":1790933032282,"id":null,"message":"Unable to resolve \"../assets/logo.png\" from \"components\\NavBar.js\"\n   5 |     <View style={styles.container}>\n   6 |       <View style={styles.logoContainer}>\n>  7 |         <Image source={require('../assets/logo.png')} style={styles.logo} />\n     |                                 ^\n   8 |       </View>\n   9 |       <View style={styles.leftContainer}>\n  10 |","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mcomponents\\NavBar.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../assets/logo.png\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\student\\StudentDashboard.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../../components/NavBar\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\registry.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./student/StudentDashboard\"\u001b[39m\n\n\u001b[90m \u001b[39mApp.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/registry\"\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90mnode_modules\\expo\\AppEntry.js\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"../../App\"\u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"./node_modules/\u001b[1mexpo\u001b[22m/AppEntry\"\u001b[39m\u001b[90m\u001b[39m\n","filename":null,"targetModuleName":"../assets/logo.png","originModulePath":"components\\NavBar.js"}
+{"_e":"metro:bundling:failed","_t":1790933033923,"id":null,"message":"Unable to resolve \"../assets/logo.png\" from \"components\\NavBar.js\"\n   5 |     <View style={styles.container}>\n   6 |       <View style={styles.logoContainer}>\n>  7 |         <Image source={require('../assets/logo.png')} style={styles.logo} />\n     |                                 ^\n   8 |       </View>\n   9 |       <View style={styles.leftContainer}>\n  10 |","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mcomponents\\NavBar.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../assets/logo.png\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\student\\StudentDashboard.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../../components/NavBar\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\registry.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./student/StudentDashboard\"\u001b[39m\n\n\u001b[90m \u001b[39mApp.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/registry\"\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90mnode_modules\\expo\\AppEntry.js\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"../../App\"\u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"./node_modules/\u001b[1mexpo\u001b[22m/AppEntry\"\u001b[39m\u001b[90m\u001b[39m\n","filename":null,"targetModuleName":"../assets/logo.png","originModulePath":"components\\NavBar.js"}
+{"_e":"metro:client_log","_t":1790933051029,"level":"error","data":["[ReferenceError: Property 'Image' doesn't exist]"]}
+{"_e":"root:init","_t":1790933374864,"format":"v0-jsonl","version":"57.0.27"}
+{"_e":"env:mode","_t":1790933374867,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1790933374872,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1790933375728,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1790933376774,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1790933377597,"plugins":[]}
+{"_e":"metro:instantiate","_t":1790933389605,"atlas":false,"workers":8,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1790933395545,"id":"1","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1790933395546,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790933395552,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790933395654,"id":"1","progress":0.014545087245271583,"total":199,"current":24}
+{"_e":"metro:bundling:progress","_t":1790933395754,"id":"1","progress":0.09366649358544092,"total":281,"current":86}
+{"_e":"metro:bundling:progress","_t":1790933395854,"id":"1","progress":0.2197265625,"total":416,"current":195}
+{"_e":"metro:bundling:progress","_t":1790933395954,"id":"1","progress":0.2909346265715894,"total":584,"current":315}
+{"_e":"metro:bundling:progress","_t":1790933396054,"id":"1","progress":0.3659915753487378,"total":724,"current":438}
+{"_e":"metro:bundling:progress","_t":1790933396154,"id":"1","progress":0.4642339391661521,"total":772,"current":526}
+{"_e":"metro:bundling:progress","_t":1790933396254,"id":"1","progress":0.657307148149639,"total":819,"current":664}
+{"_e":"metro:bundling:progress","_t":1790933396354,"id":"1","progress":0.8093981051666088,"total":897,"current":807}
+{"_e":"metro:bundling:progress","_t":1790933396455,"id":"1","progress":0.8107470601401492,"total":964,"current":868}
+{"_e":"metro:bundling:progress","_t":1790933396554,"id":"1","progress":0.9142860393522886,"total":1027,"current":982}
+{"_e":"metro:bundling:progress","_t":1790933396654,"id":"1","progress":0.9867988246129555,"total":1057,"current":1050}
+{"_e":"metro:bundling:progress","_t":1790933396766,"id":"1","progress":0.9981123175515234,"total":1059,"current":1058}
+{"_e":"metro:bundling:progress","_t":1790933398075,"id":"1","progress":0.999,"total":1059,"current":1059}
+{"_e":"metro:bundling:progress","_t":1790933398183,"id":"1","progress":0.999,"total":1079,"current":1061}
+{"_e":"metro:bundling:progress","_t":1790933398293,"id":"1","progress":0.999,"total":1094,"current":1068}
+{"_e":"metro:bundling:progress","_t":1790933398375,"id":"1","progress":0.999,"total":1094,"current":1069}
+{"_e":"metro:bundling:progress","_t":1790933398482,"id":"1","progress":0.999,"total":1099,"current":1072}
+{"_e":"metro:bundling:progress","_t":1790933398588,"id":"1","progress":0.999,"total":1099,"current":1082}
+{"_e":"metro:bundling:progress","_t":1790933398693,"id":"1","progress":0.999,"total":1101,"current":1089}
+{"_e":"metro:bundling:progress","_t":1790933398793,"id":"1","progress":0.999,"total":1110,"current":1096}
+{"_e":"metro:bundling:progress","_t":1790933398904,"id":"1","progress":0.999,"total":1112,"current":1105}
+{"_e":"metro:bundling:progress","_t":1790933401113,"id":"1","progress":0.999,"total":1112,"current":1106}
+{"_e":"metro:bundling:progress","_t":1790933401214,"id":"1","progress":0.999,"total":1122,"current":1119}
+{"_e":"metro:bundling:done","_t":1790933401402,"id":"1","total":1122,"ms":5855.9984}
+{"_e":"metro:bundling:started","_t":1790934583754,"id":"3","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1790934583754,"id":"3","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790934583757,"id":"3","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1790934583914,"id":"3","total":1,"ms":159.791}
+{"_e":"metro:bundling:started","_t":1790934889583,"id":"5","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1790934889583,"id":"5","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790934889588,"id":"5","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790934889702,"id":"5","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790934889743,"id":"5","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790934889843,"id":"5","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790934889943,"id":"5","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790934890043,"id":"5","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790934890143,"id":"5","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1790934890341,"id":"5","total":1,"ms":758.7187}
+{"_e":"metro:bundling:started","_t":1790934982134,"id":"6","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1790934982134,"id":"6","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1790934982282,"id":"6","total":1,"ms":147.9178}
+{"_e":"metro:bundling:started","_t":1790935580891,"id":"8","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1790935580891,"id":"8","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790935580893,"id":"8","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1790935581052,"id":"8","total":1,"ms":160.5533}
+{"_e":"root:init","_t":1790936041520,"format":"v0-jsonl","version":"57.0.27"}
+{"_e":"env:mode","_t":1790936041522,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1790936041527,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1790936042346,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1790936043408,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1790936044064,"plugins":[]}
+{"_e":"metro:instantiate","_t":1790936058209,"atlas":false,"workers":8,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1790936107422,"id":"1","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1790936107422,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790936107430,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790936107530,"id":"1","progress":0.005978318631097886,"total":194,"current":15}
+{"_e":"metro:bundling:progress","_t":1790936107630,"id":"1","progress":0.1117875851110023,"total":329,"current":110}
+{"_e":"metro:bundling:progress","_t":1790936107730,"id":"1","progress":0.2321699722692869,"total":413,"current":199}
+{"_e":"metro:bundling:progress","_t":1790936107830,"id":"1","progress":0.2776615764831253,"total":594,"current":313}
+{"_e":"metro:bundling:progress","_t":1790936107931,"id":"1","progress":0.32467268934505406,"total":702,"current":400}
+{"_e":"metro:bundling:progress","_t":1790936108031,"id":"1","progress":0.4373617777777778,"total":750,"current":496}
+{"_e":"metro:bundling:progress","_t":1790936108131,"id":"1","progress":0.6313700037369377,"total":813,"current":646}
+{"_e":"metro:bundling:progress","_t":1790936108231,"id":"1","progress":0.8136527574872169,"total":888,"current":801}
+{"_e":"metro:bundling:progress","_t":1790936108331,"id":"1","progress":0.8197589481373264,"total":962,"current":871}
+{"_e":"metro:bundling:progress","_t":1790936108452,"id":"1","progress":0.9179358131086869,"total":1026,"current":983}
+{"_e":"metro:bundling:progress","_t":1790936108558,"id":"1","progress":0.9981105341962042,"total":1058,"current":1057}
+{"_e":"metro:bundling:progress","_t":1790936109736,"id":"1","progress":0.999,"total":1058,"current":1058}
+{"_e":"metro:bundling:progress","_t":1790936109836,"id":"1","progress":0.999,"total":1149,"current":1129}
+{"_e":"metro:bundling:progress","_t":1790936109939,"id":"1","progress":0.999,"total":1150,"current":1135}
+{"_e":"metro:bundling:progress","_t":1790936109953,"id":"1","progress":0.999,"total":1150,"current":1136}
+{"_e":"metro:bundling:progress","_t":1790936110060,"id":"1","progress":0.999,"total":1167,"current":1138}
+{"_e":"metro:bundling:progress","_t":1790936110168,"id":"1","progress":0.999,"total":1176,"current":1140}
+{"_e":"metro:bundling:progress","_t":1790936110267,"id":"1","progress":0.999,"total":1187,"current":1141}
+{"_e":"metro:bundling:progress","_t":1790936110290,"id":"1","progress":0.999,"total":1187,"current":1142}
+{"_e":"metro:bundling:progress","_t":1790936110392,"id":"1","progress":0.999,"total":1197,"current":1147}
+{"_e":"metro:bundling:progress","_t":1790936110510,"id":"1","progress":0.999,"total":1202,"current":1153}
+{"_e":"metro:bundling:progress","_t":1790936110610,"id":"1","progress":0.999,"total":1205,"current":1154}
+{"_e":"metro:bundling:progress","_t":1790936110721,"id":"1","progress":0.999,"total":1210,"current":1158}
+{"_e":"metro:bundling:progress","_t":1790936110831,"id":"1","progress":0.999,"total":1212,"current":1159}
+{"_e":"metro:bundling:progress","_t":1790936112103,"id":"1","progress":0.999,"total":1212,"current":1160}
+{"_e":"metro:bundling:progress","_t":1790936112206,"id":"1","progress":0.999,"total":1225,"current":1170}
+{"_e":"metro:bundling:progress","_t":1790936112306,"id":"1","progress":0.999,"total":1235,"current":1175}
+{"_e":"metro:bundling:progress","_t":1790936112407,"id":"1","progress":0.999,"total":1236,"current":1181}
+{"_e":"metro:bundling:progress","_t":1790936112522,"id":"1","progress":0.999,"total":1249,"current":1188}
+{"_e":"metro:bundling:progress","_t":1790936112631,"id":"1","progress":0.999,"total":1265,"current":1196}
+{"_e":"metro:bundling:progress","_t":1790936112734,"id":"1","progress":0.999,"total":1270,"current":1201}
+{"_e":"metro:bundling:progress","_t":1790936112838,"id":"1","progress":0.999,"total":1284,"current":1218}
+{"_e":"metro:bundling:progress","_t":1790936112938,"id":"1","progress":0.999,"total":1319,"current":1244}
+{"_e":"metro:bundling:progress","_t":1790936113038,"id":"1","progress":0.999,"total":1326,"current":1257}
+{"_e":"metro:bundling:progress","_t":1790936113138,"id":"1","progress":0.999,"total":1359,"current":1283}
+{"_e":"metro:bundling:progress","_t":1790936113238,"id":"1","progress":0.999,"total":1368,"current":1303}
+{"_e":"metro:bundling:progress","_t":1790936113339,"id":"1","progress":0.999,"total":1382,"current":1331}
+{"_e":"metro:bundling:progress","_t":1790936113439,"id":"1","progress":0.999,"total":1416,"current":1368}
+{"_e":"metro:bundling:progress","_t":1790936113542,"id":"1","progress":0.999,"total":1433,"current":1404}
+{"_e":"metro:bundling:progress","_t":1790936113644,"id":"1","progress":0.999,"total":1446,"current":1442}
+{"_e":"metro:bundling:progress","_t":1790936113751,"id":"1","progress":0.999,"total":1458,"current":1457}
+{"_e":"metro:bundling:progress","_t":1790936114028,"id":"1","progress":0.999,"total":1458,"current":1458}
+{"_e":"metro:bundling:done","_t":1790936114174,"id":"1","total":1458,"ms":6752.3651}
+{"_e":"metro:client_log","_t":1790936523493,"level":"error","data":["[Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.\n\nCheck the render method of `StudentDashboard`.]"]}
+{"_e":"metro:client_log","_t":1790936540945,"level":"error","data":["[Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.\n\nCheck the render method of `StudentDashboard`.]"]}
+{"_e":"metro:client_log","_t":1790936597613,"level":"error","data":["[Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.\n\nCheck the render method of `StudentDashboard`.]"]}
+{"_e":"metro:bundling:started","_t":1790939311301,"id":"b","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1790939311301,"id":"b","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790939311304,"id":"b","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790939311433,"id":"b","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790939311497,"id":"b","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790939311597,"id":"b","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790939311697,"id":"b","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790939311812,"id":"b","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790939311912,"id":"b","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790939312013,"id":"b","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790939312113,"id":"b","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1790939312277,"id":"b","total":1,"ms":975.8727}
+{"_e":"metro:bundling:failed","_t":1790940416405,"id":null,"message":"SyntaxError: C:\\Users\\vukos\\OneDrive - Richfield Graduate Institute of Technology\\Documents\\School Documents\\Third year\\2nd Semester\\IT Project\\IntelliSeat Codebase\\IntelliSeat-Assessment-System-Codebase\\screens\\student\\StudentDashboard.js: Unexpected token, expected \",\" (133:1)\n\n  131 |     fontSize: 15,\n  132 |     color: '#6B7280',\n> 133 | });\n      |  ^","importStack":null,"filename":"screens\\student\\StudentDashboard.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1790940416625,"id":null,"message":"SyntaxError: C:\\Users\\vukos\\OneDrive - Richfield Graduate Institute of Technology\\Documents\\School Documents\\Third year\\2nd Semester\\IT Project\\IntelliSeat Codebase\\IntelliSeat-Assessment-System-Codebase\\screens\\student\\StudentDashboard.js: Unexpected token, expected \",\" (133:1)\n\n  131 |     fontSize: 15,\n  132 |     color: '#6B7280',\n> 133 | });\n      |  ^","importStack":null,"filename":"screens\\student\\StudentDashboard.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1790940418210,"id":null,"message":"SyntaxError: C:\\Users\\vukos\\OneDrive - Richfield Graduate Institute of Technology\\Documents\\School Documents\\Third year\\2nd Semester\\IT Project\\IntelliSeat Codebase\\IntelliSeat-Assessment-System-Codebase\\screens\\student\\StudentDashboard.js: Unexpected token, expected \",\" (133:1)\n\n  131 |     fontSize: 15,\n  132 |     color: '#6B7280',\n> 133 | });\n      |  ^","importStack":null,"filename":"screens\\student\\StudentDashboard.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1790940418602,"id":null,"message":"SyntaxError: C:\\Users\\vukos\\OneDrive - Richfield Graduate Institute of Technology\\Documents\\School Documents\\Third year\\2nd Semester\\IT Project\\IntelliSeat Codebase\\IntelliSeat-Assessment-System-Codebase\\screens\\student\\StudentDashboard.js: Unexpected token, expected \",\" (133:1)\n\n  131 |     fontSize: 15,\n  132 |     color: '#6B7280',\n> 133 | });\n      |  ^","importStack":null,"filename":"screens\\student\\StudentDashboard.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:started","_t":1790940944482,"id":"e","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1790940944482,"id":"e","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790940944486,"id":"e","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790940944665,"id":"e","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790940944713,"id":"e","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790940944813,"id":"e","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790940944915,"id":"e","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790940945014,"id":"e","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790940945114,"id":"e","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1790940945302,"id":"e","total":1,"ms":820.52}
+{"_e":"metro:client_log","_t":1790941895516,"level":"error","data":["[ReferenceError: Property 'TouchableOpacity' doesn't exist]"]}
+{"_e":"metro:client_log","_t":1790942597392,"level":"error","data":["[ReferenceError: Property 'navigation' doesn't exist]"]}
