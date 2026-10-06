@@ -1,16 +1,36 @@
-# React + Vite
+# IntelliSeat Admin Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A responsive React administrator portal for managing assessment-day operations at Richfield College.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Admin sign-in screen and password-reset request screen
+- Dashboard overview with assessment sessions, attendance and activity
+- Student and invigilator account creation
+- Student eligibility search, filtering and status updates
+- Assessment scheduling and upcoming-session list
+- Attendance and issue reporting
+- Support issue tracking and resolution
+- Alert composition, audience selection and preview
 
-## React Compiler
+## Project structure
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- `src/App.jsx` owns shared app state and connects the screens.
+- `src/pages/` contains the login, dashboard, eligibility, user, assessment, report, support and alert screens.
+- `src/components/` contains shared UI such as the sidebar, form fields and authentication layout.
+- `src/data/demoData.js` contains the sample navigation and initial records.
 
-## Expanding the Oxlint configuration
+Navigation is handled by the app shell, which passes data and callbacks to each page. This keeps each screen independently readable while preserving one connected application.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Run locally
+
+```sh
+npm install
+npm run dev
+```
+
+Create a production build with `npm run build`, or run the project linter with `npm run lint`.
+
+## Demo behavior
+
+This frontend currently uses in-memory sample data. Signing in with a non-empty email and password opens the dashboard; the forms update the page state for demonstration. Authentication, password reset delivery, persistence, attendance data and account provisioning need to be connected to an API before production use.
