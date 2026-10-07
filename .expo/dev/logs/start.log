@@ -579,362 +579,177 @@
 {"_e":"metro:bundling:started","_t":1790680549984,"id":"9","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
 {"_e":"metro:bundling:progress","_t":1790680549984,"id":"9","progress":0,"total":1,"current":0}
 {"_e":"metro:bundling:done","_t":1790680550107,"id":"9","total":1,"ms":123.4759}
-{"_e":"root:init","_t":1790846507983,"format":"v0-jsonl","version":"57.0.27"}
-{"_e":"env:mode","_t":1790846507984,"nodeEnv":"development","babelEnv":"development","mode":"development"}
-{"_e":"env:load","_t":1790846507996,"mode":"development","files":[],"env":{}}
-{"_e":"devserver:start","_t":1790846512760,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
-{"_e":"metro:config","_t":1790846520301,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
-{"_e":"expo:dev-tools-plugin:load","_t":1790846523193,"plugins":[]}
-{"_e":"metro:instantiate","_t":1790846545201,"atlas":false,"workers":8,"host":"::","port":8081}
-{"_e":"metro:bundling:started","_t":1790846561458,"id":"1","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
-{"_e":"metro:bundling:progress","_t":1790846561459,"id":"1","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:progress","_t":1790846561474,"id":"1","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:progress","_t":1790846561587,"id":"1","progress":0.09,"total":7,"current":3}
-{"_e":"metro:bundling:progress","_t":1790846561693,"id":"1","progress":0.09,"total":108,"current":4}
-{"_e":"metro:bundling:progress","_t":1790846562193,"id":"1","progress":0.09,"total":108,"current":5}
-{"_e":"metro:bundling:progress","_t":1790846562293,"id":"1","progress":0.09,"total":138,"current":24}
-{"_e":"metro:bundling:progress","_t":1790846562393,"id":"1","progress":0.18367346938775508,"total":224,"current":96}
-{"_e":"metro:bundling:progress","_t":1790846562493,"id":"1","progress":0.2124007561436673,"total":230,"current":106}
-{"_e":"metro:bundling:progress","_t":1790846562686,"id":"1","progress":0.21642722117202268,"total":230,"current":107}
-{"_e":"metro:bundling:progress","_t":1790846562786,"id":"1","progress":0.36560302866414274,"total":301,"current":182}
-{"_e":"metro:bundling:progress","_t":1790846562886,"id":"1","progress":0.3715518873879561,"total":356,"current":217}
-{"_e":"metro:bundling:progress","_t":1790846562988,"id":"1","progress":0.38595579445982964,"total":367,"current":228}
-{"_e":"metro:bundling:progress","_t":1790846563172,"id":"1","progress":0.3893487961154957,"total":367,"current":229}
-{"_e":"metro:bundling:progress","_t":1790846563272,"id":"1","progress":0.46349350286989793,"total":448,"current":305}
-{"_e":"metro:bundling:progress","_t":1790846563372,"id":"1","progress":0.6127691062550584,"total":465,"current":364}
-{"_e":"metro:bundling:progress","_t":1790846563530,"id":"1","progress":0.616140594288357,"total":465,"current":365}
-{"_e":"metro:bundling:progress","_t":1790846563629,"id":"1","progress":0.7905078048115792,"total":514,"current":457}
-{"_e":"metro:bundling:progress","_t":1790846563729,"id":"1","progress":0.795098189600021,"total":517,"current":461}
-{"_e":"metro:bundling:progress","_t":1790846563794,"id":"1","progress":0.7985513807152557,"total":517,"current":462}
-{"_e":"metro:bundling:progress","_t":1790846563894,"id":"1","progress":0.8217886148515189,"total":567,"current":514}
-{"_e":"metro:bundling:progress","_t":1790846563971,"id":"1","progress":0.8249893464473124,"total":567,"current":515}
-{"_e":"metro:bundling:progress","_t":1790846564075,"id":"1","progress":0.8249893464473124,"total":626,"current":564}
-{"_e":"metro:bundling:progress","_t":1790846564161,"id":"1","progress":0.8249893464473124,"total":626,"current":565}
-{"_e":"metro:bundling:progress","_t":1790846564263,"id":"1","progress":0.899027736466389,"total":656,"current":622}
-{"_e":"metro:bundling:progress","_t":1790846564364,"id":"1","progress":0.9354065493428381,"total":670,"current":648}
-{"_e":"metro:bundling:progress","_t":1790846564465,"id":"1","progress":0.9354065493428381,"total":679,"current":650}
-{"_e":"metro:bundling:progress","_t":1790846564567,"id":"1","progress":0.9354065493428381,"total":684,"current":657}
-{"_e":"metro:bundling:progress","_t":1790846564670,"id":"1","progress":0.9354065493428381,"total":725,"current":677}
-{"_e":"metro:bundling:progress","_t":1790846564770,"id":"1","progress":0.9354065493428381,"total":752,"current":679}
-{"_e":"metro:bundling:progress","_t":1790846564877,"id":"1","progress":0.9354065493428381,"total":775,"current":701}
-{"_e":"metro:bundling:progress","_t":1790846565011,"id":"1","progress":0.9354065493428381,"total":812,"current":708}
-{"_e":"metro:bundling:progress","_t":1790846565089,"id":"1","progress":0.9354065493428381,"total":812,"current":710}
-{"_e":"metro:bundling:progress","_t":1790846565190,"id":"1","progress":0.9354065493428381,"total":866,"current":737}
-{"_e":"metro:bundling:progress","_t":1790846565291,"id":"1","progress":0.9354065493428381,"total":899,"current":774}
-{"_e":"metro:bundling:progress","_t":1790846565394,"id":"1","progress":0.9354065493428381,"total":903,"current":780}
-{"_e":"metro:bundling:progress","_t":1790846565494,"id":"1","progress":0.9354065493428381,"total":903,"current":789}
-{"_e":"metro:bundling:progress","_t":1790846565594,"id":"1","progress":0.9354065493428381,"total":936,"current":828}
-{"_e":"metro:bundling:progress","_t":1790846565694,"id":"1","progress":0.9354065493428381,"total":955,"current":873}
-{"_e":"metro:bundling:progress","_t":1790846565796,"id":"1","progress":0.9354065493428381,"total":961,"current":879}
-{"_e":"metro:bundling:progress","_t":1790846565908,"id":"1","progress":0.9354065493428381,"total":974,"current":885}
-{"_e":"metro:bundling:progress","_t":1790846566042,"id":"1","progress":0.9354065493428381,"total":985,"current":923}
-{"_e":"metro:bundling:progress","_t":1790846566143,"id":"1","progress":0.9354065493428381,"total":994,"current":935}
-{"_e":"metro:bundling:progress","_t":1790846566243,"id":"1","progress":0.9354065493428381,"total":996,"current":948}
-{"_e":"metro:bundling:progress","_t":1790846566350,"id":"1","progress":0.9354065493428381,"total":1017,"current":959}
-{"_e":"metro:bundling:progress","_t":1790846566450,"id":"1","progress":0.9354065493428381,"total":1028,"current":987}
-{"_e":"metro:bundling:progress","_t":1790846566552,"id":"1","progress":0.9354065493428381,"total":1030,"current":996}
-{"_e":"metro:bundling:progress","_t":1790846566652,"id":"1","progress":0.939178008676078,"total":1036,"current":1004}
-{"_e":"metro:bundling:progress","_t":1790846566752,"id":"1","progress":0.950531071684468,"total":1038,"current":1012}
-{"_e":"metro:bundling:progress","_t":1790846566856,"id":"1","progress":0.9620167872563197,"total":1043,"current":1023}
-{"_e":"metro:bundling:progress","_t":1790846566956,"id":"1","progress":0.9809164691055468,"total":1043,"current":1033}
-{"_e":"metro:bundling:progress","_t":1790846567064,"id":"1","progress":0.988527819577901,"total":1043,"current":1037}
-{"_e":"metro:bundling:progress","_t":1790846567180,"id":"1","progress":0.9904352534221202,"total":1043,"current":1038}
-{"_e":"metro:bundling:progress","_t":1790846567280,"id":"1","progress":0.9923737170557804,"total":1047,"current":1043}
-{"_e":"metro:bundling:progress","_t":1790846567402,"id":"1","progress":0.9942775510874295,"total":1047,"current":1044}
-{"_e":"metro:bundling:progress","_t":1790846567502,"id":"1","progress":0.9961977220734003,"total":1051,"current":1049}
-{"_e":"metro:bundling:progress","_t":1790846567612,"id":"1","progress":0.996222855121301,"total":1058,"current":1056}
-{"_e":"metro:bundling:failed","_t":1790846567627,"id":"1","message":"SyntaxError: C:\\Users\\user\\Documents\\IntelliSeat-Assessment-System-Codebase\\screens\\auth\\ForgotPassword.js: Identifier 'StyleSheet' has already been declared. (13:2)\n\n  11 |\n  12 | import {\n> 13 |   StyleSheet,\n     |   ^\n  14 |   View,\n  15 |   Text,\n  16 |   TextInput,","importStack":null,"filename":"screens\\auth\\ForgotPassword.js","targetModuleName":null,"originModulePath":null}
-{"_e":"metro:bundling:started","_t":1790846577591,"id":"2","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
-{"_e":"metro:bundling:progress","_t":1790846577591,"id":"2","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:progress","_t":1790846577598,"id":"2","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:progress","_t":1790846577699,"id":"2","progress":0.0034234947940244456,"total":188,"current":11}
-{"_e":"metro:bundling:progress","_t":1790846577798,"id":"2","progress":0.02877869897959184,"total":224,"current":38}
-{"_e":"metro:bundling:progress","_t":1790846577900,"id":"2","progress":0.05173394848135333,"total":255,"current":58}
-{"_e":"metro:bundling:progress","_t":1790846577999,"id":"2","progress":0.14984391259105098,"total":310,"current":120}
-{"_e":"metro:bundling:progress","_t":1790846578103,"id":"2","progress":0.17483157210765707,"total":342,"current":143}
-{"_e":"metro:bundling:progress","_t":1790846578204,"id":"2","progress":0.22325625,"total":400,"current":189}
-{"_e":"metro:bundling:progress","_t":1790846578305,"id":"2","progress":0.25681565646173243,"total":517,"current":262}
-{"_e":"metro:bundling:progress","_t":1790846578404,"id":"2","progress":0.27808416462149566,"total":567,"current":299}
-{"_e":"metro:bundling:progress","_t":1790846578505,"id":"2","progress":0.29109789075175774,"total":645,"current":348}
-{"_e":"metro:bundling:progress","_t":1790846578608,"id":"2","progress":0.3230513551026371,"total":702,"current":399}
-{"_e":"metro:bundling:progress","_t":1790846578710,"id":"2","progress":0.3904095124851368,"total":725,"current":453}
-{"_e":"metro:bundling:progress","_t":1790846578809,"id":"2","progress":0.5387785270896972,"total":782,"current":574}
-{"_e":"metro:bundling:progress","_t":1790846578910,"id":"2","progress":0.7133125272173029,"total":830,"current":701}
-{"_e":"metro:bundling:progress","_t":1790846579010,"id":"2","progress":0.7464959999999999,"total":875,"current":756}
-{"_e":"metro:bundling:progress","_t":1790846579149,"id":"2","progress":0.840953921607017,"total":904,"current":829}
-{"_e":"metro:bundling:progress","_t":1790846579249,"id":"2","progress":0.840953921607017,"total":972,"current":882}
-{"_e":"metro:bundling:progress","_t":1790846579350,"id":"2","progress":0.8661155021337846,"total":995,"current":926}
-{"_e":"metro:bundling:progress","_t":1790846579479,"id":"2","progress":0.921824138139866,"total":1028,"current":987}
-{"_e":"metro:bundling:failed","_t":1790846579561,"id":"2","message":"SyntaxError: C:\\Users\\user\\Documents\\IntelliSeat-Assessment-System-Codebase\\screens\\auth\\ForgotPassword.js: Identifier 'StyleSheet' has already been declared. (13:2)\n\n  11 |\n  12 | import {\n> 13 |   StyleSheet,\n     |   ^\n  14 |   View,\n  15 |   Text,\n  16 |   TextInput,","importStack":null,"filename":"screens\\auth\\ForgotPassword.js","targetModuleName":null,"originModulePath":null}
-{"_e":"root:init","_t":1790846920471,"format":"v0-jsonl","version":"57.0.27"}
-{"_e":"env:mode","_t":1790846920472,"nodeEnv":"development","babelEnv":"development","mode":"development"}
-{"_e":"env:load","_t":1790846920476,"mode":"development","files":[],"env":{}}
-{"_e":"devserver:start","_t":1790846921097,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
-{"_e":"metro:config","_t":1790846921879,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
-{"_e":"expo:dev-tools-plugin:load","_t":1790846922609,"plugins":[]}
-{"_e":"metro:instantiate","_t":1790846929323,"atlas":false,"workers":8,"host":"::","port":8081}
-{"_e":"metro:bundling:started","_t":1790846975877,"id":"1","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
-{"_e":"metro:bundling:progress","_t":1790846975878,"id":"1","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:progress","_t":1790846975888,"id":"1","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:progress","_t":1790846975987,"id":"1","progress":0.003988919667590028,"total":190,"current":12}
-{"_e":"metro:bundling:progress","_t":1790846976087,"id":"1","progress":0.03183485132831735,"total":241,"current":43}
-{"_e":"metro:bundling:progress","_t":1790846976188,"id":"1","progress":0.2720809906236245,"total":347,"current":181}
-{"_e":"metro:bundling:progress","_t":1790846976297,"id":"1","progress":0.2720809906236245,"total":424,"current":199}
-{"_e":"metro:bundling:progress","_t":1790846976397,"id":"1","progress":0.2720809906236245,"total":510,"current":259}
-{"_e":"metro:bundling:progress","_t":1790846976498,"id":"1","progress":0.3325163833981565,"total":685,"current":395}
-{"_e":"metro:bundling:progress","_t":1790846976598,"id":"1","progress":0.44620287772032063,"total":759,"current":507}
-{"_e":"metro:bundling:progress","_t":1790846976698,"id":"1","progress":0.7127617150077696,"total":809,"current":683}
-{"_e":"metro:bundling:progress","_t":1790846976822,"id":"1","progress":0.840953921607017,"total":904,"current":829}
-{"_e":"metro:bundling:progress","_t":1790846976922,"id":"1","progress":0.8771649799966801,"total":1009,"current":945}
-{"_e":"metro:bundling:progress","_t":1790846977036,"id":"1","progress":0.9981105341962042,"total":1058,"current":1057}
-{"_e":"metro:bundling:failed","_t":1790846977589,"id":"1","message":"SyntaxError: C:\\Users\\user\\Documents\\IntelliSeat-Assessment-System-Codebase\\screens\\auth\\ForgotPassword.js: Identifier 'StyleSheet' has already been declared. (4:2)\n\n  2 | import React, { useState, useEffect } from 'react';\n  3 | import {\n> 4 |   StyleSheet,\n    |   ^\n  5 |   View,\n  6 |   Text,\n  7 |   TextInput,","importStack":null,"filename":"screens\\auth\\ForgotPassword.js","targetModuleName":null,"originModulePath":null}
-{"_e":"metro:bundling:started","_t":1790846996544,"id":"2","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
-{"_e":"metro:bundling:progress","_t":1790846996544,"id":"2","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:progress","_t":1790846996555,"id":"2","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:progress","_t":1790846996655,"id":"2","progress":0.0012985958931904878,"total":111,"current":4}
-{"_e":"metro:bundling:progress","_t":1790846996758,"id":"2","progress":0.008019603475161506,"total":201,"current":18}
-{"_e":"metro:bundling:progress","_t":1790846996859,"id":"2","progress":0.07955292570677186,"total":273,"current":77}
-{"_e":"metro:bundling:progress","_t":1790846996959,"id":"2","progress":0.22325625,"total":400,"current":189}
-{"_e":"metro:bundling:progress","_t":1790846997059,"id":"2","progress":0.324467232815254,"total":553,"current":315}
-{"_e":"metro:bundling:progress","_t":1790846997159,"id":"2","progress":0.32467268934505406,"total":702,"current":400}
-{"_e":"metro:bundling:progress","_t":1790846997259,"id":"2","progress":0.4911029822059644,"total":762,"current":534}
-{"_e":"metro:bundling:progress","_t":1790846997360,"id":"2","progress":0.7338089708230513,"total":830,"current":711}
-{"_e":"metro:bundling:progress","_t":1790846997469,"id":"2","progress":0.8429839846503251,"total":904,"current":830}
-{"_e":"metro:bundling:progress","_t":1790846997569,"id":"2","progress":0.9104805277217302,"total":1026,"current":979}
-{"_e":"metro:bundling:progress","_t":1790846997672,"id":"2","progress":0.999,"total":1058,"current":1058}
-{"_e":"metro:bundling:done","_t":1790846997984,"id":"2","total":1058,"ms":1439.6013}
-{"_e":"metro:client_log","_t":1790847003438,"level":"error","data":["[Error: Got an invalid value for 'component' prop for the screen 'ForgotPassword'. It must be a valid React Component.]"]}
-{"_e":"metro:bundling:failed","_t":1790847046501,"id":"1","message":"SyntaxError: C:\\Users\\user\\Documents\\IntelliSeat-Assessment-System-Codebase\\screens\\auth\\ForgotPassword.js: Identifier 'StyleSheet' has already been declared. (4:2)\n\n  2 | import React, { useState, useEffect } from 'react';\n  3 | import {\n> 4 |   StyleSheet,\n    |   ^\n  5 |   View,\n  6 |   Text,\n  7 |   TextInput,","importStack":null,"filename":"screens\\auth\\ForgotPassword.js","targetModuleName":null,"originModulePath":null}
-{"_e":"root:init","_t":1790847504583,"format":"v0-jsonl","version":"57.0.27"}
-{"_e":"env:mode","_t":1790847504590,"nodeEnv":"development","babelEnv":"development","mode":"development"}
-{"_e":"env:load","_t":1790847504601,"mode":"development","files":[],"env":{}}
-{"_e":"devserver:start","_t":1790847506409,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
-{"_e":"metro:config","_t":1790847508676,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
-{"_e":"expo:dev-tools-plugin:load","_t":1790847510996,"plugins":[]}
-{"_e":"metro:instantiate","_t":1790847529967,"atlas":false,"workers":8,"host":"::","port":8081}
-{"_e":"metro:bundling:started","_t":1790847541100,"id":"1","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
-{"_e":"metro:bundling:progress","_t":1790847541101,"id":"1","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:progress","_t":1790847541112,"id":"1","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:progress","_t":1790847541227,"id":"1","progress":0.1111111111111111,"total":15,"current":5}
-{"_e":"metro:bundling:progress","_t":1790847541399,"id":"1","progress":0.1111111111111111,"total":44,"current":8}
-{"_e":"metro:bundling:progress","_t":1790847541503,"id":"1","progress":0.1111111111111111,"total":142,"current":9}
-{"_e":"metro:bundling:progress","_t":1790847541605,"id":"1","progress":0.1111111111111111,"total":188,"current":11}
-{"_e":"metro:bundling:progress","_t":1790847541705,"id":"1","progress":0.1111111111111111,"total":209,"current":37}
-{"_e":"metro:bundling:progress","_t":1790847541806,"id":"1","progress":0.1111111111111111,"total":266,"current":51}
-{"_e":"metro:bundling:progress","_t":1790847541906,"id":"1","progress":0.1111111111111111,"total":292,"current":65}
-{"_e":"metro:bundling:progress","_t":1790847542007,"id":"1","progress":0.1111111111111111,"total":313,"current":87}
-{"_e":"metro:bundling:progress","_t":1790847542108,"id":"1","progress":0.1111111111111111,"total":348,"current":115}
-{"_e":"metro:bundling:progress","_t":1790847542213,"id":"1","progress":0.15171240194133268,"total":362,"current":141}
-{"_e":"metro:bundling:progress","_t":1790847542322,"id":"1","progress":0.17812030292519368,"total":372,"current":157}
-{"_e":"metro:bundling:progress","_t":1790847542439,"id":"1","progress":0.18367346938775508,"total":399,"current":171}
-{"_e":"metro:bundling:progress","_t":1790847542539,"id":"1","progress":0.2314499329143422,"total":476,"current":229}
-{"_e":"metro:bundling:progress","_t":1790847542645,"id":"1","progress":0.2314499329143422,"total":595,"current":284}
-{"_e":"metro:bundling:progress","_t":1790847542747,"id":"1","progress":0.24099173553719008,"total":605,"current":297}
-{"_e":"metro:bundling:progress","_t":1790847542846,"id":"1","progress":0.2843394155726563,"total":677,"current":361}
-{"_e":"metro:bundling:progress","_t":1790847542946,"id":"1","progress":0.36741206579070573,"total":716,"current":434}
-{"_e":"metro:bundling:progress","_t":1790847543046,"id":"1","progress":0.5235490283581483,"total":785,"current":568}
-{"_e":"metro:bundling:progress","_t":1790847543163,"id":"1","progress":0.6971244012193352,"total":830,"current":693}
-{"_e":"metro:bundling:progress","_t":1790847543264,"id":"1","progress":0.8108240080850819,"total":874,"current":787}
-{"_e":"metro:bundling:progress","_t":1790847543364,"id":"1","progress":0.8226980277574871,"total":925,"current":839}
-{"_e":"metro:bundling:progress","_t":1790847543464,"id":"1","progress":0.8357582782873437,"total":979,"current":895}
-{"_e":"metro:bundling:progress","_t":1790847543564,"id":"1","progress":0.8736979281317965,"total":1011,"current":945}
-{"_e":"metro:bundling:progress","_t":1790847543664,"id":"1","progress":0.9162288603915276,"total":1028,"current":984}
-{"_e":"metro:bundling:progress","_t":1790847543794,"id":"1","progress":0.999,"total":1058,"current":1058}
-{"_e":"metro:bundling:done","_t":1790847543948,"id":"1","total":1058,"ms":2847.6635}
-{"_e":"metro:client_log","_t":1790847557015,"level":"error","data":["[Error: Got an invalid value for 'component' prop for the screen 'ForgotPassword'. It must be a valid React Component.]"]}
-{"_e":"root:init","_t":1790847881046,"format":"v0-jsonl","version":"57.0.27"}
-{"_e":"env:mode","_t":1790847881052,"nodeEnv":"development","babelEnv":"development","mode":"development"}
-{"_e":"env:load","_t":1790847881059,"mode":"development","files":[],"env":{}}
-{"_e":"devserver:start","_t":1790847881954,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
-{"_e":"metro:config","_t":1790847883508,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
-{"_e":"expo:dev-tools-plugin:load","_t":1790847885798,"plugins":[]}
-{"_e":"metro:instantiate","_t":1790847905889,"atlas":false,"workers":8,"host":"::","port":8081}
-{"_e":"metro:bundling:started","_t":1790847940435,"id":"1","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
-{"_e":"metro:bundling:progress","_t":1790847940439,"id":"1","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:progress","_t":1790847940467,"id":"1","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:progress","_t":1790847940677,"id":"1","progress":0.06805293005671077,"total":23,"current":6}
-{"_e":"metro:bundling:progress","_t":1790847940786,"id":"1","progress":0.06805293005671077,"total":151,"current":8}
-{"_e":"metro:bundling:progress","_t":1790847940893,"id":"1","progress":0.06805293005671077,"total":170,"current":11}
-{"_e":"metro:bundling:progress","_t":1790847940992,"id":"1","progress":0.06805293005671077,"total":190,"current":13}
-{"_e":"metro:bundling:progress","_t":1790847941093,"id":"1","progress":0.06805293005671077,"total":198,"current":22}
-{"_e":"metro:bundling:progress","_t":1790847941195,"id":"1","progress":0.06805293005671077,"total":208,"current":30}
-{"_e":"metro:bundling:progress","_t":1790847941297,"id":"1","progress":0.06805293005671077,"total":237,"current":46}
-{"_e":"metro:bundling:progress","_t":1790847941397,"id":"1","progress":0.06805293005671077,"total":260,"current":66}
-{"_e":"metro:bundling:progress","_t":1790847941499,"id":"1","progress":0.10074665983296253,"total":293,"current":93}
-{"_e":"metro:bundling:progress","_t":1790847941599,"id":"1","progress":0.12672678333909362,"total":309,"current":110}
-{"_e":"metro:bundling:progress","_t":1790847941700,"id":"1","progress":0.1674698224852071,"total":325,"current":133}
-{"_e":"metro:bundling:progress","_t":1790847941802,"id":"1","progress":0.23615231662668856,"total":356,"current":173}
-{"_e":"metro:bundling:progress","_t":1790847941909,"id":"1","progress":0.23615231662668856,"total":414,"current":193}
-{"_e":"metro:bundling:progress","_t":1790847942008,"id":"1","progress":0.23615231662668856,"total":467,"current":220}
-{"_e":"metro:bundling:progress","_t":1790847942108,"id":"1","progress":0.2559640050617881,"total":506,"current":256}
-{"_e":"metro:bundling:progress","_t":1790847942208,"id":"1","progress":0.2726304108059531,"total":542,"current":283}
-{"_e":"metro:bundling:progress","_t":1790847942308,"id":"1","progress":0.28518955072503493,"total":573,"current":306}
-{"_e":"metro:bundling:progress","_t":1790847942408,"id":"1","progress":0.28518955072503493,"total":636,"current":326}
-{"_e":"metro:bundling:progress","_t":1790847942568,"id":"1","progress":0.29767396305382826,"total":647,"current":353}
-{"_e":"metro:bundling:progress","_t":1790847942669,"id":"1","progress":0.3069980795610425,"total":675,"current":374}
-{"_e":"metro:bundling:progress","_t":1790847942769,"id":"1","progress":0.3230513551026371,"total":702,"current":399}
-{"_e":"metro:bundling:progress","_t":1790847942870,"id":"1","progress":0.35403325247527606,"total":721,"current":429}
-{"_e":"metro:bundling:progress","_t":1790847942971,"id":"1","progress":0.3856009365244537,"total":744,"current":462}
-{"_e":"metro:bundling:progress","_t":1790847943071,"id":"1","progress":0.44620287772032063,"total":759,"current":507}
-{"_e":"metro:bundling:progress","_t":1790847943171,"id":"1","progress":0.4968796498033798,"total":776,"current":547}
-{"_e":"metro:bundling:progress","_t":1790847943271,"id":"1","progress":0.5672811089744835,"total":786,"current":592}
-{"_e":"metro:bundling:progress","_t":1790847943373,"id":"1","progress":0.5896723060509069,"total":810,"current":622}
-{"_e":"metro:bundling:progress","_t":1790847943474,"id":"1","progress":0.6040923520837047,"total":817,"current":635}
-{"_e":"metro:bundling:progress","_t":1790847943574,"id":"1","progress":0.6832970312823792,"total":819,"current":677}
-{"_e":"metro:bundling:progress","_t":1790847943676,"id":"1","progress":0.7153491072724634,"total":830,"current":702}
-{"_e":"metro:bundling:progress","_t":1790847943778,"id":"1","progress":0.7389616227302824,"total":862,"current":741}
-{"_e":"metro:bundling:progress","_t":1790847943878,"id":"1","progress":0.7639035278070556,"total":889,"current":777}
-{"_e":"metro:bundling:progress","_t":1790847943979,"id":"1","progress":0.8165914283506805,"total":903,"current":816}
-{"_e":"metro:bundling:progress","_t":1790847944125,"id":"1","progress":0.840953921607017,"total":904,"current":829}
-{"_e":"metro:bundling:progress","_t":1790847944224,"id":"1","progress":0.840953921607017,"total":935,"current":844}
-{"_e":"metro:bundling:progress","_t":1790847944325,"id":"1","progress":0.840953921607017,"total":972,"current":880}
-{"_e":"metro:bundling:progress","_t":1790847944427,"id":"1","progress":0.8496193155529116,"total":984,"current":907}
-{"_e":"metro:bundling:progress","_t":1790847944530,"id":"1","progress":0.8543356454659449,"total":1004,"current":928}
-{"_e":"metro:bundling:progress","_t":1790847944632,"id":"1","progress":0.8871227159115728,"total":1015,"current":956}
-{"_e":"metro:bundling:progress","_t":1790847944806,"id":"1","progress":0.9179358131086869,"total":1026,"current":983}
-{"_e":"metro:bundling:progress","_t":1790847944907,"id":"1","progress":0.9433544721891928,"total":1044,"current":1014}
-{"_e":"metro:bundling:progress","_t":1790847945013,"id":"1","progress":0.9981105341962042,"total":1058,"current":1057}
-{"_e":"metro:bundling:progress","_t":1790847947681,"id":"1","progress":0.999,"total":1058,"current":1058}
-{"_e":"metro:bundling:done","_t":1790847948130,"id":"1","total":1058,"ms":7693.5122}
-{"_e":"metro:client_log","_t":1790847982480,"level":"error","data":["[ReferenceError: Property 'styles' doesn't exist]"]}
-{"_e":"metro:bundling:started","_t":1790848075403,"id":"4","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
-{"_e":"metro:bundling:progress","_t":1790848075403,"id":"4","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:done","_t":1790848075486,"id":"4","total":1,"ms":82.665}
-{"_e":"metro:bundling:failed","_t":1790848181681,"id":null,"message":"SyntaxError: C:\\Users\\user\\Documents\\IntelliSeat-Assessment-System-Codebase\\screens\\auth\\ForgotPassword.js: Identifier 'View' has already been declared. (2:9)\n\n  1 | import { View, Text, StyleSheet } from 'react-native';\n> 2 | import { View, Text, Image ,StyleSheet } from 'react-native';\n    |          ^\n  3 |\n  4 | export default function TopLogoSection() {\n  5 |   return (","importStack":null,"filename":"screens\\auth\\ForgotPassword.js","targetModuleName":null,"originModulePath":null}
-{"_e":"metro:client_log","_t":1790848191231,"level":"error","data":["[TypeError: undefined is not a function]"]}
-{"_e":"metro:client_log","_t":1790848191347,"level":"error","data":["[TypeError: An error was thrown when attempting to render log messages via LogBox.\n\nundefined is not a function]"]}
-{"_e":"metro:client_log","_t":1790848194688,"level":"error","data":["[ReferenceError: Property 'styles' doesn't exist]"]}
-{"_e":"metro:bundling:started","_t":1790848203660,"id":"c","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
-{"_e":"metro:bundling:progress","_t":1790848203660,"id":"c","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:progress","_t":1790848203661,"id":"c","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:failed","_t":1790848203667,"id":"c","message":"SyntaxError: C:\\Users\\user\\Documents\\IntelliSeat-Assessment-System-Codebase\\screens\\auth\\ForgotPassword.js: Identifier 'View' has already been declared. (2:9)\n\n  1 | import { View, Text, StyleSheet } from 'react-native';\n> 2 | import { View, Text, Image ,StyleSheet } from 'react-native';\n    |          ^\n  3 |\n  4 | export default function TopLogoSection() {\n  5 |   return (","importStack":null,"filename":"screens\\auth\\ForgotPassword.js","targetModuleName":null,"originModulePath":null}
-{"_e":"metro:bundling:started","_t":1790848230887,"id":"d","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
-{"_e":"metro:bundling:progress","_t":1790848230887,"id":"d","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:progress","_t":1790848230888,"id":"d","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:failed","_t":1790848230895,"id":"d","message":"SyntaxError: C:\\Users\\user\\Documents\\IntelliSeat-Assessment-System-Codebase\\screens\\auth\\ForgotPassword.js: Identifier 'View' has already been declared. (2:9)\n\n  1 | import { View, Text, StyleSheet } from 'react-native';\n> 2 | import { View, Text, Image ,StyleSheet } from 'react-native';\n    |          ^\n  3 |\n  4 | export default function TopLogoSection() {\n  5 |   return (","importStack":null,"filename":"screens\\auth\\ForgotPassword.js","targetModuleName":null,"originModulePath":null}
-{"_e":"metro:bundling:started","_t":1790848257879,"id":"e","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
-{"_e":"metro:bundling:progress","_t":1790848257879,"id":"e","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:progress","_t":1790848257880,"id":"e","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:failed","_t":1790848257889,"id":"e","message":"SyntaxError: C:\\Users\\user\\Documents\\IntelliSeat-Assessment-System-Codebase\\screens\\auth\\ForgotPassword.js: Only one default export allowed per module. (11:0)\n\n   9 | }\n  10 |\n> 11 | export default function ForgotPassword() {\n     | ^\n  12 |   return (\n  13 |     <View style={styles.container}>\n  14 |       <Text>ForgotPassword</Text>","importStack":null,"filename":"screens\\auth\\ForgotPassword.js","targetModuleName":null,"originModulePath":null}
-{"_e":"metro:bundling:started","_t":1790848280569,"id":"f","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
-{"_e":"metro:bundling:progress","_t":1790848280569,"id":"f","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:progress","_t":1790848280570,"id":"f","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:done","_t":1790848280646,"id":"f","total":1,"ms":76.9324}
-{"_e":"metro:client_log","_t":1790848287197,"level":"error","data":["[ReferenceError: Property 'styles' doesn't exist]"]}
-{"_e":"metro:client_log","_t":1790848316575,"level":"error","data":["[ReferenceError: Property 'styles' doesn't exist]"]}
-{"_e":"metro:client_log","_t":1790848324172,"level":"error","data":["[TypeError: Cannot read property 'container' of undefined]"]}
-{"_e":"metro:client_log","_t":1790848584221,"level":"warn","data":["Require cycle: components/TopLogoSection.js -> components/TopLogoSection.js\n\nRequire cycles are allowed, but can result in uninitialized values. Consider refactoring to remove the need for a cycle."]}
-{"_e":"metro:bundling:failed","_t":1790848590985,"id":"e","message":"Unable to resolve \"./TopLogoSection\" from \"screens\\auth\\ForgotPassword.js\"\n  13 |\n  14 | // Import your custom TopLogoSection component\n> 15 | import TopLogoSection from './TopLogoSection';\n     |                             ^\n  16 |\n  17 | // Brand Design System Palette\n  18 | const Palette = {","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mscreens\\auth\\ForgotPassword.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./TopLogoSection\"\u001b[39m\n\n\u001b[90m \u001b[39m\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/auth/ForgotPassword\"\u001b[39m\n","filename":null,"targetModuleName":"./TopLogoSection","originModulePath":"screens\\auth\\ForgotPassword.js"}
-{"_e":"metro:bundling:failed","_t":1790848687889,"id":"e","message":"Unable to resolve \"..components/TopLogoSection.js\" from \"screens\\auth\\ForgotPassword.js\"\n  13 |\n  14 | // Import your custom TopLogoSection component\n> 15 | import TopLogoSection from '..components/TopLogoSection.js';\n     |                             ^\n  16 |\n  17 | // Brand Design System Palette\n  18 | const Palette = {","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mscreens\\auth\\ForgotPassword.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"..components/TopLogoSection.js\"\u001b[39m\n\n\u001b[90m \u001b[39m\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/auth/ForgotPassword\"\u001b[39m\n","filename":null,"targetModuleName":"..components/TopLogoSection.js","originModulePath":"screens\\auth\\ForgotPassword.js"}
-{"_e":"metro:bundling:failed","_t":1790848693245,"id":"e","message":"SyntaxError: C:\\Users\\user\\Documents\\IntelliSeat-Assessment-System-Codebase\\screens\\auth\\ForgotPassword.js: Unexpected token (15:27)\n\n  13 |\n  14 | // Import your custom TopLogoSection component\n> 15 | import TopLogoSection from ..components/TopLogoSection.js;\n     |                            ^\n  16 |\n  17 | // Brand Design System Palette\n  18 | const Palette = {","importStack":null,"filename":"screens\\auth\\ForgotPassword.js","targetModuleName":null,"originModulePath":null}
-{"_e":"metro:bundling:failed","_t":1790848697470,"id":"e","message":"Unable to resolve \".components/TopLogoSection.js\" from \"screens\\auth\\ForgotPassword.js\"\n  13 |\n  14 | // Import your custom TopLogoSection component\n> 15 | import TopLogoSection from '.components/TopLogoSection.js';\n     |                             ^\n  16 |\n  17 | // Brand Design System Palette\n  18 | const Palette = {","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mscreens\\auth\\ForgotPassword.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\".components/TopLogoSection.js\"\u001b[39m\n\n\u001b[90m \u001b[39m\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/auth/ForgotPassword\"\u001b[39m\n","filename":null,"targetModuleName":".components/TopLogoSection.js","originModulePath":"screens\\auth\\ForgotPassword.js"}
-{"_e":"metro:bundling:failed","_t":1790848807780,"id":"e","message":"Unable to resolve \"TopLogoSection.\" from \"screens\\auth\\ForgotPassword.js\"\n  13 |\n  14 | // Import your custom TopLogoSection component\n> 15 | import TopLogoSection from 'TopLogoSection.';\n     |                             ^\n  16 |\n  17 | // Brand Design System Palette\n  18 | const Palette = {","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mscreens\\auth\\ForgotPassword.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"TopLogoSection.\"\u001b[39m\n\n\u001b[90m \u001b[39m\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/auth/ForgotPassword\"\u001b[39m\n","filename":null,"targetModuleName":"TopLogoSection.","originModulePath":"screens\\auth\\ForgotPassword.js"}
-{"_e":"metro:bundling:failed","_t":1790848934292,"id":"e","message":"Unable to resolve \"TopLogoSection.\" from \"screens\\auth\\ForgotPassword.js\"\n  13 |\n  14 | // Import your custom TopLogoSection component\n> 15 | import TopLogoSection from 'TopLogoSection.';\n     |                             ^\n  16 |\n  17 | // Brand Design System Palette\n  18 | const Palette = {","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mscreens\\auth\\ForgotPassword.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"TopLogoSection.\"\u001b[39m\n\n\u001b[90m \u001b[39m\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/auth/ForgotPassword\"\u001b[39m\n","filename":null,"targetModuleName":"TopLogoSection.","originModulePath":"screens\\auth\\ForgotPassword.js"}
-{"_e":"metro:bundling:failed","_t":1790849030912,"id":"e","message":"Unable to resolve \"../components/TopLogoSection\" from \"screens\\auth\\ForgotPassword.js\"\n  13 |\n  14 | // Import your custom TopLogoSection component\n> 15 | import TopLogoSection from '../components/TopLogoSection';\n     |                             ^\n  16 |\n  17 | // Brand Design System Palette\n  18 | const Palette = {","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mscreens\\auth\\ForgotPassword.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../components/TopLogoSection\"\u001b[39m\n\n\u001b[90m \u001b[39m\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/auth/ForgotPassword\"\u001b[39m\n","filename":null,"targetModuleName":"../components/TopLogoSection","originModulePath":"screens\\auth\\ForgotPassword.js"}
-{"_e":"metro:bundling:failed","_t":1790849041236,"id":"e","message":"Unable to resolve \"components/TopLogoSection\" from \"screens\\auth\\ForgotPassword.js\"\n  13 |\n  14 | // Import your custom TopLogoSection component\n> 15 | import TopLogoSection from 'components/TopLogoSection';\n     |                             ^\n  16 |\n  17 | // Brand Design System Palette\n  18 | const Palette = {","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mscreens\\auth\\ForgotPassword.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"components/TopLogoSection\"\u001b[39m\n\n\u001b[90m \u001b[39m\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/auth/ForgotPassword\"\u001b[39m\n","filename":null,"targetModuleName":"components/TopLogoSection","originModulePath":"screens\\auth\\ForgotPassword.js"}
-{"_e":"metro:bundling:failed","_t":1790849112789,"id":"e","message":"Unable to resolve \"./TopLogoSection\" from \"screens\\auth\\ForgotPassword.js\"\n  13 |\n  14 | // Import your custom TopLogoSection component\n> 15 | import TopLogoSection from './TopLogoSection';\n     |                             ^\n  16 |\n  17 | // Brand Design System Palette\n  18 | const Palette = {","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mscreens\\auth\\ForgotPassword.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./TopLogoSection\"\u001b[39m\n\n\u001b[90m \u001b[39m\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/auth/ForgotPassword\"\u001b[39m\n","filename":null,"targetModuleName":"./TopLogoSection","originModulePath":"screens\\auth\\ForgotPassword.js"}
-{"_e":"metro:bundling:failed","_t":1790849272667,"id":"e","message":"Unable to resolve \"../components/TopLogoSection.js\" from \"screens\\auth\\ForgotPassword.js\"\n  13 |\n  14 | // Import your custom TopLogoSection component\n> 15 | import TopLogoSection from '../components/TopLogoSection.js';\n     |                             ^\n  16 |\n  17 | // Brand Design System Palette\n  18 | const Palette = {","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mscreens\\auth\\ForgotPassword.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../components/TopLogoSection.js\"\u001b[39m\n\n\u001b[90m \u001b[39m\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/auth/ForgotPassword\"\u001b[39m\n","filename":null,"targetModuleName":"../components/TopLogoSection.js","originModulePath":"screens\\auth\\ForgotPassword.js"}
-{"_e":"metro:bundling:failed","_t":1790849617892,"id":"e","message":"SyntaxError: C:\\Users\\user\\Documents\\IntelliSeat-Assessment-System-Codebase\\screens\\auth\\ForgotPassword.js: Identifier 'React' has already been declared. (325:7)\n\n  323 |\n  324 | // TopLogoSection.js\n> 325 | import React from 'react';\n      |        ^\n  326 | import { View, Image, StyleSheet } from 'react-native';\n  327 |\n  328 | export default function TopLogoSection() {","importStack":null,"filename":"screens\\auth\\ForgotPassword.js","targetModuleName":null,"originModulePath":null}
-{"_e":"root:init","_t":1790850878106,"format":"v0-jsonl","version":"57.0.27"}
-{"_e":"env:mode","_t":1790850878109,"nodeEnv":"development","babelEnv":"development","mode":"development"}
-{"_e":"env:load","_t":1790850878113,"mode":"development","files":[],"env":{}}
-{"_e":"devserver:start","_t":1790850879473,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
-{"_e":"metro:config","_t":1790850881134,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
-{"_e":"expo:dev-tools-plugin:load","_t":1790850882771,"plugins":[]}
-{"_e":"metro:instantiate","_t":1790850888127,"atlas":false,"workers":8,"host":"::","port":8081}
-{"_e":"root:init","_t":1790851025972,"format":"v0-jsonl","version":"57.0.27"}
-{"_e":"env:mode","_t":1790851025973,"nodeEnv":"development","babelEnv":"development","mode":"development"}
-{"_e":"env:load","_t":1790851025975,"mode":"development","files":[],"env":{}}
-{"_e":"devserver:start","_t":1790851026258,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
-{"_e":"metro:config","_t":1790851026651,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
-{"_e":"expo:dev-tools-plugin:load","_t":1790851027052,"plugins":[]}
-{"_e":"metro:instantiate","_t":1790851031306,"atlas":false,"workers":8,"host":"::","port":8081}
-{"_e":"metro:bundling:started","_t":1790851140576,"id":"1","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
-{"_e":"metro:bundling:progress","_t":1790851140577,"id":"1","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:progress","_t":1790851140587,"id":"1","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:progress","_t":1790851140693,"id":"1","progress":0.0625,"total":12,"current":3}
-{"_e":"metro:bundling:progress","_t":1790851140794,"id":"1","progress":0.0625,"total":114,"current":6}
-{"_e":"metro:bundling:progress","_t":1790851140894,"id":"1","progress":0.0625,"total":169,"current":10}
-{"_e":"metro:bundling:progress","_t":1790851141195,"id":"1","progress":0.0625,"total":169,"current":11}
-{"_e":"metro:bundling:progress","_t":1790851141299,"id":"1","progress":0.0625,"total":221,"current":33}
-{"_e":"metro:bundling:progress","_t":1790851141399,"id":"1","progress":0.10662224073302788,"total":294,"current":96}
-{"_e":"metro:bundling:progress","_t":1790851141521,"id":"1","progress":0.15388591929363843,"total":311,"current":122}
-{"_e":"metro:bundling:progress","_t":1790851141628,"id":"1","progress":0.19780379109306795,"total":362,"current":161}
-{"_e":"metro:bundling:progress","_t":1790851141728,"id":"1","progress":0.20912354195599878,"total":363,"current":166}
-{"_e":"metro:bundling:progress","_t":1790851141750,"id":"1","progress":0.2116506917408495,"total":363,"current":167}
-{"_e":"metro:bundling:progress","_t":1790851141854,"id":"1","progress":0.2116506917408495,"total":398,"current":168}
-{"_e":"metro:bundling:progress","_t":1790851141963,"id":"1","progress":0.312159234389348,"total":528,"current":295}
-{"_e":"metro:bundling:progress","_t":1790851142073,"id":"1","progress":0.312159234389348,"total":655,"current":360}
-{"_e":"metro:bundling:progress","_t":1790851142508,"id":"1","progress":0.312159234389348,"total":655,"current":361}
-{"_e":"metro:bundling:progress","_t":1790851142613,"id":"1","progress":0.3137313920588918,"total":682,"current":382}
-{"_e":"metro:bundling:progress","_t":1790851142713,"id":"1","progress":0.35086580046073723,"total":731,"current":433}
-{"_e":"metro:bundling:progress","_t":1790851142813,"id":"1","progress":0.4985939214794347,"total":769,"current":543}
-{"_e":"metro:bundling:progress","_t":1790851142920,"id":"1","progress":0.5975384847002145,"total":815,"current":630}
-{"_e":"metro:bundling:progress","_t":1790851143021,"id":"1","progress":0.6971439343953246,"total":824,"current":688}
-{"_e":"metro:bundling:progress","_t":1790851143122,"id":"1","progress":0.7554371560835007,"total":856,"current":744}
-{"_e":"metro:bundling:progress","_t":1790851143239,"id":"1","progress":0.7720287842444136,"total":890,"current":782}
-{"_e":"metro:bundling:progress","_t":1790851143348,"id":"1","progress":0.8310185891761546,"total":905,"current":825}
-{"_e":"metro:bundling:progress","_t":1790851143459,"id":"1","progress":0.8444642659279779,"total":950,"current":873}
-{"_e":"metro:bundling:progress","_t":1790851143560,"id":"1","progress":0.8444642659279779,"total":982,"current":900}
-{"_e":"metro:bundling:progress","_t":1790851143667,"id":"1","progress":0.8740590315465144,"total":1014,"current":948}
-{"_e":"metro:bundling:progress","_t":1790851143788,"id":"1","progress":0.9292434359916149,"total":1027,"current":990}
-{"_e":"metro:bundling:progress","_t":1790851143888,"id":"1","progress":0.9811324992700075,"total":1055,"current":1045}
-{"_e":"metro:bundling:progress","_t":1790851143996,"id":"1","progress":0.9981105341962042,"total":1058,"current":1057}
-{"_e":"metro:bundling:progress","_t":1790851160694,"id":"1","progress":0.999,"total":1058,"current":1058}
-{"_e":"metro:bundling:done","_t":1790851160934,"id":"1","total":1058,"ms":20357.9339}
-{"_e":"metro:client_log","_t":1790851168722,"level":"warn","data":["SafeAreaView has been deprecated and will be removed in a future release. Please use 'react-native-safe-area-context' instead. See https://github.com/AppAndFlow/react-native-safe-area-context"]}
-{"_e":"metro:bundling:started","_t":1790851268729,"id":"3","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
-{"_e":"metro:bundling:progress","_t":1790851268730,"id":"3","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:done","_t":1790851268779,"id":"3","total":1,"ms":49.6217}
-{"_e":"metro:client_log","_t":1790851368581,"level":"error","data":["[Error: Got an invalid value for 'component' prop for the screen 'ForgotPassword'. It must be a valid React Component.]"]}
-{"_e":"metro:bundling:started","_t":1790851483583,"id":"7","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
-{"_e":"metro:bundling:progress","_t":1790851483583,"id":"7","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:done","_t":1790851483643,"id":"7","total":1,"ms":59.8389}
-{"_e":"metro:client_log","_t":1790851737373,"level":"error","data":["[Error: Got an invalid value for 'component' prop for the screen 'ForgotPassword'. It must be a valid React Component.]"]}
-{"_e":"metro:client_log","_t":1790852562165,"level":"error","data":["Text strings must be rendered within a <Text> component."]}
-{"_e":"metro:bundling:failed","_t":1790852623916,"id":null,"message":"SyntaxError: C:\\Users\\user\\Documents\\IntelliSeat-Assessment-System-Codebase\\screens\\auth\\ForgotPassword.js: 'import' and 'export' may only appear at the top level. (30:2)\n\n  28 |   const [isFocused, setIsFocused] = useState(false);\n  29 |\n> 30 |   import TopLogoSection from '../../components/TopLogoSection';\n     |   ^\n  31 |\n  32 |   return (\n  33 |     <View style={styles.container}>","importStack":null,"filename":"screens\\auth\\ForgotPassword.js","targetModuleName":null,"originModulePath":null}
-{"_e":"metro:bundling:failed","_t":1790852624093,"id":null,"message":"SyntaxError: C:\\Users\\user\\Documents\\IntelliSeat-Assessment-System-Codebase\\screens\\auth\\ForgotPassword.js: 'import' and 'export' may only appear at the top level. (30:2)\n\n  28 |   const [isFocused, setIsFocused] = useState(false);\n  29 |\n> 30 |   import TopLogoSection from '../../components/TopLogoSection';\n     |   ^\n  31 |\n  32 |   return (\n  33 |     <View style={styles.container}>","importStack":null,"filename":"screens\\auth\\ForgotPassword.js","targetModuleName":null,"originModulePath":null}
-{"_e":"metro:bundling:started","_t":1790853040096,"id":"d","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
-{"_e":"metro:bundling:progress","_t":1790853040096,"id":"d","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:done","_t":1790853040263,"id":"d","total":1,"ms":167.5959}
-{"_e":"metro:bundling:started","_t":1790853528904,"id":"e","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
-{"_e":"metro:bundling:progress","_t":1790853528904,"id":"e","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:done","_t":1790853528978,"id":"e","total":1,"ms":74.5087}
-{"_e":"metro:client_log","_t":1790853591392,"level":"error","data":["[ReferenceError: Property 'SafeAreaView' doesn't exist]"]}
-{"_e":"metro:client_log","_t":1790853603591,"level":"error","data":["[ReferenceError: Property 'SafeAreaView' doesn't exist]"]}
-{"_e":"metro:client_log","_t":1790853621900,"level":"warn","data":["SafeAreaView has been deprecated and will be removed in a future release. Please use 'react-native-safe-area-context' instead. See https://github.com/AppAndFlow/react-native-safe-area-context"]}
-{"_e":"metro:client_log","_t":1790853743069,"level":"error","data":["[ReferenceError: Property 'SafeAreaView' doesn't exist]"]}
-{"_e":"metro:bundling:started","_t":1790853920964,"id":"m","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
-{"_e":"metro:bundling:progress","_t":1790853920964,"id":"m","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:done","_t":1790853921070,"id":"m","total":1,"ms":105.351}
-{"_e":"metro:client_log","_t":1790853927735,"level":"warn","data":["SafeAreaView has been deprecated and will be removed in a future release. Please use 'react-native-safe-area-context' instead. See https://github.com/AppAndFlow/react-native-safe-area-context"]}
-{"_e":"metro:bundling:started","_t":1790853952038,"id":"o","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
-{"_e":"metro:bundling:progress","_t":1790853952038,"id":"o","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:done","_t":1790853952093,"id":"o","total":1,"ms":54.5752}
-{"_e":"metro:client_log","_t":1790853958968,"level":"warn","data":["SafeAreaView has been deprecated and will be removed in a future release. Please use 'react-native-safe-area-context' instead. See https://github.com/AppAndFlow/react-native-safe-area-context"]}
-{"_e":"metro:bundling:started","_t":1790853977971,"id":"q","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
-{"_e":"metro:bundling:progress","_t":1790853977972,"id":"q","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:done","_t":1790853978014,"id":"q","total":1,"ms":42.6962}
-{"_e":"metro:client_log","_t":1790853984373,"level":"warn","data":["SafeAreaView has been deprecated and will be removed in a future release. Please use 'react-native-safe-area-context' instead. See https://github.com/AppAndFlow/react-native-safe-area-context"]}
-{"_e":"metro:bundling:started","_t":1790854178043,"id":"s","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
-{"_e":"metro:bundling:progress","_t":1790854178043,"id":"s","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:done","_t":1790854178090,"id":"s","total":1,"ms":47.4235}
-{"_e":"root:init","_t":1791132347033,"format":"v0-jsonl","version":"57.0.27"}
-{"_e":"env:mode","_t":1791132347035,"nodeEnv":"development","babelEnv":"development","mode":"development"}
-{"_e":"env:load","_t":1791132347038,"mode":"development","files":[],"env":{}}
-{"_e":"devserver:start","_t":1791132347481,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
-{"_e":"metro:config","_t":1791132347961,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
-{"_e":"expo:dev-tools-plugin:load","_t":1791132348595,"plugins":[]}
-{"_e":"metro:instantiate","_t":1791132352638,"atlas":false,"workers":8,"host":"::","port":8081}
-{"_e":"metro:bundling:started","_t":1791132361596,"id":"1","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
-{"_e":"metro:bundling:progress","_t":1791132361597,"id":"1","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:progress","_t":1791132361606,"id":"1","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:progress","_t":1791132361706,"id":"1","progress":0.002921840759678598,"total":148,"current":8}
-{"_e":"metro:bundling:progress","_t":1791132361806,"id":"1","progress":0.19753086419753085,"total":351,"current":156}
-{"_e":"metro:bundling:progress","_t":1791132361906,"id":"1","progress":0.37421043246324986,"total":631,"current":386}
-{"_e":"metro:bundling:progress","_t":1791132362006,"id":"1","progress":0.627409477821741,"total":784,"current":621}
-{"_e":"metro:bundling:progress","_t":1791132362106,"id":"1","progress":0.8228680424426574,"total":969,"current":879}
-{"_e":"metro:bundling:done","_t":1791132362242,"id":"1","total":969,"ms":645.6468}
-{"_e":"metro:bundling:started","_t":1791132944391,"id":"2","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
-{"_e":"metro:bundling:progress","_t":1791132944391,"id":"2","progress":0,"total":1,"current":0}
-{"_e":"metro:bundling:done","_t":1791132944423,"id":"2","total":1,"ms":32.2604}
+{"_e":"root:init","_t":1790932061761,"format":"v0-jsonl","version":"57.0.27"}
+{"_e":"env:mode","_t":1790932061764,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1790932061769,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1790932062562,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1790932063518,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1790932064239,"plugins":[]}
+{"_e":"metro:instantiate","_t":1790932074110,"atlas":false,"workers":8,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1790932176653,"id":"1","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1790932176653,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790932176659,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790932176760,"id":"1","progress":0.007678818152832394,"total":194,"current":17}
+{"_e":"metro:bundling:progress","_t":1790932176860,"id":"1","progress":0.07746043715503609,"total":309,"current":86}
+{"_e":"metro:bundling:progress","_t":1790932176960,"id":"1","progress":0.18117028270874425,"total":390,"current":166}
+{"_e":"metro:bundling:progress","_t":1790932177061,"id":"1","progress":0.2971400783227295,"total":521,"current":284}
+{"_e":"metro:bundling:progress","_t":1790932177161,"id":"1","progress":0.3585200426764213,"total":648,"current":388}
+{"_e":"metro:bundling:progress","_t":1790932177264,"id":"1","progress":0.4524273975505602,"total":727,"current":489}
+{"_e":"metro:bundling:progress","_t":1790932177364,"id":"1","progress":0.620752984389348,"total":792,"current":624}
+{"_e":"metro:bundling:progress","_t":1790932177465,"id":"1","progress":0.7661302796430723,"total":866,"current":758}
+{"_e":"metro:bundling:progress","_t":1790932177564,"id":"1","progress":0.837758583339082,"total":909,"current":832}
+{"_e":"metro:bundling:progress","_t":1790932177664,"id":"1","progress":0.8401223650481376,"total":983,"current":901}
+{"_e":"metro:bundling:progress","_t":1790932177780,"id":"1","progress":0.9160691418822126,"total":1026,"current":982}
+{"_e":"metro:bundling:progress","_t":1790932177881,"id":"1","progress":0.9981105341962042,"total":1058,"current":1057}
+{"_e":"metro:bundling:progress","_t":1790932179006,"id":"1","progress":0.999,"total":1058,"current":1058}
+{"_e":"metro:bundling:done","_t":1790932179190,"id":"1","total":1058,"ms":2537.6241}
+{"_e":"metro:bundling:started","_t":1790932456452,"id":"2","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1790932456452,"id":"2","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1790932456588,"id":"2","total":1,"ms":135.6938}
+{"_e":"metro:bundling:failed","_t":1790933022131,"id":null,"message":"Unable to resolve \"../assets/logo.png\" from \"components\\NavBar.js\"\n   5 |     <View style={styles.container}>\n   6 |       <View style={styles.logoContainer}>\n>  7 |         <Image source={require('../assets/logo.png')} style={styles.logo} />\n     |                                 ^\n   8 |       </View>\n   9 |       <View style={styles.leftContainer}>\n  10 |","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mcomponents\\NavBar.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../assets/logo.png\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\student\\StudentDashboard.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../../components/NavBar\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\registry.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./student/StudentDashboard\"\u001b[39m\n\n\u001b[90m \u001b[39mApp.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/registry\"\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90mnode_modules\\expo\\AppEntry.js\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"../../App\"\u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"./node_modules/\u001b[1mexpo\u001b[22m/AppEntry\"\u001b[39m\u001b[90m\u001b[39m\n","filename":null,"targetModuleName":"../assets/logo.png","originModulePath":"components\\NavBar.js"}
+{"_e":"metro:bundling:failed","_t":1790933022348,"id":null,"message":"Unable to resolve \"../assets/logo.png\" from \"components\\NavBar.js\"\n   5 |     <View style={styles.container}>\n   6 |       <View style={styles.logoContainer}>\n>  7 |         <Image source={require('../assets/logo.png')} style={styles.logo} />\n     |                                 ^\n   8 |       </View>\n   9 |       <View style={styles.leftContainer}>\n  10 |","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mcomponents\\NavBar.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../assets/logo.png\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\student\\StudentDashboard.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../../components/NavBar\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\registry.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./student/StudentDashboard\"\u001b[39m\n\n\u001b[90m \u001b[39mApp.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/registry\"\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90mnode_modules\\expo\\AppEntry.js\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"../../App\"\u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"./node_modules/\u001b[1mexpo\u001b[22m/AppEntry\"\u001b[39m\u001b[90m\u001b[39m\n","filename":null,"targetModuleName":"../assets/logo.png","originModulePath":"components\\NavBar.js"}
+{"_e":"metro:bundling:failed","_t":1790933023279,"id":null,"message":"Unable to resolve \"../assets/logo.png\" from \"components\\NavBar.js\"\n   5 |     <View style={styles.container}>\n   6 |       <View style={styles.logoContainer}>\n>  7 |         <Image source={require('../assets/logo.png')} style={styles.logo} />\n     |                                 ^\n   8 |       </View>\n   9 |       <View style={styles.leftContainer}>\n  10 |","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mcomponents\\NavBar.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../assets/logo.png\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\student\\StudentDashboard.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../../components/NavBar\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\registry.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./student/StudentDashboard\"\u001b[39m\n\n\u001b[90m \u001b[39mApp.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/registry\"\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90mnode_modules\\expo\\AppEntry.js\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"../../App\"\u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"./node_modules/\u001b[1mexpo\u001b[22m/AppEntry\"\u001b[39m\u001b[90m\u001b[39m\n","filename":null,"targetModuleName":"../assets/logo.png","originModulePath":"components\\NavBar.js"}
+{"_e":"metro:bundling:failed","_t":1790933023619,"id":null,"message":"Unable to resolve \"../assets/logo.png\" from \"components\\NavBar.js\"\n   5 |     <View style={styles.container}>\n   6 |       <View style={styles.logoContainer}>\n>  7 |         <Image source={require('../assets/logo.png')} style={styles.logo} />\n     |                                 ^\n   8 |       </View>\n   9 |       <View style={styles.leftContainer}>\n  10 |","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mcomponents\\NavBar.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../assets/logo.png\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\student\\StudentDashboard.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../../components/NavBar\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\registry.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./student/StudentDashboard\"\u001b[39m\n\n\u001b[90m \u001b[39mApp.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/registry\"\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90mnode_modules\\expo\\AppEntry.js\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"../../App\"\u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"./node_modules/\u001b[1mexpo\u001b[22m/AppEntry\"\u001b[39m\u001b[90m\u001b[39m\n","filename":null,"targetModuleName":"../assets/logo.png","originModulePath":"components\\NavBar.js"}
+{"_e":"metro:bundling:failed","_t":1790933032269,"id":null,"message":"Unable to resolve \"../assets/logo.png\" from \"components\\NavBar.js\"\n   5 |     <View style={styles.container}>\n   6 |       <View style={styles.logoContainer}>\n>  7 |         <Image source={require('../assets/logo.png')} style={styles.logo} />\n     |                                 ^\n   8 |       </View>\n   9 |       <View style={styles.leftContainer}>\n  10 |","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mcomponents\\NavBar.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../assets/logo.png\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\student\\StudentDashboard.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../../components/NavBar\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\registry.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./student/StudentDashboard\"\u001b[39m\n\n\u001b[90m \u001b[39mApp.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/registry\"\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90mnode_modules\\expo\\AppEntry.js\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"../../App\"\u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"./node_modules/\u001b[1mexpo\u001b[22m/AppEntry\"\u001b[39m\u001b[90m\u001b[39m\n","filename":null,"targetModuleName":"../assets/logo.png","originModulePath":"components\\NavBar.js"}
+{"_e":"metro:bundling:failed","_t":1790933032282,"id":null,"message":"Unable to resolve \"../assets/logo.png\" from \"components\\NavBar.js\"\n   5 |     <View style={styles.container}>\n   6 |       <View style={styles.logoContainer}>\n>  7 |         <Image source={require('../assets/logo.png')} style={styles.logo} />\n     |                                 ^\n   8 |       </View>\n   9 |       <View style={styles.leftContainer}>\n  10 |","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mcomponents\\NavBar.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../assets/logo.png\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\student\\StudentDashboard.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../../components/NavBar\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\registry.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./student/StudentDashboard\"\u001b[39m\n\n\u001b[90m \u001b[39mApp.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/registry\"\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90mnode_modules\\expo\\AppEntry.js\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"../../App\"\u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"./node_modules/\u001b[1mexpo\u001b[22m/AppEntry\"\u001b[39m\u001b[90m\u001b[39m\n","filename":null,"targetModuleName":"../assets/logo.png","originModulePath":"components\\NavBar.js"}
+{"_e":"metro:bundling:failed","_t":1790933033923,"id":null,"message":"Unable to resolve \"../assets/logo.png\" from \"components\\NavBar.js\"\n   5 |     <View style={styles.container}>\n   6 |       <View style={styles.logoContainer}>\n>  7 |         <Image source={require('../assets/logo.png')} style={styles.logo} />\n     |                                 ^\n   8 |       </View>\n   9 |       <View style={styles.leftContainer}>\n  10 |","importStack":"\u001b[1mImport stack:\u001b[22m\n\n\u001b[90m \u001b[39mcomponents\\NavBar.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../assets/logo.png\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\student\\StudentDashboard.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"../../components/NavBar\"\u001b[39m\n\n\u001b[90m \u001b[39mscreens\\registry.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./student/StudentDashboard\"\u001b[39m\n\n\u001b[90m \u001b[39mApp.js\n\u001b[90m |\u001b[39m \u001b[36mimport\u001b[39m \u001b[32m\"./screens/registry\"\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90mnode_modules\\expo\\AppEntry.js\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"../../App\"\u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m \u001b[39m\u001b[90m\u001b[39m\n\u001b[90m\u001b[90m |\u001b[39m\u001b[90m \u001b[36mimport\u001b[39m\u001b[90m \u001b[32m\"./node_modules/\u001b[1mexpo\u001b[22m/AppEntry\"\u001b[39m\u001b[90m\u001b[39m\n","filename":null,"targetModuleName":"../assets/logo.png","originModulePath":"components\\NavBar.js"}
+{"_e":"metro:client_log","_t":1790933051029,"level":"error","data":["[ReferenceError: Property 'Image' doesn't exist]"]}
+{"_e":"root:init","_t":1790933374864,"format":"v0-jsonl","version":"57.0.27"}
+{"_e":"env:mode","_t":1790933374867,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1790933374872,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1790933375728,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1790933376774,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1790933377597,"plugins":[]}
+{"_e":"metro:instantiate","_t":1790933389605,"atlas":false,"workers":8,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1790933395545,"id":"1","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1790933395546,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790933395552,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790933395654,"id":"1","progress":0.014545087245271583,"total":199,"current":24}
+{"_e":"metro:bundling:progress","_t":1790933395754,"id":"1","progress":0.09366649358544092,"total":281,"current":86}
+{"_e":"metro:bundling:progress","_t":1790933395854,"id":"1","progress":0.2197265625,"total":416,"current":195}
+{"_e":"metro:bundling:progress","_t":1790933395954,"id":"1","progress":0.2909346265715894,"total":584,"current":315}
+{"_e":"metro:bundling:progress","_t":1790933396054,"id":"1","progress":0.3659915753487378,"total":724,"current":438}
+{"_e":"metro:bundling:progress","_t":1790933396154,"id":"1","progress":0.4642339391661521,"total":772,"current":526}
+{"_e":"metro:bundling:progress","_t":1790933396254,"id":"1","progress":0.657307148149639,"total":819,"current":664}
+{"_e":"metro:bundling:progress","_t":1790933396354,"id":"1","progress":0.8093981051666088,"total":897,"current":807}
+{"_e":"metro:bundling:progress","_t":1790933396455,"id":"1","progress":0.8107470601401492,"total":964,"current":868}
+{"_e":"metro:bundling:progress","_t":1790933396554,"id":"1","progress":0.9142860393522886,"total":1027,"current":982}
+{"_e":"metro:bundling:progress","_t":1790933396654,"id":"1","progress":0.9867988246129555,"total":1057,"current":1050}
+{"_e":"metro:bundling:progress","_t":1790933396766,"id":"1","progress":0.9981123175515234,"total":1059,"current":1058}
+{"_e":"metro:bundling:progress","_t":1790933398075,"id":"1","progress":0.999,"total":1059,"current":1059}
+{"_e":"metro:bundling:progress","_t":1790933398183,"id":"1","progress":0.999,"total":1079,"current":1061}
+{"_e":"metro:bundling:progress","_t":1790933398293,"id":"1","progress":0.999,"total":1094,"current":1068}
+{"_e":"metro:bundling:progress","_t":1790933398375,"id":"1","progress":0.999,"total":1094,"current":1069}
+{"_e":"metro:bundling:progress","_t":1790933398482,"id":"1","progress":0.999,"total":1099,"current":1072}
+{"_e":"metro:bundling:progress","_t":1790933398588,"id":"1","progress":0.999,"total":1099,"current":1082}
+{"_e":"metro:bundling:progress","_t":1790933398693,"id":"1","progress":0.999,"total":1101,"current":1089}
+{"_e":"metro:bundling:progress","_t":1790933398793,"id":"1","progress":0.999,"total":1110,"current":1096}
+{"_e":"metro:bundling:progress","_t":1790933398904,"id":"1","progress":0.999,"total":1112,"current":1105}
+{"_e":"metro:bundling:progress","_t":1790933401113,"id":"1","progress":0.999,"total":1112,"current":1106}
+{"_e":"metro:bundling:progress","_t":1790933401214,"id":"1","progress":0.999,"total":1122,"current":1119}
+{"_e":"metro:bundling:done","_t":1790933401402,"id":"1","total":1122,"ms":5855.9984}
+{"_e":"metro:bundling:started","_t":1790934583754,"id":"3","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1790934583754,"id":"3","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790934583757,"id":"3","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1790934583914,"id":"3","total":1,"ms":159.791}
+{"_e":"metro:bundling:started","_t":1790934889583,"id":"5","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1790934889583,"id":"5","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790934889588,"id":"5","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790934889702,"id":"5","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790934889743,"id":"5","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790934889843,"id":"5","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790934889943,"id":"5","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790934890043,"id":"5","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790934890143,"id":"5","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1790934890341,"id":"5","total":1,"ms":758.7187}
+{"_e":"metro:bundling:started","_t":1790934982134,"id":"6","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1790934982134,"id":"6","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1790934982282,"id":"6","total":1,"ms":147.9178}
+{"_e":"metro:bundling:started","_t":1790935580891,"id":"8","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1790935580891,"id":"8","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790935580893,"id":"8","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1790935581052,"id":"8","total":1,"ms":160.5533}
+{"_e":"root:init","_t":1790936041520,"format":"v0-jsonl","version":"57.0.27"}
+{"_e":"env:mode","_t":1790936041522,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1790936041527,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1790936042346,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1790936043408,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1790936044064,"plugins":[]}
+{"_e":"metro:instantiate","_t":1790936058209,"atlas":false,"workers":8,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1790936107422,"id":"1","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1790936107422,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790936107430,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790936107530,"id":"1","progress":0.005978318631097886,"total":194,"current":15}
+{"_e":"metro:bundling:progress","_t":1790936107630,"id":"1","progress":0.1117875851110023,"total":329,"current":110}
+{"_e":"metro:bundling:progress","_t":1790936107730,"id":"1","progress":0.2321699722692869,"total":413,"current":199}
+{"_e":"metro:bundling:progress","_t":1790936107830,"id":"1","progress":0.2776615764831253,"total":594,"current":313}
+{"_e":"metro:bundling:progress","_t":1790936107931,"id":"1","progress":0.32467268934505406,"total":702,"current":400}
+{"_e":"metro:bundling:progress","_t":1790936108031,"id":"1","progress":0.4373617777777778,"total":750,"current":496}
+{"_e":"metro:bundling:progress","_t":1790936108131,"id":"1","progress":0.6313700037369377,"total":813,"current":646}
+{"_e":"metro:bundling:progress","_t":1790936108231,"id":"1","progress":0.8136527574872169,"total":888,"current":801}
+{"_e":"metro:bundling:progress","_t":1790936108331,"id":"1","progress":0.8197589481373264,"total":962,"current":871}
+{"_e":"metro:bundling:progress","_t":1790936108452,"id":"1","progress":0.9179358131086869,"total":1026,"current":983}
+{"_e":"metro:bundling:progress","_t":1790936108558,"id":"1","progress":0.9981105341962042,"total":1058,"current":1057}
+{"_e":"metro:bundling:progress","_t":1790936109736,"id":"1","progress":0.999,"total":1058,"current":1058}
+{"_e":"metro:bundling:progress","_t":1790936109836,"id":"1","progress":0.999,"total":1149,"current":1129}
+{"_e":"metro:bundling:progress","_t":1790936109939,"id":"1","progress":0.999,"total":1150,"current":1135}
+{"_e":"metro:bundling:progress","_t":1790936109953,"id":"1","progress":0.999,"total":1150,"current":1136}
+{"_e":"metro:bundling:progress","_t":1790936110060,"id":"1","progress":0.999,"total":1167,"current":1138}
+{"_e":"metro:bundling:progress","_t":1790936110168,"id":"1","progress":0.999,"total":1176,"current":1140}
+{"_e":"metro:bundling:progress","_t":1790936110267,"id":"1","progress":0.999,"total":1187,"current":1141}
+{"_e":"metro:bundling:progress","_t":1790936110290,"id":"1","progress":0.999,"total":1187,"current":1142}
+{"_e":"metro:bundling:progress","_t":1790936110392,"id":"1","progress":0.999,"total":1197,"current":1147}
+{"_e":"metro:bundling:progress","_t":1790936110510,"id":"1","progress":0.999,"total":1202,"current":1153}
+{"_e":"metro:bundling:progress","_t":1790936110610,"id":"1","progress":0.999,"total":1205,"current":1154}
+{"_e":"metro:bundling:progress","_t":1790936110721,"id":"1","progress":0.999,"total":1210,"current":1158}
+{"_e":"metro:bundling:progress","_t":1790936110831,"id":"1","progress":0.999,"total":1212,"current":1159}
+{"_e":"metro:bundling:progress","_t":1790936112103,"id":"1","progress":0.999,"total":1212,"current":1160}
+{"_e":"metro:bundling:progress","_t":1790936112206,"id":"1","progress":0.999,"total":1225,"current":1170}
+{"_e":"metro:bundling:progress","_t":1790936112306,"id":"1","progress":0.999,"total":1235,"current":1175}
+{"_e":"metro:bundling:progress","_t":1790936112407,"id":"1","progress":0.999,"total":1236,"current":1181}
+{"_e":"metro:bundling:progress","_t":1790936112522,"id":"1","progress":0.999,"total":1249,"current":1188}
+{"_e":"metro:bundling:progress","_t":1790936112631,"id":"1","progress":0.999,"total":1265,"current":1196}
+{"_e":"metro:bundling:progress","_t":1790936112734,"id":"1","progress":0.999,"total":1270,"current":1201}
+{"_e":"metro:bundling:progress","_t":1790936112838,"id":"1","progress":0.999,"total":1284,"current":1218}
+{"_e":"metro:bundling:progress","_t":1790936112938,"id":"1","progress":0.999,"total":1319,"current":1244}
+{"_e":"metro:bundling:progress","_t":1790936113038,"id":"1","progress":0.999,"total":1326,"current":1257}
+{"_e":"metro:bundling:progress","_t":1790936113138,"id":"1","progress":0.999,"total":1359,"current":1283}
+{"_e":"metro:bundling:progress","_t":1790936113238,"id":"1","progress":0.999,"total":1368,"current":1303}
+{"_e":"metro:bundling:progress","_t":1790936113339,"id":"1","progress":0.999,"total":1382,"current":1331}
+{"_e":"metro:bundling:progress","_t":1790936113439,"id":"1","progress":0.999,"total":1416,"current":1368}
+{"_e":"metro:bundling:progress","_t":1790936113542,"id":"1","progress":0.999,"total":1433,"current":1404}
+{"_e":"metro:bundling:progress","_t":1790936113644,"id":"1","progress":0.999,"total":1446,"current":1442}
+{"_e":"metro:bundling:progress","_t":1790936113751,"id":"1","progress":0.999,"total":1458,"current":1457}
+{"_e":"metro:bundling:progress","_t":1790936114028,"id":"1","progress":0.999,"total":1458,"current":1458}
+{"_e":"metro:bundling:done","_t":1790936114174,"id":"1","total":1458,"ms":6752.3651}
+{"_e":"metro:client_log","_t":1790936523493,"level":"error","data":["[Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.\n\nCheck the render method of `StudentDashboard`.]"]}
+{"_e":"metro:client_log","_t":1790936540945,"level":"error","data":["[Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.\n\nCheck the render method of `StudentDashboard`.]"]}
+{"_e":"metro:client_log","_t":1790936597613,"level":"error","data":["[Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.\n\nCheck the render method of `StudentDashboard`.]"]}
+{"_e":"metro:bundling:started","_t":1790939311301,"id":"b","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1790939311301,"id":"b","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790939311304,"id":"b","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790939311433,"id":"b","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790939311497,"id":"b","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790939311597,"id":"b","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790939311697,"id":"b","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790939311812,"id":"b","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790939311912,"id":"b","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790939312013,"id":"b","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790939312113,"id":"b","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1790939312277,"id":"b","total":1,"ms":975.8727}
+{"_e":"metro:bundling:failed","_t":1790940416405,"id":null,"message":"SyntaxError: C:\\Users\\vukos\\OneDrive - Richfield Graduate Institute of Technology\\Documents\\School Documents\\Third year\\2nd Semester\\IT Project\\IntelliSeat Codebase\\IntelliSeat-Assessment-System-Codebase\\screens\\student\\StudentDashboard.js: Unexpected token, expected \",\" (133:1)\n\n  131 |     fontSize: 15,\n  132 |     color: '#6B7280',\n> 133 | });\n      |  ^","importStack":null,"filename":"screens\\student\\StudentDashboard.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1790940416625,"id":null,"message":"SyntaxError: C:\\Users\\vukos\\OneDrive - Richfield Graduate Institute of Technology\\Documents\\School Documents\\Third year\\2nd Semester\\IT Project\\IntelliSeat Codebase\\IntelliSeat-Assessment-System-Codebase\\screens\\student\\StudentDashboard.js: Unexpected token, expected \",\" (133:1)\n\n  131 |     fontSize: 15,\n  132 |     color: '#6B7280',\n> 133 | });\n      |  ^","importStack":null,"filename":"screens\\student\\StudentDashboard.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1790940418210,"id":null,"message":"SyntaxError: C:\\Users\\vukos\\OneDrive - Richfield Graduate Institute of Technology\\Documents\\School Documents\\Third year\\2nd Semester\\IT Project\\IntelliSeat Codebase\\IntelliSeat-Assessment-System-Codebase\\screens\\student\\StudentDashboard.js: Unexpected token, expected \",\" (133:1)\n\n  131 |     fontSize: 15,\n  132 |     color: '#6B7280',\n> 133 | });\n      |  ^","importStack":null,"filename":"screens\\student\\StudentDashboard.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:failed","_t":1790940418602,"id":null,"message":"SyntaxError: C:\\Users\\vukos\\OneDrive - Richfield Graduate Institute of Technology\\Documents\\School Documents\\Third year\\2nd Semester\\IT Project\\IntelliSeat Codebase\\IntelliSeat-Assessment-System-Codebase\\screens\\student\\StudentDashboard.js: Unexpected token, expected \",\" (133:1)\n\n  131 |     fontSize: 15,\n  132 |     color: '#6B7280',\n> 133 | });\n      |  ^","importStack":null,"filename":"screens\\student\\StudentDashboard.js","targetModuleName":null,"originModulePath":null}
+{"_e":"metro:bundling:started","_t":1790940944482,"id":"e","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1790940944482,"id":"e","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790940944486,"id":"e","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790940944665,"id":"e","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790940944713,"id":"e","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790940944813,"id":"e","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790940944915,"id":"e","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790940945014,"id":"e","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1790940945114,"id":"e","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1790940945302,"id":"e","total":1,"ms":820.52}
+{"_e":"metro:client_log","_t":1790941895516,"level":"error","data":["[ReferenceError: Property 'TouchableOpacity' doesn't exist]"]}
+{"_e":"metro:client_log","_t":1790942597392,"level":"error","data":["[ReferenceError: Property 'navigation' doesn't exist]"]}
