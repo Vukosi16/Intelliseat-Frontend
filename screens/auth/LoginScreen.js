@@ -24,16 +24,17 @@ const COLORS = {
   blue800: "#122B63",
   blue700: "#1B3C82",
   blue600: "#2A52A8",
+  blue500: "#1E3A78",
   blue100: "#E7ECF9",
   red600: "#D2232A",
   red700: "#AE1B21",
   red100: "#FBE4E3",
   white: "#FFFFFF",
-  bg: "#F3F5FA",
+  bg: "#FFFFFF",
   card: "#FFFFFF",
   line: "#E1E5F0",
   ink: "#141A2E",
-  muted: "#6B7280",
+  muted: "#8B93A6",
   gray: "#8B93A6",
   grayBg: "#ECEEF3",
 };
@@ -44,10 +45,12 @@ const ROLES = {
     title: "Ready to begin?",
     subtitle: "Sign in to view your available assessments.",
     idLabel: "Student number",
-    idPlaceholder: "e.g. 402111555",
+    idPlaceholder: "e.g. 22501478",
     button: "Continue →",
     notice: "Your assessment activity is securely monitored in line with POPIA",
     home: ROUTES.studentHome,
+    buttonColor: "#122B63",
+    buttonPressedColor: "#0B1E4A",
   },
   invigilator: {
     tab: "Invigilator",
@@ -58,6 +61,8 @@ const ROLES = {
     notice: "Authorised institutional access only.",
     button: "Open Console →",
     home: ROUTES.invigilatorHome,
+    buttonColor: "#D2232A",
+    buttonPressedColor: "#AE1B21",
   },
 };
 
@@ -106,10 +111,14 @@ export default function LoginScreen({ navigation }) {
 
         <View style={styles.formGroup}>
           <Text style={styles.label}>{content.idLabel}</Text>
+
           <TextInput
-            style={[styles.input, focused === "email" && styles.inputFocused]}
+            style={[
+              styles.input,
+              focused === "email" ? styles.inputFocused : styles.inputInactive,
+            ]}
             placeholder={content.idPlaceholder}
-            placeholderTextColor={COLORS.muted}
+            placeholderTextColor={COLORS.gray}
             value={email}
             onChangeText={setEmail}
             onFocus={() => setFocused("email")}
@@ -121,13 +130,16 @@ export default function LoginScreen({ navigation }) {
 
         <View style={styles.formGroup}>
           <Text style={styles.label}>Password</Text>
+
           <TextInput
             style={[
               styles.input,
-              focused === "password" && styles.inputFocused,
+              focused === "password"
+                ? styles.inputFocused
+                : styles.inputInactive,
             ]}
             placeholder="Enter your password"
-            placeholderTextColor={COLORS.muted}
+            placeholderTextColor={COLORS.gray}
             value={password}
             onChangeText={setPassword}
             onFocus={() => setFocused("password")}
@@ -146,7 +158,8 @@ export default function LoginScreen({ navigation }) {
         <Pressable
           style={({ pressed }) => [
             styles.submitButton,
-            pressed && styles.submitButtonPressed,
+            { backgroundColor: content.buttonColor },
+            pressed && { backgroundColor: content.buttonPressedColor },
           ]}
           onPress={handleSignIn}
         >
@@ -174,29 +187,33 @@ const styles = StyleSheet.create({
   },
   toggleContainer: {
     flexDirection: "row",
-    backgroundColor: COLORS.grayBg,
+    backgroundColor: COLORS.white,
+    borderColor: COLORS.line,
+    borderWidth: 1,
     borderRadius: 8,
     padding: 4,
     marginBottom: 35,
   },
+
   activeTab: {
     flex: 1,
-    backgroundColor: COLORS.blue100,
+    backgroundColor: COLORS.blue800,
     borderRadius: 6,
-    paddingVertical: 8,
-    alignItems: "center",
-    borderWidth: 1,
-    borderColor: COLORS.blue700,
-  },
-  activeTabText: {
-    color: COLORS.blue900,
-    fontWeight: "600",
-  },
-  inactiveTab: {
-    flex: 1,
-    paddingVertical: 8,
+    paddingVertical: 10,
     alignItems: "center",
     justifyContent: "center",
+  },
+  activeTabText: {
+    color: COLORS.white,
+    fontWeight: "700",
+  },
+
+  inactiveTab: {
+    flex: 1,
+    paddingVertical: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "transparent",
   },
   inactiveTabText: {
     color: COLORS.muted,
@@ -224,17 +241,22 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   input: {
-    backgroundColor: COLORS.card,
-    borderColor: COLORS.line,
-    borderWidth: 1,
     borderRadius: 8,
     height: 50,
     paddingHorizontal: 16,
-    color: COLORS.ink,
     fontSize: 15,
   },
+  inputInactive: {
+    backgroundColor: COLORS.blue800,
+    borderColor: COLORS.line,
+    borderWidth: 1,
+    color: COLORS.white,
+  },
   inputFocused: {
-    borderColor: COLORS.blue600,
+    backgroundColor: COLORS.blue500,
+    borderColor: COLORS.red600,
+    borderWidth: 1.5,
+    color: COLORS.white,
   },
   forgotPasswordButton: {
     alignSelf: "flex-end",
@@ -246,15 +268,11 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   submitButton: {
-    backgroundColor: COLORS.red600,
     borderRadius: 8,
     height: 50,
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 30,
-  },
-  submitButtonPressed: {
-    backgroundColor: COLORS.red700,
   },
   submitButtonText: {
     color: COLORS.white,
@@ -265,6 +283,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.grayBg,
     borderRadius: 8,
     paddingVertical: 12,
+    paddingHorizontal: 16,
     alignItems: "center",
   },
   noticeText: {
