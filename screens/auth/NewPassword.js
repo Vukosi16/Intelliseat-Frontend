@@ -14,12 +14,12 @@ import {
 } from 'react-native';
 import TopLogoSection from '../../components/TopLogoSection';
 import { Palette } from './ForgotPassword';
-
+ 
 export default function NewPasswordScreen() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [focusedField, setFocusedField] = useState(null);
-
+ 
   return (
     <KeyboardAvoidingView
       style={styles.keyboardContainer}
@@ -32,23 +32,23 @@ export default function NewPasswordScreen() {
           bounces={false}
         >
           <StatusBar barStyle="light-content" />
-
+ 
           <View style={styles.logoWrapper}>
             <TopLogoSection />
           </View>
-
+ 
           <View>
             <Text style={styles.hScreen}>Create a new password</Text>
             <Text style={styles.sub}>
               Choose a strong password for your IntelliSeat account.
             </Text>
-
+ 
             <View style={styles.noteBox}>
               <Text style={styles.noteBoxText}>
                 Use at least 8 characters with a mix of letters and numbers.
               </Text>
             </View>
-
+ 
             <View style={styles.field}>
               <Text style={styles.label}>New password</Text>
               <TextInput
@@ -67,7 +67,7 @@ export default function NewPasswordScreen() {
                 autoCorrect={false}
               />
             </View>
-
+ 
             <View style={styles.field}>
               <Text style={styles.label}>Confirm password</Text>
               <TextInput
@@ -86,11 +86,11 @@ export default function NewPasswordScreen() {
                 autoCorrect={false}
               />
             </View>
-
+ 
             <TouchableOpacity style={styles.btn} activeOpacity={0.8}>
               <Text style={styles.btnText}>Update password →</Text>
             </TouchableOpacity>
-
+ 
             <TouchableOpacity style={styles.linkContainer}>
               <Text style={styles.link}>← Back to login</Text>
             </TouchableOpacity>
@@ -100,18 +100,25 @@ export default function NewPasswordScreen() {
     </KeyboardAvoidingView>
   );
 }
-
+ 
 const styles = StyleSheet.create({
   keyboardContainer: {
     flex: 1,
     backgroundColor: Palette.bg,
   },
+  // scrollContainer: {
+  //   flexGrow: 1,
+  //   justifyContent: 'center',
+  //   paddingHorizontal: 20,
+  //   paddingTop: 80,
+  //   paddingBottom: 120,
+  // },
   scrollContainer: {
     flexGrow: 1,
     justifyContent: 'center',
     paddingHorizontal: 20,
-    paddingTop: 80,
-    paddingBottom: 120,
+    paddingTop: 30,
+    paddingBottom: 30,
   },
   logoWrapper: {
     position: 'absolute',
@@ -192,3 +199,4 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 });
+ 
