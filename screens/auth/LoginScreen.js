@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   View,
   Text,
@@ -7,6 +7,9 @@ import {
   TouchableOpacity,
   Pressable,
   ScrollView,
+  Keyboard,
+  LayoutAnimation,
+  Platform,
 } from "react-native";
 
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -39,6 +42,7 @@ const COLORS = {
   grayBg: "#ECEEF3",
 };
 
+// The screen reads everything that differs between a student and an invigilator
 const ROLES = {
   student: {
     tab: "Student",
@@ -66,110 +70,290 @@ const ROLES = {
   },
 };
 
+// The layout moves when the keyboard opens or closes
+// In the new position the logo and toogle disappear
+// Everything remaining slides up to occupy the space
+const LAYOUT_ANIMATION = {
+  duration: 180,
+  update: { type: LayoutAnimation.Types.easeInEaseOut },
+};
+
 export default function LoginScreen({ navigation }) {
   const [role, setRole] = useState("invigilator");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [focused, setFocused] = useState(null);
 
+  const scrollRef = useRef(null);
+  const passwordRef = useRef(null);
+  const focusedField = useRef(null);
+  const formY = useRef(0);
+  const fieldY = useRef({ email: 0, password: 0 });
+
+  const wrapRef = useRef(null);
+  const [kbOverlap, setKbOverlap] = useState(0);
+
+  // While the keyboard is open the form tightens up
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
+  // Only on very short screens: if it still doesn't fit, the notice box is hidden too.
+  const [hideNotice, setHideNotice] = useState(false);
+  const contentH = useRef(0);
+  const viewH = useRef(0);
+
   const content = ROLES[role];
+  const compact = keyboardVisible;
+
+  //If the content is too tall to fit in inside the visible screen space,
+  //hide the notice box so the content can fit without scrolling
+  const checkOverflow = () => {
+    if (
+      compact &&
+      !hideNotice &&
+      viewH.current > 0 &&
+      contentH.current > viewH.current + 1
+    ) {
+      setHideNotice(true);
+    }
+  };
+
+  // Safety net for small screens
+  const scrollToField = (name) => {
+    if (!name) return;
+    const maxY = Math.max(contentH.current - viewH.current, 0);
+    const y = formY.current + fieldY.current[name] - 16;
+    scrollRef.current?.scrollTo({
+      y: Math.min(Math.max(y, 0), maxY),
+      animated: true,
+    });
+  };
+
+  useEffect(() => {
+    const showEvent =
+      Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow";
+    const hideEvent =
+      Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide";
+
+    const showSub = Keyboard.addListener(showEvent, (e) => {
+      const keyboardTop = e.endCoordinates.screenY;
+      LayoutAnimation.configureNext(LAYOUT_ANIMATION);
+      setKeyboardVisible(true);
+      wrapRef.current?.measureInWindow((x, y, w, h) => {
+        LayoutAnimation.configureNext(LAYOUT_ANIMATION);
+        setKbOverlap(Math.max(y + h - keyboardTop, 0));
+      });
+      setTimeout(() => scrollToField(focusedField.current), 250);
+    });
+    const hideSub = Keyboard.addListener(hideEvent, () => {
+      LayoutAnimation.configureNext(LAYOUT_ANIMATION);
+      setKeyboardVisible(false);
+      setKbOverlap(0);
+      setHideNotice(false);
+      scrollRef.current?.scrollTo({ y: 0, animated: true });
+    });
+
+    return () => {
+      showSub.remove();
+      hideSub.remove();
+    };
+  }, []);
+
+  const handleFocus = (name) => {
+    setFocused(name);
+    focusedField.current = name;
+    setTimeout(() => scrollToField(name), 100);
+  };
+
+  const handleBlur = () => {
+    setFocused(null);
+    focusedField.current = null;
+  };
 
   const handleSignIn = () => {
+    Keyboard.dismiss();
     navigation.navigate(content.home);
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <TopLogoSection />
-
-      <ScrollView
-        contentContainerStyle={styles.contentContainer}
-        keyboardShouldPersistTaps="handled"
-        showsVerticalScrollIndicator={false}
+      <View
+        ref={wrapRef}
+        collapsable={false}
+        style={[styles.keyboardAvoid, { paddingBottom: kbOverlap }]}
       >
-        <View style={styles.toggleContainer}>
-          {Object.keys(ROLES).map((key) => {
-            const active = role === key;
-            return (
-              <TouchableOpacity
-                key={key}
-                style={active ? styles.activeTab : styles.inactiveTab}
-                onPress={() => setRole(key)}
-              >
-                <Text
-                  style={active ? styles.activeTabText : styles.inactiveTabText}
-                >
-                  {ROLES[key].tab}
-                </Text>
-              </TouchableOpacity>
-            );
-          })}
-        </View>
-
-        <Text style={styles.welcomeTitle}>{content.title}</Text>
-        <Text style={styles.welcomeSubtitle}>{content.subtitle}</Text>
-
-        <View style={styles.formGroup}>
-          <Text style={styles.label}>{content.idLabel}</Text>
-
-          <TextInput
-            style={[
-              styles.input,
-              focused === "email" ? styles.inputFocused : styles.inputInactive,
-            ]}
-            placeholder={content.idPlaceholder}
-            placeholderTextColor={COLORS.gray}
-            value={email}
-            onChangeText={setEmail}
-            onFocus={() => setFocused("email")}
-            onBlur={() => setFocused(null)}
-            autoCapitalize="none"
-            keyboardType="email-address"
-          />
-        </View>
-
-        <View style={styles.formGroup}>
-          <Text style={styles.label}>Password</Text>
-
-          <TextInput
-            style={[
-              styles.input,
-              focused === "password"
-                ? styles.inputFocused
-                : styles.inputInactive,
-            ]}
-            placeholder="Enter your password"
-            placeholderTextColor={COLORS.gray}
-            value={password}
-            onChangeText={setPassword}
-            onFocus={() => setFocused("password")}
-            onBlur={() => setFocused(null)}
-            secureTextEntry={true}
-          />
-        </View>
-
-        <TouchableOpacity
-          style={styles.forgotPasswordButton}
-          onPress={() => navigation.navigate(ROUTES.forgotPassword)}
-        >
-          <Text style={styles.forgotPasswordText}>Forgot password?</Text>
-        </TouchableOpacity>
-
-        <Pressable
-          style={({ pressed }) => [
-            styles.submitButton,
-            { backgroundColor: content.buttonColor },
-            pressed && { backgroundColor: content.buttonPressedColor },
+        <ScrollView
+          ref={scrollRef}
+          contentContainerStyle={[
+            styles.contentContainer,
+            compact && styles.contentContainerCompact,
           ]}
-          onPress={handleSignIn}
+          onLayout={(e) => {
+            viewH.current = e.nativeEvent.layout.height;
+            checkOverflow();
+          }}
+          onContentSizeChange={(w, h) => {
+            contentH.current = h;
+            checkOverflow();
+          }}
+          keyboardShouldPersistTaps="handled"
+          keyboardDismissMode={
+            Platform.OS === "ios" ? "interactive" : "on-drag"
+          }
+          showsVerticalScrollIndicator={false}
         >
-          <Text style={styles.submitButtonText}>{content.button}</Text>
-        </Pressable>
+          {!compact && <TopLogoSection />}
 
-        <View style={styles.noticeContainer}>
-          <Text style={styles.noticeText}>{content.notice}</Text>
-        </View>
-      </ScrollView>
+          <View
+            style={[styles.form, compact && styles.formCompact]}
+            onLayout={(e) => {
+              formY.current = e.nativeEvent.layout.y;
+            }}
+          >
+            {!compact && (
+              <View style={styles.toggleContainer}>
+                {Object.keys(ROLES).map((key) => {
+                  const active = role === key;
+                  return (
+                    <TouchableOpacity
+                      key={key}
+                      style={active ? styles.activeTab : styles.inactiveTab}
+                      onPress={() => setRole(key)}
+                    >
+                      <Text
+                        style={
+                          active ? styles.activeTabText : styles.inactiveTabText
+                        }
+                      >
+                        {ROLES[key].tab}
+                      </Text>
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+            )}
+
+            <Text
+              style={[
+                styles.welcomeTitle,
+                compact && styles.welcomeTitleCompact,
+              ]}
+            >
+              {content.title}
+            </Text>
+            <Text
+              style={[
+                styles.welcomeSubtitle,
+                compact && styles.welcomeSubtitleCompact,
+              ]}
+            >
+              {content.subtitle}
+            </Text>
+
+            <View
+              style={[styles.formGroup, compact && styles.formGroupCompact]}
+              onLayout={(e) => {
+                fieldY.current.email = e.nativeEvent.layout.y;
+              }}
+            >
+              <Text style={[styles.label, compact && styles.labelCompact]}>
+                {content.idLabel}
+              </Text>
+
+              <TextInput
+                style={[
+                  styles.input,
+                  compact && styles.inputCompact,
+                  focused === "email"
+                    ? styles.inputFocused
+                    : styles.inputInactive,
+                ]}
+                placeholder={content.idPlaceholder}
+                placeholderTextColor={COLORS.gray}
+                value={email}
+                onChangeText={setEmail}
+                onFocus={() => handleFocus("email")}
+                onBlur={handleBlur}
+                autoCapitalize="none"
+                autoCorrect={false}
+                keyboardType="email-address"
+                autoComplete="username"
+                textContentType="username"
+                returnKeyType="next"
+                submitBehavior="submit"
+                onSubmitEditing={() => passwordRef.current?.focus()}
+              />
+            </View>
+
+            <View
+              style={[styles.formGroup, compact && styles.formGroupCompact]}
+              onLayout={(e) => {
+                fieldY.current.password = e.nativeEvent.layout.y;
+              }}
+            >
+              <Text style={[styles.label, compact && styles.labelCompact]}>
+                Password
+              </Text>
+
+              <TextInput
+                ref={passwordRef}
+                style={[
+                  styles.input,
+                  compact && styles.inputCompact,
+                  focused === "password"
+                    ? styles.inputFocused
+                    : styles.inputInactive,
+                ]}
+                placeholder="Enter your password"
+                placeholderTextColor={COLORS.gray}
+                value={password}
+                onChangeText={setPassword}
+                onFocus={() => handleFocus("password")}
+                onBlur={handleBlur}
+                secureTextEntry={true}
+                autoCapitalize="none"
+                autoCorrect={false}
+                autoComplete="password"
+                textContentType="password"
+                returnKeyType="done"
+                onSubmitEditing={handleSignIn}
+              />
+            </View>
+
+            <TouchableOpacity
+              style={[
+                styles.forgotPasswordButton,
+                compact && styles.forgotPasswordButtonCompact,
+              ]}
+              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+              onPress={() => navigation.navigate(ROUTES.forgotPassword)}
+            >
+              <Text style={styles.forgotPasswordText}>Forgot password?</Text>
+            </TouchableOpacity>
+
+            <Pressable
+              style={({ pressed }) => [
+                styles.submitButton,
+                compact && styles.submitButtonCompact,
+                { backgroundColor: content.buttonColor },
+                pressed && { backgroundColor: content.buttonPressedColor },
+              ]}
+              onPress={handleSignIn}
+            >
+              <Text style={styles.submitButtonText}>{content.button}</Text>
+            </Pressable>
+
+            {!(compact && hideNotice) && (
+              <View
+                style={[
+                  styles.noticeContainer,
+                  compact && styles.noticeContainerCompact,
+                ]}
+              >
+                <Text style={styles.noticeText}>{content.notice}</Text>
+              </View>
+            )}
+          </View>
+        </ScrollView>
+      </View>
     </SafeAreaView>
   );
 }
@@ -179,11 +363,26 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.bg,
   },
+
+  keyboardAvoid: {
+    flex: 1,
+  },
   contentContainer: {
     flexGrow: 1,
-    paddingHorizontal: 24,
     paddingBottom: 24,
+  },
+  contentContainerCompact: {
+    paddingBottom: 8,
+  },
+  form: {
+    flexGrow: 1,
+    paddingHorizontal: 24,
     justifyContent: "center",
+  },
+  // While typing, start from the top instead of centring
+  formCompact: {
+    justifyContent: "flex-start",
+    paddingTop: 12,
   },
   toggleContainer: {
     flexDirection: "row",
@@ -193,6 +392,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 4,
     marginBottom: 35,
+  },
+  toggleContainerCompact: {
+    marginBottom: 12,
   },
 
   activeTab: {
@@ -219,11 +421,20 @@ const styles = StyleSheet.create({
     color: COLORS.muted,
     fontWeight: "500",
   },
+  tabCompact: {
+    paddingVertical: 7,
+  },
   welcomeTitle: {
     color: COLORS.ink,
     fontSize: 26,
     fontWeight: "700",
     marginBottom: 8,
+  },
+  welcomeTitleCompact: {
+    marginBottom: 6,
+  },
+  welcomeSubtitleCompact: {
+    marginBottom: 14,
   },
   welcomeSubtitle: {
     color: COLORS.muted,
@@ -234,17 +445,26 @@ const styles = StyleSheet.create({
   formGroup: {
     marginBottom: 20,
   },
+  formGroupCompact: {
+    marginBottom: 8,
+  },
   label: {
     color: COLORS.ink,
     fontSize: 14,
     fontWeight: "500",
     marginBottom: 8,
   },
+  labelCompact: {
+    marginBottom: 4,
+  },
   input: {
     borderRadius: 8,
     height: 50,
     paddingHorizontal: 16,
     fontSize: 15,
+  },
+  inputCompact: {
+    height: 42,
   },
   inputInactive: {
     backgroundColor: COLORS.blue800,
@@ -262,6 +482,9 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     marginBottom: 25,
   },
+  forgotPasswordButtonCompact: {
+    marginBottom: 10,
+  },
   forgotPasswordText: {
     color: COLORS.blue600,
     fontSize: 14,
@@ -274,6 +497,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 30,
   },
+  submitButtonCompact: {
+    height: 46,
+    marginBottom: 12,
+  },
   submitButtonText: {
     color: COLORS.white,
     fontSize: 16,
@@ -285,6 +512,9 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 16,
     alignItems: "center",
+  },
+  noticeContainerCompact: {
+    paddingVertical: 8,
   },
   noticeText: {
     color: COLORS.muted,
