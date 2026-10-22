@@ -22,10 +22,9 @@ const ABSENCE_REASONS = ['Medical', 'Family emergency', 'Transport issue', 'Othe
 
 export default function NextExam({ navigation }) {
   const [attendanceConfirmed, setAttendanceConfirmed] = useState(false);
-  const [openSection, setOpenSection] = useState(null); // 'absence', 'issue' or null
+  const [openSection, setOpenSection] = useState(null);
   const [absenceReason, setAbsenceReason] = useState('');
   const [absenceDetails, setAbsenceDetails] = useState('');
-  const [issueText, setIssueText] = useState('');
 
   // Opening one section closes the other. Tapping an open one closes it.
   function toggleSection(name) {
@@ -111,33 +110,30 @@ export default function NextExam({ navigation }) {
           </View>
         )}
 
-        {/* Report an issue */}
-        <TouchableOpacity style={styles.sectionHeader} onPress={() => toggleSection('issue')}>
+        {/* Support */}
+        <TouchableOpacity
+          style={styles.sectionHeader}
+          onPress={() => navigation.navigate('StudentSupport', { openNewIssue: true })}
+        >
           <Text style={styles.sectionTitle}>Report an Issue</Text>
-          <Text style={styles.sectionArrow}>{openSection === 'issue' ? '▲' : '▼'}</Text>
+          <Text style={styles.sectionArrow}>→</Text>
         </TouchableOpacity>
-
-        {openSection === 'issue' && (
-          <View style={styles.sectionBody}>
-            <Text style={styles.label}>Describe the issue</Text>
-            <TextInput
-              value={issueText}
-              onChangeText={setIssueText}
-              style={styles.textArea}
-              placeholder="e.g. PC not working, login problem..."
-              multiline
-              maxLength={500}
-            />
-
-            <TouchableOpacity style={styles.primaryButton}>
-              <Text style={styles.buttonText}>Submit Issue</Text>
-            </TouchableOpacity>
-          </View>
-        )}
 
         {/* Show QR code. Needs a 'QrCode' screen in registry.js */}
         {/* will be implemented in the future. For now, it is just a placeholder button.   */}
-        <TouchableOpacity style={styles.qrButton} >
+        <TouchableOpacity
+          style={styles.qrButton}
+          onPress={() =>
+            navigation.navigate('StudentQRCode', {
+              exam: {
+                name: EXAM.name,
+                date: EXAM.details[0].value,
+                time: EXAM.details[1].value,
+                lab: EXAM.details[2].value,
+              },
+            })
+          }
+        >
           <Text style={styles.buttonText}>Show My QR Code</Text>
         </TouchableOpacity>
 

@@ -63,7 +63,7 @@ export default function InvigilatorDashboard({ navigation }) {
           <TouchableOpacity
             key={session.id}
             style={styles.sessionCard}
-            onPress={() => navigation.navigate('InvigilatorSession', { session })}
+            onPress={() => navigation.navigate('SessionDetail', { session })}
           >
             <View style={styles.sessionText}>
               <Text style={styles.sessionName}>{session.name}</Text>
