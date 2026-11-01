@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -10 1512 1720" role="img" aria-label="IntelliSeat armchair icon"><title>IntelliSeat</title>
+<g id="chair">
+  <!-- backrest -->
+  <rect x="280" y="5" width="915" height="1230" rx="135" fill="#161E37"/>
+  <rect x="335" y="60" width="805" height="1110" rx="100" fill="#141B32"/>
+  <!-- QR badge -->
+  <g fill="#F5F7FB">
+    <rect x="442" y="404" width="270" height="250"/><rect x="762" y="404" width="270" height="250"/>
+    <rect x="442" y="699" width="270" height="250"/><rect x="762" y="699" width="270" height="250"/>
+  </g>
+  <g fill="none" stroke="#141B32" stroke-width="3">
+    <rect x="480" y="441" width="192" height="176"/><rect x="800" y="441" width="192" height="176"/><rect x="480" y="736" width="192" height="176"/>
+  </g>
+  <g fill="#141B32">
+    <rect x="520" y="478" width="112" height="102"/><rect x="840" y="478" width="112" height="102"/><rect x="520" y="773" width="112" height="102"/>
+  </g>
+  <g fill="none" stroke="#141B32" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M800,880 C790,800 830,770 850,800 C870,830 910,760 880,720 C860,705 900,700 930,740 C960,780 990,700 1030,760"/>
+    <path d="M770,820 C800,860 840,830 860,870 C880,905 950,900 960,860 C970,820 1020,850 1028,900"/>
+    <path d="M850,945 C880,910 900,930 940,945"/>
+  </g>
+  <!-- seat body, arms, base -->
+  <rect x="70" y="1140" width="1332" height="310" rx="150" fill="#131A2F"/>
+  <rect x="0" y="690" width="240" height="700" rx="110" fill="#131A2F" transform="rotate(-3 120 1040)"/>
+  <rect x="1232" y="690" width="240" height="700" rx="110" fill="#131A2F" transform="rotate(3 1352 1040)"/>
+  <path d="M250,1010 L250,1065 Q250,1180 365,1180 L1107,1180 Q1222,1180 1222,1065 L1222,1010" fill="none" stroke="#1D2848" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="215" y="1430" width="1042" height="266" rx="30" fill="#141B30"/>
+  <rect x="285" y="1520" width="900" height="122" rx="22" fill="#19223D"/>
+</g>
+</svg>

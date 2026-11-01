@@ -22,13 +22,17 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 9px;
-  color: #fff;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 17px;
-  font-weight: 800;
-  letter-spacing: -.5px;
-  text-decoration: none;
+  width: 176px;
+  flex: 0 0 auto;
+  padding: 4px 6px;
+  border-radius: 8px;
+  background: #f5f7fb;
+}
+
+.brand-logo {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .brand-mark {
@@ -50,15 +54,15 @@
 
 .sidebar-brand {
   display: flex;
-  min-height: 90px;
+  min-height: 118px;
   align-items: center;
-  padding: 20px 23px 27px;
+  padding: 10px 23px 27px;
   border-bottom: 1px solid rgba(255, 255, 255, .12);
 }
 
 .sidebar-brand small {
   position: absolute;
-  top: 54px;
+  top: 90px;
   left: 23px;
   color: #90a9db;
   font-family: 'DM Sans', sans-serif;
@@ -1515,7 +1519,7 @@ tbody tr:last-child td {
 
 .brand-large {
   align-self: flex-start;
-  font-size: 17px;
+  width: 205px;
 }
 
 .brand-large .brand-mark {

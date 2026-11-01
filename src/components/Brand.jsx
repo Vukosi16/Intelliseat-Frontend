@@ -1,8 +1,9 @@
+import logo from '../assets/intelliseat_armchair_logo.svg'
+
 export default function Brand({ className = '' }) {
   return (
     <span className={`brand ${className}`}>
-      <span className="brand-mark">I</span>
-      <span>Intelli<span className="brand-accent">Seat</span></span>
+      <img className="brand-logo" src={logo} alt="IntelliSeat" />
     </span>
   )
 }
