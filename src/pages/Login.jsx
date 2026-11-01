@@ -4,18 +4,26 @@ import FormField from '../components/FormField.jsx'
 import Notice from '../components/Notice.jsx'
 
 export default function Login({ onLogin, onForgot }) {
-  const [email, setEmail] = useState('admin@intelliseat.co.za')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const [saving, setSaving] = useState(false)
 
-  function submit(event) {
+  async function submit(event) {
     event.preventDefault()
     if (!email.trim() || !password) {
       setError('Enter your email address and password to continue.')
       return
     }
+    setSaving(true)
     setError('')
-    onLogin(email)
+    try {
+      await onLogin({ email, password })
+    } catch {
+      setError('Incorrect email or password')
+    } finally {
+      setSaving(false)
+    }
   }
 
   return (
@@ -51,8 +59,8 @@ export default function Login({ onLogin, onForgot }) {
           <button type="button" className="text-button" onClick={onForgot}>Forgot password?</button>
         </div>
         <Notice type="error">{error}</Notice>
-        <button className="button button-red button-full" type="submit">
-          Sign in to Dashboard <span aria-hidden="true">→</span>
+        <button className="button button-red button-full" type="submit" disabled={saving}>
+          {saving ? 'Signing in…' : 'Sign in to Dashboard'} <span aria-hidden="true">→</span>
         </button>
         <p className="auth-footnote">
           Admin accounts are provisioned by IT — self-registration is not available.

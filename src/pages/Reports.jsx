@@ -1,26 +1,28 @@
-import { useState } from 'react'
 import PageHeading from '../components/PageHeading.jsx'
+import { formatDate, formatDateTime } from '../date.js'
 
-export default function Reports({ sessions }) {
-  const [range, setRange] = useState('Today')
-  // Keep a couple of sample rows visible alongside the live session records.
-  const reportSessions = [
-    ...sessions,
-    {
-      module: 'DBS210 — Database Systems',
-      lab: 'Lab 1',
-      time: '14:00–16:00',
-      checked: '32/36',
-      status: 'Upcoming',
-    },
-    {
-      module: 'PRG120 — Programming Fundamentals',
-      lab: 'Lab 3',
-      time: '08:00–10:00',
-      checked: '30/34',
-      status: 'Completed',
-    },
-  ]
+export default function Reports({
+  sessions,
+  range,
+  onRangeChange,
+  loading,
+  error,
+  selectedSession,
+  attendance,
+  absences,
+  attendanceLoading,
+  attendanceError,
+  onSelectSession,
+  onCloseAttendance,
+}) {
+  const reportSessions = sessions
+  const totals = reportSessions.reduce((result, session) => {
+    const [checkedIn, enrolled] = session.checked.split('/').map(Number)
+    return {
+      checkedIn: result.checkedIn + (checkedIn || 0),
+      enrolled: result.enrolled + (enrolled || 0),
+    }
+  }, { checkedIn: 0, enrolled: 0 })
 
   return (
     <>
@@ -35,32 +37,35 @@ export default function Reports({ sessions }) {
       />
       <div className="toolbar report-toolbar">
         <span className="muted">Showing report for</span>
-        <select aria-label="Report date range" value={range} onChange={(event) => setRange(event.target.value)}>
+        <select aria-label="Report date range" value={range} onChange={(event) => onRangeChange(event.target.value)}>
           <option>Today</option>
           <option>This week</option>
           <option>This month</option>
+          <option>All time</option>
         </select>
-        <span className="report-date">15 September 2026</span>
+        <span className="report-date">{range} · {new Date().toLocaleDateString()}</span>
       </div>
+      {loading && <p className="empty-state" role="status">Loading report data...</p>}
+      {error && <p className="notice notice-error" role="alert">Could not load reports: {error}</p>}
       <div className="stats-grid report-stats">
         <article className="stat-card">
           <span className="stat-icon blue">✓</span>
-          <strong>312</strong>
+          <strong>{totals.checkedIn}</strong>
           <span>Students checked in</span>
         </article>
         <article className="stat-card">
           <span className="stat-icon amber">◷</span>
-          <strong>24</strong>
+          <strong>—</strong>
           <span>Late arrivals</span>
         </article>
         <article className="stat-card">
           <span className="stat-icon red">⌁</span>
-          <strong>7</strong>
+          <strong>—</strong>
           <span>Issues reported</span>
         </article>
         <article className="stat-card">
           <span className="stat-icon green">▤</span>
-          <strong>{sessions.length + 3}</strong>
+          <strong>{sessions.length}</strong>
           <span>Sessions scheduled</span>
         </article>
       </div>
@@ -76,24 +81,29 @@ export default function Reports({ sessions }) {
             <thead>
               <tr>
                 <th>Assessment</th>
+                <th>Type</th>
+                <th>Date</th>
                 <th>Venue</th>
                 <th>Time</th>
                 <th>Attendance</th>
                 <th>Rate</th>
                 <th>Status</th>
+                <th>Details</th>
               </tr>
             </thead>
             <tbody>
               {reportSessions.map((session) => {
                 const [checkedIn, enrolled] = session.checked.split('/').map(Number)
-                const attendanceRate = Math.round(checkedIn / enrolled * 100)
+                const attendanceRate = enrolled ? Math.round(checkedIn / enrolled * 100) : 0
                 const statusColor = session.status === 'In progress'
                   ? 'badge-green'
                   : session.status === 'Completed' ? 'badge-blue' : 'badge-amber'
 
                 return (
-                  <tr key={session.module}>
+                  <tr key={session._id || session.module}>
                     <td className="strong-cell">{session.module}</td>
+                    <td>{session.type}</td>
+                    <td>{formatDate(session.date)}</td>
                     <td>{session.lab}</td>
                     <td>{session.time}</td>
                     <td>{session.checked}</td>
@@ -104,22 +114,116 @@ export default function Reports({ sessions }) {
                     <td>
                       <span className={`badge ${statusColor}`}>{session.status}</span>
                     </td>
+                    <td>
+                      <button
+                        className="table-action"
+                        type="button"
+                        onClick={() => onSelectSession(session)}
+                      >
+                        View attendance
+                      </button>
+                    </td>
                   </tr>
                 )
               })}
             </tbody>
           </table>
+          {reportSessions.length === 0 && !loading && <p className="empty-state">No report data is available for this range.</p>}
         </div>
       </section>
+      {selectedSession && (
+        <section className="panel report-panel">
+          <div className="panel-heading">
+            <div>
+              <h2>Attendance details</h2>
+              <p className="muted">
+                {selectedSession.module} · {formatDate(selectedSession.date)} · {selectedSession.lab}
+              </p>
+            </div>
+            <button className="button button-outline button-small" type="button" onClick={onCloseAttendance}>
+              Close
+            </button>
+          </div>
+          {attendanceLoading && <p className="empty-state" role="status">Loading attendance records...</p>}
+          {attendanceError && <p className="notice notice-error" role="alert">Could not load attendance: {attendanceError}</p>}
+          {!attendanceLoading && !attendanceError && (
+            <>
+              <div className="table-scroll">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Student</th>
+                      <th>Student number</th>
+                      <th>Seat</th>
+                      <th>Attendance</th>
+                      <th>Check-in time</th>
+                      <th>Verified by</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {attendance.map((record) => (
+                      <tr key={record._id}>
+                        <td className="strong-cell">{record.student.name}</td>
+                        <td>{record.student.studentNumber}</td>
+                        <td>{record.seat}</td>
+                        <td>{record.status === 'expelled' ? 'Expelled' : record.checkedIn ? 'Present' : 'Absent'}</td>
+                        <td>{record.verifiedAt ? formatDateTime(record.verifiedAt) : '—'}</td>
+                        <td>{record.verifiedBy || '—'}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                {!attendance.length && <p className="empty-state">No attendance records were found for this assessment.</p>}
+              </div>
+              <div className="panel-heading">
+                <div>
+                  <h3>Reported absentees</h3>
+                  <p className="muted">Absence reports submitted by students for this assessment.</p>
+                </div>
+              </div>
+              <div className="table-scroll">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Student</th>
+                      <th>Student number</th>
+                      <th>Reason</th>
+                      <th>Details</th>
+                      <th>Reported</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {absences.map((absence) => {
+                      const student = absence.studentId || {}
+                      return (
+                        <tr key={absence._id}>
+                          <td className="strong-cell">
+                            {[student.firstName, student.lastName].filter(Boolean).join(' ') || 'Unknown student'}
+                          </td>
+                          <td>{student.studentNumber || '—'}</td>
+                          <td>{absence.reason}</td>
+                          <td>{absence.details || '—'}</td>
+                          <td>{absence.createdAt ? formatDateTime(absence.createdAt) : '—'}</td>
+                        </tr>
+                      )
+                    })}
+                  </tbody>
+                </table>
+                {!absences.length && <p className="empty-state">No absences were reported for this assessment.</p>}
+              </div>
+            </>
+          )}
+        </section>
+      )}
       <section className="panel issue-report">
         <div>
           <span className="stat-icon red">⌁</span>
           <span>
-            <strong>7 issues reported today</strong>
-            <small>4 resolved · 2 in progress · 1 open</small>
+            <strong>{reportSessions.reduce((total, session) => total + session.incidents, 0)} pending attendance records</strong>
+            <small>Expulsions recorded: {reportSessions.reduce((total, session) => total + session.expelled, 0)}.</small>
           </span>
         </div>
-        <span className="badge badge-green">57% resolved</span>
+        <span className="badge badge-green">Backend totals</span>
       </section>
     </>
   )

@@ -12,31 +12,33 @@ function StatCard({ icon, color, value, label, note }) {
 }
 
 export default function Overview({ users, assessments, issues, sessions, onNavigate }) {
-  const openIssues = issues.filter((issue) => issue.status !== 'Resolved').length
+  const openIssues = issues.filter((issue) => issue.status !== 'resolved').length
+  const checkedIn = sessions.reduce((total, session) => total + Number(session.checked?.split('/')[0] || 0), 0)
+  const pendingEligibility = users.filter((user) => user.role === 'student' && user.eligibility === 'needs_review').length
 
   return (
     <>
-      <PageHeading title="Overview" subtitle="Tuesday, 15 September 2026" />
+      <PageHeading title="Overview" subtitle={new Date().toLocaleDateString()} />
       <div className="stats-grid">
-        <StatCard icon="✓" color="blue" value="312" label="Checked in today" note="↑ 8% from yesterday" />
+        <StatCard icon="✓" color="blue" value={checkedIn} label="Checked in today" note="From current assessment reports" />
         <StatCard
           icon="◷"
           color="amber"
-          value={users.filter((user) => !user.eligible).length + 22}
+          value={pendingEligibility}
           label="Pending eligibility"
           note="Across all programmes"
         />
         <StatCard
           icon="⌁"
           color="red"
-          value={openIssues + 4}
+          value={openIssues}
           label="Open hardware issues"
           note={`${openIssues} in your support queue`}
         />
         <StatCard
           icon="▤"
           color="green"
-          value={assessments.length + 3}
+          value={assessments.length}
           label="Assessments today"
           note="2 currently in progress"
         />
@@ -60,6 +62,7 @@ export default function Overview({ users, assessments, issues, sessions, onNavig
             <thead>
               <tr>
                 <th>Module</th>
+                <th>Type</th>
                 <th>Lab</th>
                 <th>Time</th>
                 <th>Checked in</th>
@@ -70,6 +73,7 @@ export default function Overview({ users, assessments, issues, sessions, onNavig
               {sessions.map((session) => (
                 <tr key={session.module}>
                   <td className="strong-cell">{session.module}</td>
+                  <td>{session.type}</td>
                   <td>{session.lab}</td>
                   <td>{session.time}</td>
                   <td>{session.checked}</td>
@@ -94,22 +98,22 @@ export default function Overview({ users, assessments, issues, sessions, onNavig
             <div>
               <span className="activity-icon activity-blue">✓</span>
               <p>
-                <strong>38 students checked in</strong>
-                <small>ITSD200 · Systems Design <span>· 09:46</span></small>
+                <strong>{checkedIn} students checked in</strong>
+                <small>From current assessment reports</small>
               </p>
             </div>
             <div>
               <span className="activity-icon activity-amber">＋</span>
               <p>
                 <strong>Eligibility review needed</strong>
-                <small>22 students have pending requirements <span>· 09:20</span></small>
+                <small>{pendingEligibility} students have pending requirements</small>
               </p>
             </div>
             <div>
               <span className="activity-icon activity-red">⌁</span>
               <p>
-                <strong>Hardware issue reported</strong>
-                <small>Lab 2 · Workstation PC 14 <span>· 09:18</span></small>
+                <strong>Support queue status</strong>
+                <small>{openIssues} open issue{openIssues === 1 ? '' : 's'}</small>
               </p>
             </div>
           </div>

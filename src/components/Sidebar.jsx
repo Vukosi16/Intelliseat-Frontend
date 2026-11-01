@@ -31,8 +31,8 @@ export default function Sidebar({ active, onNavigate, onLogout, admin }) {
       </nav>
       <div className="sidebar-bottom">
         <div className="admin-profile">
-          <span className="avatar">V</span>
-          <span><strong>{admin.split('@')[0]}</strong><small>Administrator</small></span>
+          <span className="avatar">{(admin?.name || admin?.email || '?').slice(0, 1).toUpperCase()}</span>
+          <span><strong>{admin?.name || admin?.email || 'Administrator'}</strong><small>Administrator</small></span>
         </div>
         <button type="button" className="logout-button" onClick={onLogout}>↶ &nbsp;Log out</button>
       </div>

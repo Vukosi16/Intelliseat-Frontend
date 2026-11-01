@@ -3,38 +3,80 @@ import FormField from '../components/FormField.jsx'
 import Notice from '../components/Notice.jsx'
 import PageHeading from '../components/PageHeading.jsx'
 
+const allowsExternalInvigilatorEmail = import.meta.env.VITE_ALLOW_NON_INSTITUTIONAL_INVIGILATOR_EMAILS === 'true'
+
 const emptyForm = {
   firstName: '',
   lastName: '',
-  number: '',
+  studentNumber: '',
+  staffNumber: '',
   email: '',
-  course: 'Diploma in IT',
-  year: 'Year 1',
-  clearance: 'Cleared',
+  course: '',
+  year: '1',
+  clearanceStatus: 'cleared',
   department: '',
   phone: '',
 }
 
-export default function CreateUsers({ onCreate }) {
+export default function CreateUsers({ onCreate, qualifications = [] }) {
   const [role, setRole] = useState('Student')
   const [notice, setNotice] = useState('')
+  const [error, setError] = useState('')
+  const [saving, setSaving] = useState(false)
   const [form, setForm] = useState(emptyForm)
+
+  const selectedCourse = form.course || qualifications[0]?.name || ''
+  const selectedQualification = qualifications.find((qualification) => qualification.name === selectedCourse)
 
   function update(event) {
     const { name, value } = event.target
-    setForm((currentForm) => ({ ...currentForm, [name]: value }))
+    setForm((currentForm) => ({
+      ...currentForm,
+      [name]: value,
+      ...(name === 'course' ? { year: '1' } : {}),
+    }))
+    setError('')
+    setNotice('')
   }
 
-  function submit(event) {
+  async function submit(event) {
     event.preventDefault()
-    onCreate({
-      ...form,
-      role,
-      name: `${form.firstName} ${form.lastName}`,
-      eligible: form.clearance === 'Cleared',
-    })
-    setNotice(`${role} account created for ${form.firstName} ${form.lastName}.`)
-    setForm(emptyForm)
+    const number = role === 'Student' ? form.studentNumber : form.staffNumber
+    if (!form.firstName.trim() || !form.lastName.trim()) {
+      setError('First and last names are required.')
+      return
+    }
+    const validNumber = role === 'Student' ? /^\d{9}$/.test(number) : /^INV-\d+$/.test(number)
+    if (!validNumber) {
+      setError(role === 'Student' ? 'Student number must contain exactly 9 digits.' : 'Staff number must start with INV- followed by digits.')
+      return
+    }
+    const isInstitutionalEmail = /^[^\s@]+@my\.richfield\.ac\.za$/i.test(form.email.trim())
+    if (!isInstitutionalEmail && !(role === 'Invigilator' && allowsExternalInvigilatorEmail)) {
+      setError('Use an institutional @my.richfield.ac.za email address.')
+      return
+    }
+    setSaving(true)
+    setError('')
+    try {
+      const result = await onCreate({
+        firstName: form.firstName,
+        lastName: form.lastName,
+        ...(role === 'Student'
+          ? { studentNumber: form.studentNumber, course: selectedCourse, year: Number(form.year), clearanceStatus: form.clearanceStatus }
+          : { staffNumber: form.staffNumber, department: form.department, phone: form.phone }),
+        email: form.email.trim().toLowerCase(),
+        role: role.toLowerCase(),
+      })
+      setNotice(result?.inviteEmail === 'failed'
+        ? 'User created, but the invitation email could not be sent. Please resend it.'
+        : `Invitation sent to ${form.email}.`)
+      setForm(emptyForm)
+    } catch (requestError) {
+      setError(requestError.message)
+    } finally {
+      setSaving(false)
+    }
   }
 
   function clearForm() {
@@ -81,46 +123,53 @@ export default function CreateUsers({ onCreate }) {
           </FormField>
           <FormField label={role === 'Student' ? 'Student number' : 'Staff number'}>
             <input
-              name="number"
+              name={role === 'Student' ? 'studentNumber' : 'staffNumber'}
               placeholder={role === 'Student' ? '402568464' : 'INV-XXXXX'}
-              value={form.number}
+              value={role === 'Student' ? form.studentNumber : form.staffNumber}
               onChange={update}
               required
             />
           </FormField>
-          <FormField label="Institutional email">
+          <FormField label={role === 'Student' || !allowsExternalInvigilatorEmail ? 'Institutional email' : 'Email'}>
             <input
               name="email"
               type="email"
-              placeholder="name@richfield.ac.za"
+              placeholder={role === 'Student' || !allowsExternalInvigilatorEmail
+                ? 'studentnumber@my.richfield.ac.za'
+                : 'invigilator@example.com'}
               value={form.email}
               onChange={update}
               required
             />
           </FormField>
+          {role === 'Invigilator' && allowsExternalInvigilatorEmail && (
+            <div className="notice notice-warning full-span" role="note">
+              Testing only: any valid email is allowed for invigilators. Disable this setting before production.
+            </div>
+          )}
           {role === 'Student' ? (
             <>
-              <FormField label="Course">
-                <select name="course" value={form.course} onChange={update}>
-                  <option>Diploma in IT</option>
-                  <option>Diploma in Networking</option>
-                  <option>Higher Certificate in IT</option>
-                  <option>Bachelor of IT</option>
+              <FormField label="Qualification">
+                <select name="course" value={selectedCourse} onChange={update} required>
+                  <option value="">Select a qualification</option>
+                  {qualifications.map((qualification) => (
+                    <option key={qualification.name} value={qualification.name}>{qualification.name}</option>
+                  ))}
                 </select>
               </FormField>
               <FormField label="Year">
-                <select name="year" value={form.year} onChange={update}>
-                  <option>Year 1</option>
-                  <option>Year 2</option>
-                  <option>Year 3</option>
-                  <option>Year 4</option>
+                <select name="year" value={form.year} onChange={update} required>
+                  {Array.from(
+                    { length: selectedQualification?.years || 0 },
+                    (_, index) => index + 1
+                  ).map((year) => <option key={year} value={year}>Year {year}</option>)}
                 </select>
               </FormField>
               <FormField label="Financial clearance" className="full-span">
-                <select name="clearance" value={form.clearance} onChange={update}>
-                  <option>Cleared</option>
-                  <option>Outstanding fees</option>
-                  <option>Documents pending</option>
+                <select name="clearanceStatus" value={form.clearanceStatus} onChange={update}>
+                  <option value="cleared">Cleared</option>
+                  <option value="outstanding_fees">Outstanding fees</option>
+                  <option value="documents_pending">Documents pending</option>
                 </select>
               </FormField>
             </>
@@ -149,8 +198,11 @@ export default function CreateUsers({ onCreate }) {
           )}
         </div>
         <Notice>{notice}</Notice>
+        <Notice type="error">{error}</Notice>
         <div className="form-actions">
-          <button className="button button-primary" type="submit">Create {role.toLowerCase()} account</button>
+          <button className="button button-primary" type="submit" disabled={saving}>
+            {saving ? 'Sending invitation…' : `Create ${role.toLowerCase()} account`}
+          </button>
           <button
             className="button button-outline"
             type="reset"

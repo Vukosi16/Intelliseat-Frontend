@@ -1,11 +1,35 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import PageHeading from '../components/PageHeading.jsx'
+import { formatDateTime } from '../date.js'
+import { labelFor } from '../statusLabels.js'
 
-export default function Support({ issues, onResolve }) {
+export default function Support({
+  issues,
+  issuesLoading,
+  issuesError,
+  onRefresh,
+  onResolve,
+  detail,
+  messages,
+  detailLoading,
+  detailError,
+  onSelect,
+  onCloseDetail,
+  onReply,
+}) {
   const [filter, setFilter] = useState('All issues')
+  const [reply, setReply] = useState('')
+  const [replyError, setReplyError] = useState('')
+  const [replySaving, setReplySaving] = useState(false)
+  useEffect(() => {
+    onRefresh()
+    const refreshTimer = window.setInterval(onRefresh, 15000)
+    return () => window.clearInterval(refreshTimer)
+  }, [onRefresh])
+
   const shown = issues.filter((issue) => (
     filter === 'All issues'
-    || (filter === 'Resolved' ? issue.status === 'Resolved' : issue.status !== 'Resolved')
+    || (filter === 'Resolved' ? issue.status === 'resolved' : issue.status !== 'resolved')
   ))
 
   return (
@@ -16,7 +40,7 @@ export default function Support({ issues, onResolve }) {
         action={(
           <span className="queue-count">
             <span className="live-dot" />
-            {issues.filter((issue) => issue.status !== 'Resolved').length} open issues
+            {issues.filter((issue) => issue.status === 'open' || issue.status === 'in_progress').length} open issues
           </span>
         )}
       />
@@ -31,7 +55,11 @@ export default function Support({ issues, onResolve }) {
             <option>Open issues</option>
             <option>Resolved</option>
           </select>
+          <button type="button" className="button button-outline" onClick={onRefresh} disabled={issuesLoading}>
+            {issuesLoading ? 'Refreshing…' : 'Refresh'}
+          </button>
         </div>
+        {issuesError && <p className="notice notice-error" role="alert">{issuesError}</p>}
         <div className="table-scroll">
           <table>
             <thead>
@@ -46,30 +74,31 @@ export default function Support({ issues, onResolve }) {
             </thead>
             <tbody>
               {shown.map((issue) => {
-                const badgeColor = issue.status === 'Resolved'
+                const badgeColor = issue.status === 'resolved'
                   ? 'badge-green'
-                  : issue.status === 'Open' ? 'badge-red' : 'badge-amber'
+                  : issue.status === 'open' ? 'badge-red' : 'badge-amber'
 
                 return (
-                  <tr key={`${issue.student}-${issue.time}`}>
-                    <td className="strong-cell">{issue.issue}</td>
-                    <td>{issue.student}</td>
-                    <td>{issue.location}</td>
-                    <td>{issue.time}</td>
+                  <tr key={issue._id}>
+                    <td className="strong-cell">
+                      <button type="button" className="table-action issue-link" onClick={() => onSelect(issue._id)}>
+                        {issue.description}
+                      </button>
+                    </td>
+                    <td>{issue.reporter.name} ({issue.reporter.role})</td>
+                    <td>{issue.venue} · {issue.seat}</td>
+                    <td>{formatDateTime(issue.createdAt)}</td>
                     <td>
-                      <span className={`badge ${badgeColor}`}>{issue.status}</span>
+                      <span className={`badge ${badgeColor}`}>{labelFor('issue', issue.status)}</span>
                     </td>
                     <td>
-                      {issue.status === 'Resolved'
+                      {issue.status === 'resolved'
                         ? <span className="resolved-label">Fixed ✓</span>
                         : (
-                          <button
-                            type="button"
-                            className="table-action"
-                            onClick={() => onResolve(issue.student, issue.time)}
-                          >
-                            Mark fixed
-                          </button>
+                          <>
+                            {issue.status === 'open' && <button type="button" className="table-action" onClick={() => onResolve(issue._id, 'in_progress')}>In progress</button>}
+                            <button type="button" className="table-action" onClick={() => onResolve(issue._id, 'resolved')}>Mark fixed</button>
+                          </>
                         )}
                     </td>
                   </tr>
@@ -80,6 +109,64 @@ export default function Support({ issues, onResolve }) {
           {shown.length === 0 && <p className="empty-state">No issues in this view.</p>}
         </div>
       </section>
+      {detailLoading && <p className="empty-state" role="status">Loading issue details...</p>}
+      {detailError && <p className="notice notice-error" role="alert">{detailError}</p>}
+      {detail && (
+        <section className="panel issue-detail">
+          <div className="panel-heading">
+            <div>
+              <h2>Issue details</h2>
+              <p className="muted">{detail.description} · {detail.venue} · {detail.seat}</p>
+            </div>
+            <button type="button" className="button button-outline" onClick={onCloseDetail}>Close</button>
+          </div>
+          <div className="detail-summary">
+            <span>Reported by <strong>{detail.reporter.name}</strong></span>
+            <span>Status <strong>{labelFor('issue', detail.status)}</strong></span>
+            <span>{formatDateTime(detail.createdAt)}</span>
+          </div>
+          <div className="message-list">
+            {messages.map((message) => (
+              <article className="message-item" key={message._id}>
+                <strong>
+                  {message.senderId?.firstName
+                    ? `${message.senderId.firstName} ${message.senderId.lastName || ''}`.trim()
+                    : 'Portal user'}
+                </strong>
+                <small>{formatDateTime(message.createdAt)}</small>
+                <p>{message.body}</p>
+              </article>
+            ))}
+            {!messages.length && <p className="empty-state">No replies have been recorded.</p>}
+          </div>
+          <form
+            className="reply-form"
+            onSubmit={async (event) => {
+              event.preventDefault()
+              if (!reply.trim()) {
+                setReplyError('Reply cannot be empty.')
+                return
+              }
+              setReplySaving(true)
+              setReplyError('')
+              try {
+                await onReply(detail._id, reply.trim())
+                setReply('')
+              } catch (error) {
+                setReplyError(error.message)
+              } finally {
+                setReplySaving(false)
+              }
+            }}
+          >
+            <textarea value={reply} onChange={(event) => setReply(event.target.value)} rows="3" placeholder="Write a reply to the reporter" />
+            {replyError && <p className="notice notice-error">{replyError}</p>}
+            <button className="button button-primary" type="submit" disabled={replySaving}>
+              {replySaving ? 'Sending…' : 'Send reply'}
+            </button>
+          </form>
+        </section>
+      )}
       <div className="support-note">
         <span>ⓘ</span>
         <p>

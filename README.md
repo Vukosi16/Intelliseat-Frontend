@@ -31,6 +31,10 @@ npm run dev
 
 Create a production build with `npm run build`, or run the project linter with `npm run lint`.
 
-## Demo behavior
+Copy `.env.example` to `.env.local` and set `VITE_API_URL` to the backend
+origin, for example `http://localhost:3000`. The API helper adds `/api`
+automatically, so do not include that suffix in the variable.
 
-This frontend currently uses in-memory sample data. Signing in with a non-empty email and password opens the dashboard; the forms update the page state for demonstration. Authentication, password reset delivery, persistence, attendance data and account provisioning need to be connected to an API before production use.
+With `VITE_API_URL` configured, the portal authenticates against the backend
+and loads users, issues, assessments, alerts, and reports from the API. Without
+it, the portal runs in explicit demo mode using local sample data.
