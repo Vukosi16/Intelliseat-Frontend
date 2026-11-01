@@ -1,28 +1,8 @@
-import { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NavBar from '../../components/NavBar';
-
-// Later this comes from the backend (the student's reported issues).
-// Set it to [] to preview the "no issues" screen.
-const ISSUES = [
-  {
-    id: 'ISS-2026-0142',
-    pc: 'PC 24',
-    lab: 'Lab 3',
-    description: 'Monitor flickers intermittently during the session.',
-    status: 'in_progress',
-    reportedAt: 'Today, 08:12',
-  },
-  {
-    id: 'ISS-2026-0131',
-    pc: 'PC 11',
-    lab: 'Lab 1',
-    description: 'Keyboard not responding.',
-    status: 'resolved',
-    reportedAt: '28 Sep, 10:40',
-  },
-];
+import { request, unwrapList } from '../../api';
 
 // Text and colours for each status
 const STATUS_STYLES = {
@@ -31,29 +11,84 @@ const STATUS_STYLES = {
   resolved: { label: 'Resolved', textColor: '#1D8A55', backgroundColor: '#E1F3E8' },
 };
 
+function mapIssue(issue, fallbackDescription = '') {
+  const seat = issue.seatId && typeof issue.seatId === 'object' ? issue.seatId : {};
+  const venue = issue.venueId && typeof issue.venueId === 'object' ? issue.venueId : {};
+  const seatLabel = seat.label
+    || (seat.number ? `PC ${seat.number}` : '')
+    || (typeof issue.pc === 'string' ? issue.pc : '')
+    || 'Seat unavailable';
+  const venueName = venue.name
+    || (typeof issue.venue === 'string' ? issue.venue : '')
+    || issue.venueName
+    || seat.venueId?.name
+    || 'Venue unavailable';
+
+  return {
+    id: issue._id || issue.id || `${Date.now()}-${Math.random()}`,
+    pc: seatLabel,
+    lab: venueName,
+    description: issue.description || fallbackDescription,
+    status: (issue.status || 'open').toLowerCase(),
+    reportedAt: issue.createdAt
+      ? new Date(issue.createdAt).toLocaleString([], { dateStyle: 'short', timeStyle: 'short' })
+      : 'Just now',
+  };
+}
+
 export default function StudentSupport({ route }) {
   const [isCreatingIssue, setIsCreatingIssue] = useState(route?.params?.openNewIssue ?? false);
   const [issueText, setIssueText] = useState('');
   const [submittedIssue, setSubmittedIssue] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const [issues, setIssues] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  function submitIssue() {
+  useEffect(() => {
+    request('/api/issues')
+      .then((data) => {
+        const list = unwrapList(data, 'issues');
+        setIssues(list.map((item) => mapIssue(item)));
+      })
+      .catch(console.warn)
+      .finally(() => setLoading(false));
+  }, []);
+
+  async function submitIssue() {
     const description = issueText.trim();
     if (!description) return;
 
-    setSubmittedIssue({
-      id: 'ISS-2026-0150',
-      pc: 'PC 24',
-      lab: 'Lab 3',
-      description,
-      status: 'open',
-      reportedAt: 'Just now',
-    });
-    setIssueText('');
-    setIsCreatingIssue(false);
+    setSubmitting(true);
+    setSubmitError('');
+    try {
+      const payload = {
+        category: 'other',
+        description,
+      };
+      if (route?.params?.assessmentId) {
+        payload.assessmentId = route.params.assessmentId;
+      }
+      const created = await request('/api/issues', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+      });
+
+      const newIssueItem = mapIssue(created, description);
+
+      setSubmittedIssue(newIssueItem);
+      setIssues((prev) => [newIssueItem, ...prev]);
+      setIssueText('');
+      setIsCreatingIssue(false);
+    } catch (err) {
+      setSubmitError(err.message || 'Failed to submit issue. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
-    <SafeAreaView style={styles.container} edges={['left', 'right', 'bottom']}>
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
       <NavBar />
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -63,7 +98,10 @@ export default function StudentSupport({ route }) {
         <TouchableOpacity
           accessibilityLabel="Create a new support issue"
           accessibilityRole="button"
-          onPress={() => setIsCreatingIssue((isOpen) => !isOpen)}
+          onPress={() => {
+            setIsCreatingIssue((isOpen) => !isOpen);
+            setSubmitError('');
+          }}
           style={styles.newIssueButton}
         >
           <Text style={styles.newIssueButtonText}>
@@ -85,14 +123,24 @@ export default function StudentSupport({ route }) {
               multiline
               maxLength={500}
             />
+
+            {!!submitError && (
+              <Text style={styles.errorText}>{submitError}</Text>
+            )}
+
             <TouchableOpacity
               accessibilityLabel="Submit support issue"
               accessibilityRole="button"
-              disabled={!issueText.trim()}
+              disabled={!issueText.trim() || submitting}
               onPress={submitIssue}
-              style={[styles.submitButton, !issueText.trim() && styles.disabledButton]}
+              style={[
+                styles.submitButton,
+                (!issueText.trim() || submitting) && styles.disabledButton,
+              ]}
             >
-              <Text style={styles.submitButtonText}>Submit issue</Text>
+              <Text style={styles.submitButtonText}>
+                {submitting ? 'Submitting…' : 'Submit issue'}
+              </Text>
             </TouchableOpacity>
           </View>
         )}
@@ -104,8 +152,12 @@ export default function StudentSupport({ route }) {
           </View>
         )}
 
+        {loading && (
+          <ActivityIndicator size="large" color="#FFFFFF" style={{ marginVertical: 20 }} />
+        )}
+
         {/* No issues */}
-        {ISSUES.length === 0 && !submittedIssue && (
+        {!loading && issues.length === 0 && (
           <View style={styles.emptyBox}>
             <Text style={styles.emptyTitle}>No issues</Text>
             <Text style={styles.emptyText}>
@@ -116,28 +168,31 @@ export default function StudentSupport({ route }) {
         )}
 
         {/* Issue cards */}
-        {[...(submittedIssue ? [submittedIssue] : []), ...ISSUES].map((issue) => {
-          const status = STATUS_STYLES[issue.status];
+        {!loading &&
+          issues.map((issue) => {
+            const status = STATUS_STYLES[issue.status] || STATUS_STYLES.open;
 
-          return (
-            <View key={issue.id} style={styles.card}>
-              <View style={styles.cardHeader}>
-                <Text style={styles.pcText}>
-                  {issue.pc} · {issue.lab}
-                </Text>
-                <View style={[styles.statusBadge, { backgroundColor: status.backgroundColor }]}>
-                  <Text style={[styles.statusBadgeText, { color: status.textColor }]}>{status.label}</Text>
+            return (
+              <View key={issue.id} style={styles.card}>
+                <View style={styles.cardHeader}>
+                  <Text style={styles.pcText}>
+                    {issue.pc} · {issue.lab}
+                  </Text>
+                  <View style={[styles.statusBadge, { backgroundColor: status.backgroundColor }]}>
+                    <Text style={[styles.statusBadgeText, { color: status.textColor }]}>
+                      {status.label}
+                    </Text>
+                  </View>
                 </View>
+
+                <Text style={styles.description}>{issue.description}</Text>
+
+                <Text style={styles.meta}>
+                  Reported {issue.reportedAt}
+                </Text>
               </View>
-
-              <Text style={styles.description}>{issue.description}</Text>
-
-              <Text style={styles.meta}>
-                {issue.id} · {issue.reportedAt}
-              </Text>
-            </View>
-          );
-        })}
+            );
+          })}
       </ScrollView>
     </SafeAreaView>
   );
@@ -208,6 +263,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#1B3C82',
     borderRadius: 8,
+  },
+  errorText: {
+    color: '#FF6B6B',
+    fontSize: 13,
+    marginTop: 8,
   },
   submitButton: {
     height: 46,

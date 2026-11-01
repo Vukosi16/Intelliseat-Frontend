@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 
 import { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NavBar from '../../components/NavBar';
+import { request } from '../../api';
 
 // Used for previewing the page on its own. When you arrive from another screen,
 // the real details are passed in with navigation.navigate('ReportIssue', { session, pc }).
@@ -11,26 +12,87 @@ const DEFAULT_PC = 'PC 1';
 export default function ReportIssue({ route }) {
   const session = route?.params?.session ?? DEFAULT_SESSION;
   const pc = route?.params?.pc ?? DEFAULT_PC;
+  const seatId = route?.params?.seatId
+    || route?.params?.seat?._id
+    || route?.params?.seatId?._id;
+  const venueId = route?.params?.venueId
+    || route?.params?.seat?.venueId?._id
+    || route?.params?.seat?.venueId
+    || session.venueId?._id
+    || session.venueId
+    || session.venue?._id;
 
   const [reason, setReason] = useState('');
   const [error, setError] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [pcStatus, setPcStatus] = useState(null); // 'verified' (greenlist), 'faulty' (redlist) or null
+  const [submittedIssueId, setSubmittedIssueId] = useState(null);
+  const [submittedIssueReason, setSubmittedIssueReason] = useState('');
+  const [statusMessage, setStatusMessage] = useState('');
+  const assessmentId = session._id || session.id || session.raw?._id;
 
-  function handleSubmit() {
-    // A description is required
+  async function handleSubmit() {
     if (reason.trim() === '') {
       setError('Describe the issue before submitting.');
       return;
     }
 
-    // Later: send { session, pc, reason } to the backend
-    setSubmitted(true);
-    setReason('');
+    setSubmitting(true);
+    setError('');
+    try {
+      const createdIssue = await request('/api/issues', {
+        method: 'POST',
+        body: JSON.stringify({
+          category: 'other',
+          description: reason.trim(),
+          assessmentId,
+          seat: pc,
+          ...(seatId ? { seatId } : {}),
+          ...(venueId ? { venueId } : {}),
+        }),
+      });
+      setSubmittedIssueId(createdIssue?._id || null);
+      setSubmittedIssueReason(reason.trim());
+      setSubmitted(true);
+      setReason('');
+    } catch (requestError) {
+      setError(requestError.message || 'Failed to submit issue.');
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  async function markPcStatus(status) {
+    setError('');
+    setStatusMessage('');
+    if (!seatId) {
+      setError('This PC is missing its seat ID. Open this page from the lab map or student profile to update its status.');
+      return;
+    }
+    try {
+      const result = await request(`/api/seats/${seatId}/condition`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+          condition: status === 'faulty' ? 'faulty' : 'working',
+          faultyReason: status === 'faulty'
+            ? submittedIssueReason || reason.trim() || 'Marked faulty by invigilator'
+            : undefined,
+          ...(assessmentId ? { assessmentId } : {}),
+          ...(status === 'faulty' && submittedIssueId ? { issueId: submittedIssueId } : {}),
+        }),
+      });
+      setPcStatus(status);
+      setStatusMessage(status === 'faulty' && result.studentsWithoutReplacement > 0
+        ? `PC marked faulty and issue recorded. ${result.studentsWithoutReplacement} affected student(s) need a replacement seat.`
+        : `${pc} marked ${status === 'faulty' ? 'faulty' : 'working'}.`);
+    } catch (requestError) {
+      setError(requestError.message || 'Could not update PC status.');
+    }
   }
 
   return (
-    <SafeAreaView style={styles.container} edges={['left', 'right', 'bottom']}>
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
       <NavBar alertsScreen="InvigilatorAlerts" profileScreen="InvigilatorProfile" />
 
       <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
@@ -38,6 +100,7 @@ export default function ReportIssue({ route }) {
         {/* Session details */}
         <View style={styles.sessionCard}>
           <Text style={styles.sessionName}>{session.name}</Text>
+          <Text style={styles.sessionDetails}>{session.type || 'Type not set'}</Text>
           <Text style={styles.sessionDetails}>
             {session.lab} · {session.date} · {session.time}
           </Text>
@@ -62,8 +125,8 @@ export default function ReportIssue({ route }) {
         {error !== '' && <Text style={styles.errorText}>{error}</Text>}
         {submitted && <Text style={styles.successText}>Issue submitted.</Text>}
 
-        <TouchableOpacity style={styles.primaryButton} onPress={handleSubmit}>
-          <Text style={styles.buttonText}>Submit</Text>
+        <TouchableOpacity style={styles.primaryButton} onPress={handleSubmit} disabled={submitting}>
+          <Text style={styles.buttonText}>{submitting ? 'Submitting…' : 'Submit'}</Text>
         </TouchableOpacity>
 
         {/* Mark the PC */}
@@ -72,22 +135,22 @@ export default function ReportIssue({ route }) {
         <View style={styles.statusRow}>
           <TouchableOpacity
             style={[styles.statusButton, styles.verifiedButton, pcStatus === 'verified' && styles.statusSelected]}
-            onPress={() => setPcStatus('verified')}
+            onPress={() => markPcStatus('verified')}
           >
             <Text style={styles.verifiedText}>PC Verified</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={[styles.statusButton, styles.faultyButton, pcStatus === 'faulty' && styles.statusSelected]}
-            onPress={() => setPcStatus('faulty')}
+            onPress={() => markPcStatus('faulty')}
           >
             <Text style={styles.faultyText}>PC Faulty</Text>
           </TouchableOpacity>
         </View>
 
-        {pcStatus !== null && (
+        {!!statusMessage && (
           <Text style={styles.statusMessage}>
-            {pc} marked as {pcStatus === 'verified' ? 'verified (greenlisted)' : 'faulty (redlisted)'}.
+            {statusMessage}
           </Text>
         )}
 

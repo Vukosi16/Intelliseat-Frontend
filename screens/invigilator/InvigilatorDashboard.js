@@ -1,14 +1,9 @@
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NavBar from '../../components/NavBar';
-
-// Later this comes from the backend (today's exams assigned to this invigilator).
-const INVIGILATOR_FIRST_NAME = 'Radebe';
-const OPEN_ISSUES = 1;
-const SESSIONS = [
-  { id: '1', name: 'DIT (3rd Year): Networks 731', lab: 'Lab 03', date: 'Fri, 16 Oct', time: '10:00' },
-  { id: '2', name: 'DIT (2nd Year): Databases 621', lab: 'Lab 01', date: 'Fri, 16 Oct', time: '13:00' },
-];
+import { request, unwrapList } from '../../api';
+import { useAuth } from '../../context/AuthContext';
 
 function getGreeting() {
   const hour = new Date().getHours();
@@ -18,6 +13,26 @@ function getGreeting() {
 }
 
 export default function InvigilatorDashboard({ navigation }) {
+  const { user } = useAuth();
+  const [assessments, setAssessments] = useState([]);
+  const [openIssues, setOpenIssues] = useState(0);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    Promise.all([
+      request('/api/assessments').catch(() => []),
+      request('/api/issues').catch(() => []),
+    ])
+      .then(([assessmentsData, issuesData]) => {
+        setAssessments(unwrapList(assessmentsData, 'assessments'));
+
+        const rawIssues = unwrapList(issuesData, 'issues');
+        const unresolved = rawIssues.filter((i) => i.status !== 'resolved').length;
+        setOpenIssues(unresolved);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
   const today = new Date().toLocaleDateString('en-GB', {
     weekday: 'long',
     day: 'numeric',
@@ -25,22 +40,41 @@ export default function InvigilatorDashboard({ navigation }) {
     year: 'numeric',
   });
 
-  const nextSession = SESSIONS[0];
+  const todaySessions = assessments
+    .filter((a) => {
+      if (!a.startsAt) return false;
+      const d = new Date(a.startsAt);
+      const now = new Date();
+      return d.toDateString() === now.toDateString();
+    })
+    .map((a) => ({
+      id: a._id,
+      _id: a._id,
+      name: a.name,
+      type: a.type || 'Type not set',
+      lab: a.venueId?.name || a.venueName || 'Lab',
+      date: new Date(a.startsAt).toLocaleDateString(),
+      time: new Date(a.startsAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      status: a.status,
+      venueId: a.venueId,
+      raw: a,
+    }));
 
-  // The three small boxes at the top
+  const nextSession = todaySessions[0];
+
   const stats = [
-    { label: 'Sessions today', value: SESSIONS.length },
+    { label: 'Sessions today', value: todaySessions.length },
     { label: 'Next session', value: nextSession ? nextSession.time : '-' },
-    { label: 'Open issues', value: OPEN_ISSUES },
+    { label: 'Open issues', value: openIssues },
   ];
 
   return (
-    <SafeAreaView style={styles.container} edges={['left', 'right', 'bottom']}>
-      <NavBar alertsScreen="SendAlert" profileScreen="StudentProfileInv" />
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
+      <NavBar alertsScreen="InvigilatorAlerts" profileScreen="InvigilatorProfile" />
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <Text style={styles.pageTitle}>
-          {getGreeting()}, {INVIGILATOR_FIRST_NAME}
+          {getGreeting()}, {user?.firstName || 'Invigilator'}
         </Text>
         <Text style={styles.pageSubtitle}>{today}</Text>
 
@@ -54,26 +88,38 @@ export default function InvigilatorDashboard({ navigation }) {
           ))}
         </View>
 
+        <TouchableOpacity onPress={() => navigation.navigate('ViewSession')}>
+          <Text style={[styles.sectionTitle, { color: '#C6CFEC' }]}>View all assessments ›</Text>
+        </TouchableOpacity>
+
         {/* Today's sessions */}
         <Text style={styles.sectionTitle}>Today's sessions</Text>
 
-        {SESSIONS.length === 0 && <Text style={styles.emptyText}>You have no sessions today.</Text>}
+        {loading && (
+          <ActivityIndicator size="large" color="#FFFFFF" style={{ marginVertical: 20 }} />
+        )}
 
-        {SESSIONS.map((session) => (
-          <TouchableOpacity
-            key={session.id}
-            style={styles.sessionCard}
-            onPress={() => navigation.navigate('SessionDetail', { session })}
-          >
-            <View style={styles.sessionText}>
-              <Text style={styles.sessionName}>{session.name}</Text>
-              <Text style={styles.sessionDetails}>
-                {session.lab} · Starts at {session.time}
-              </Text>
-            </View>
-            <Text style={styles.chevron}>›</Text>
-          </TouchableOpacity>
-        ))}
+        {!loading && todaySessions.length === 0 && (
+          <Text style={styles.emptyText}>You have no sessions today.</Text>
+        )}
+
+        {!loading &&
+          todaySessions.map((session) => (
+            <TouchableOpacity
+              key={session.id}
+              style={styles.sessionCard}
+              onPress={() => navigation.navigate('SessionDetail', { session })}
+            >
+              <View style={styles.sessionText}>
+                <Text style={styles.sessionName}>{session.name}</Text>
+                <Text style={styles.sessionDetails}>{session.type}</Text>
+                <Text style={styles.sessionDetails}>
+                  {session.lab} · Starts at {session.time}
+                </Text>
+              </View>
+              <Text style={styles.chevron}>›</Text>
+            </TouchableOpacity>
+          ))}
       </ScrollView>
     </SafeAreaView>
   );

@@ -1,45 +1,64 @@
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NavBar from '../../components/NavBar';
-
-// Later this comes from the logged-in student's record in the backend.
-const STUDENT = {
-  firstName: 'Evril',
-  lastName: 'Nemakhavhani',
-  studentNumber: '402410886',
-  email: 'evril@richfield.ac.za',
-  course: 'Diploma in Information Technology',
-  year: 'Year 2',
-  eligibility: 'Eligible',
-};
+import { useAuth } from '../../context/AuthContext';
 
 export default function StudentProfile({ navigation }) {
-  const initials = STUDENT.firstName[0] + STUDENT.lastName[0];
+  const { user, logout, updateUser } = useAuth();
+  const [phone, setPhone] = useState(user?.phone || '');
+  const [saving, setSaving] = useState(false);
+  const [message, setMessage] = useState('');
+
+  const firstName = user?.firstName || 'Student';
+  const lastName = user?.lastName || '';
+  const initials = ((firstName[0] || 'S') + (lastName[0] || '')).toUpperCase();
+  const studentNumber = user?.studentNumber || '—';
+  const email = user?.email || '—';
+  const course = user?.course || user?.program || 'Diploma in Information Technology';
+  const year = user?.year || user?.academicYear || 'Year 2';
+  const eligibility = user?.eligibility || (user?.isEligible !== false ? 'Eligible' : 'Not Eligible');
 
   // Each row in the details card
   const details = [
-    { label: 'Student number', value: STUDENT.studentNumber },
-    { label: 'Email', value: STUDENT.email },
-    { label: 'Course', value: STUDENT.course },
-    { label: 'Year of study', value: STUDENT.year },
+    { label: 'Student number', value: studentNumber },
+    { label: 'Email', value: email },
+    { label: 'Course', value: course },
+    { label: 'Year of study', value: year },
   ];
 
+  const handleLogout = async () => {
+    await logout();
+  };
+
+  async function saveProfile() {
+    setSaving(true);
+    setMessage('');
+    try {
+      await updateUser({ phone });
+      setMessage('Profile updated.');
+    } catch (error) {
+      setMessage(error.message);
+    } finally {
+      setSaving(false);
+    }
+  }
+
   return (
-    <SafeAreaView style={styles.container} edges={['left', 'right', 'bottom']}>
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
       <NavBar />
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
-
         {/* Avatar and name */}
         <View style={styles.avatarSection}>
           <View style={styles.avatar}>
             <Text style={styles.avatarText}>{initials}</Text>
           </View>
           <Text style={styles.name}>
-            {STUDENT.firstName} {STUDENT.lastName}
+            {firstName} {lastName}
           </Text>
           <View style={styles.eligibleBadge}>
-            <Text style={styles.eligibleBadgeText}>{STUDENT.eligibility}</Text>
+            <Text style={styles.eligibleBadgeText}>{eligibility}</Text>
           </View>
         </View>
 
@@ -54,14 +73,18 @@ export default function StudentProfile({ navigation }) {
         </View>
 
         <Text style={styles.helpText}>
-          Something wrong? Student details can only be changed by the administrator.
+          You can update your contact number below. Academic details remain administrator-managed.
         </Text>
-
-        {/* Log out */}
-        <TouchableOpacity style={styles.logoutButton} onPress={() => navigation.navigate('Login')}>
-          <Text style={styles.buttonText}>Log out</Text>
+        <TextInput style={styles.input} value={phone} onChangeText={setPhone} placeholder="Contact number" placeholderTextColor="#9AA6C4" keyboardType="phone-pad" />
+        {!!message && <Text style={styles.helpText}>{message}</Text>}
+        <TouchableOpacity style={styles.saveButton} onPress={saveProfile} disabled={saving}>
+          <Text style={styles.buttonText}>{saving ? 'Saving…' : 'Save profile'}</Text>
         </TouchableOpacity>
 
+        {/* Log out */}
+        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+          <Text style={styles.buttonText}>Log out</Text>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );
@@ -145,6 +168,23 @@ const styles = StyleSheet.create({
     color: '#9AA6C4',
     textAlign: 'center',
     marginTop: 16,
+  },
+  input: {
+    backgroundColor: '#122B63',
+    borderWidth: 1,
+    borderColor: '#1B3C82',
+    borderRadius: 8,
+    color: 'white',
+    padding: 14,
+    marginTop: 14,
+  },
+  saveButton: {
+    height: 50,
+    borderRadius: 8,
+    backgroundColor: '#2A52A8',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 12,
   },
 
   // Log out

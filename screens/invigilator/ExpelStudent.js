@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView, Alert 
 import { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NavBar from '../../components/NavBar';
+import { request } from '../../api';
 
 // Used for previewing the page on its own. When you arrive from another screen,
 // the real session and student are passed in with navigation.navigate('ExpelStudent', { session, student }).
@@ -14,15 +15,15 @@ export default function ExpelStudent({ navigation, route }) {
 
   const [reason, setReason] = useState('');
   const [error, setError] = useState('');
+  const assessmentId = session._id || session.id || session.raw?._id;
+  const studentId = student._id || student.id;
 
   function handleExpel() {
-    // A reason is required
     if (reason.trim() === '') {
       setError('Enter a reason before expelling the student.');
       return;
     }
 
-    // Ask once more, because this cannot be undone
     Alert.alert(
       'Expel student?',
       `${student.name} will be removed from this session.`,
@@ -31,9 +32,16 @@ export default function ExpelStudent({ navigation, route }) {
         {
           text: 'Expel',
           style: 'destructive',
-          onPress: () => {
-            // Later: send { student, session, reason } to the backend
-            navigation.goBack();
+          onPress: async () => {
+            try {
+              await request(`/api/assessments/${assessmentId}/expel`, {
+                method: 'POST',
+                body: JSON.stringify({ studentId, reason: reason.trim() }),
+              });
+              navigation.goBack();
+            } catch (requestError) {
+              setError(requestError.message || 'Failed to expel student.');
+            }
           },
         },
       ]
@@ -41,7 +49,7 @@ export default function ExpelStudent({ navigation, route }) {
   }
 
   return (
-    <SafeAreaView style={styles.container} edges={['left', 'right', 'bottom']}>
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
       <NavBar alertsScreen="InvigilatorAlerts" profileScreen="InvigilatorProfile" />
 
       <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
@@ -49,6 +57,7 @@ export default function ExpelStudent({ navigation, route }) {
         {/* Session details */}
         <View style={styles.sessionCard}>
           <Text style={styles.sessionName}>{session.name}</Text>
+          <Text style={styles.sessionDetails}>{session.type || 'Type not set'}</Text>
           <Text style={styles.sessionDetails}>
             {session.lab} · {session.date} · {session.time}
           </Text>

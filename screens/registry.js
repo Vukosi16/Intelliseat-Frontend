@@ -19,6 +19,7 @@ import SendAlert from './invigilator/SendAlert';
 import SessionDetail from './invigilator/SessionDetail';
 import StudentProfileInv from './invigilator/StudentProfile';
 import ViewSession from './invigilator/ViewSessions';
+import InvigilatorProfile from './invigilator/InvigilatorProfile';
 
 export const screens = [
   { name: 'Login', component: LoginScreen, group: 'Auth' },
@@ -40,4 +41,6 @@ export const screens = [
   { name: 'SessionDetail', component: SessionDetail, group: 'Invigilator' },
   { name: 'StudentProfileInv', component: StudentProfileInv, group: 'Invigilator' },
   { name: 'ViewSession', component: ViewSession, group: 'Invigilator' },
+  { name: 'InvigilatorProfile', component: InvigilatorProfile, group: 'Invigilator' },
+  { name: 'InvigilatorAlerts', component: StudentAlert, group: 'Invigilator' },
 ];

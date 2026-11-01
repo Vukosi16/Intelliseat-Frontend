@@ -15,6 +15,8 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import TopLogoSection from "../../components/TopLogoSection";
+import { request } from "../../api";
+import { useAuth } from "../../context/AuthContext";
 
 const ROUTES = {
   forgotPassword: "ForgotPassword",
@@ -79,6 +81,9 @@ const LAYOUT_ANIMATION = {
 };
 
 export default function LoginScreen({ navigation }) {
+  const { login } = useAuth();
+  const [loginError, setLoginError] = useState('');
+  const [loading, setLoading] = useState(false);
   const [role, setRole] = useState("invigilator");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -168,9 +173,26 @@ export default function LoginScreen({ navigation }) {
     focusedField.current = null;
   };
 
-  const handleSignIn = () => {
+  const handleSignIn = async () => {
     Keyboard.dismiss();
-    navigation.navigate(content.home);
+    if (!email.trim() || !password.trim()) {
+      setLoginError('Please enter your email/ID and password.');
+      return;
+    }
+    setLoginError('');
+    setLoading(true);
+    try {
+      const result = await request('/api/auth/login', {
+        method: 'POST',
+        body: JSON.stringify({ identifier: email.trim(), password }),
+      });
+      await login(result.user, result.token);
+      // Navigation is handled automatically by RootNavigator reacting to user state
+    } catch (err) {
+      setLoginError(err.message || 'Login failed. Check your details and try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -274,7 +296,7 @@ export default function LoginScreen({ navigation }) {
                 onBlur={handleBlur}
                 autoCapitalize="none"
                 autoCorrect={false}
-                keyboardType="email-address"
+                keyboardType={role === "student" ? "number-pad" : "email-address"}
                 autoComplete="username"
                 textContentType="username"
                 returnKeyType="next"
@@ -329,6 +351,15 @@ export default function LoginScreen({ navigation }) {
               <Text style={styles.forgotPasswordText}>Forgot password?</Text>
             </TouchableOpacity>
 
+            <TouchableOpacity
+              style={styles.forgotPasswordButton}
+              onPress={() => navigation.navigate('OTPVerification', { purpose: 'invite' })}
+            >
+              <Text style={styles.forgotPasswordText}>First time here?</Text>
+            </TouchableOpacity>
+
+            {!!loginError && <Text style={styles.errorText}>{loginError}</Text>}
+
             <Pressable
               style={({ pressed }) => [
                 styles.submitButton,
@@ -337,8 +368,11 @@ export default function LoginScreen({ navigation }) {
                 pressed && { backgroundColor: content.buttonPressedColor },
               ]}
               onPress={handleSignIn}
+              disabled={loading}
             >
-              <Text style={styles.submitButtonText}>{content.button}</Text>
+              <Text style={styles.submitButtonText}>
+                {loading ? 'Signing in…' : content.button}
+              </Text>
             </Pressable>
 
             {!(compact && hideNotice) && (
@@ -519,5 +553,11 @@ const styles = StyleSheet.create({
   noticeText: {
     color: COLORS.muted,
     fontSize: 13,
+  },
+  errorText: {
+    color: '#FF6B6B',
+    fontSize: 13,
+    marginBottom: 10,
+    textAlign: 'center',
   },
 });

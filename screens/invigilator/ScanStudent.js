@@ -1,26 +1,75 @@
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import { useRef, useCallback } from 'react';
+import { useRef, useCallback, useState } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import NavBar from '../../components/NavBar';
+import { request } from '../../api';
 
-// Used for previewing the page on its own. When you arrive from the session page,
-// the real session is passed in with navigation.navigate('ScanStudent', { session }).
-const DEFAULT_SESSION = { name: 'DIT (3rd Year): Networks 731', lab: 'Lab 03', date: 'Fri, 16 Oct', time: '10:00' };
+const DEFAULT_ASSESSMENT = {
+  _id: 'demo-assessment',
+  moduleCode: 'NET731',
+  name: 'Networks',
+  venue: { _id: 'demo-venue', name: 'Lab 03' },
+  date: '2026-10-16',
+  startTime: '10:00',
+  endTime: '12:00',
+};
 
-// Later: the scanned QR token is sent to the backend, which checks it is valid, not expired and
-// not used before, then returns the student. For now every scan returns this placeholder student.
-const DEMO_STUDENT = { name: 'Mudanabula D.', studentNumber: '402410233', pc: 'PC 1', eligibility: 'Eligible' };
+const DEMO_STUDENT = {
+  _id: 'demo-student',
+  studentNumber: '402410233',
+  firstName: 'Mudanabula',
+  lastName: 'D.',
+  eligibility: 'eligible',
+  seat: { _id: 'demo-seat-1', label: 'PC 1' },
+};
+
+function venueName(assessment) {
+  return (
+    assessment?.venue?.name ||
+    assessment?.venueId?.name ||
+    assessment?.venueName ||
+    assessment?.lab ||
+    assessment?.labs ||
+    'Lab'
+  );
+}
+
+function assessmentWhen(assessment) {
+  if (assessment?.date && assessment?.startTime) {
+    return `${assessment.date} · ${assessment.startTime}`;
+  }
+  if (assessment?.startsAt) {
+    const start = new Date(assessment.startsAt);
+    return `${start.toLocaleDateString()} · ${start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+  }
+  return '';
+}
+
+function normalizeStudent(student) {
+  const payload = student?.student || student;
+  const name =
+    payload.name ||
+    `${payload.firstName || ''} ${payload.lastName || ''}`.trim() ||
+    'Student';
+  return {
+    ...payload,
+    name,
+    studentNumber: payload.studentNumber || '—',
+    pc: payload.seat?.label || payload.seatNumber || payload.pc || 'Unassigned',
+    eligibility: payload.eligibility || 'eligible',
+  };
+}
 
 export default function ScanStudent({ navigation, route }) {
-  const session = route?.params?.session ?? DEFAULT_SESSION;
+  const assessment = route?.params?.assessment ?? route?.params?.session?.raw ?? DEFAULT_ASSESSMENT;
+  const session = route?.params?.session;
+  const [error, setError] = useState('');
+  const [scanning, setScanning] = useState(false);
   const [permission, requestPermission] = useCameraPermissions();
-
-  // Stops the camera from opening the student page many times while it still sees the same QR code
   const hasScanned = useRef(false);
 
-  // Allow scanning again each time we come back to this page
   useFocusEffect(
     useCallback(() => {
       hasScanned.current = false;
@@ -28,33 +77,50 @@ export default function ScanStudent({ navigation, route }) {
   );
 
   function openStudentDetail(student) {
-    if (hasScanned.current) return;
-    hasScanned.current = true;
-    navigation.navigate('StudentProfileInv', { session, student });
+    navigation.navigate('StudentProfileInv', {
+      assessment,
+      session,
+      student: normalizeStudent(student),
+    });
   }
 
-  // Called when the camera reads a QR code
-  function handleScan(result) {
-    // result.data is the QR token. Later, look the student up with it.
-    openStudentDetail(DEMO_STUDENT);
+  async function handleScan(result) {
+    if (hasScanned.current || scanning) return;
+    hasScanned.current = true;
+    setScanning(true);
+    setError('');
+    try {
+      const student = await request('/api/assessments/scan', {
+        method: 'POST',
+        body: JSON.stringify({ assessmentId: assessment._id, qrToken: result.data }),
+      });
+      openStudentDetail(student);
+    } catch (requestError) {
+      hasScanned.current = false;
+      setError(requestError.message);
+    } finally {
+      setScanning(false);
+    }
   }
 
   return (
-    <SafeAreaView style={styles.container} edges={['left', 'right', 'bottom']}>
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
       <NavBar alertsScreen="InvigilatorAlerts" profileScreen="InvigilatorProfile" />
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
-
-        {/* Session details */}
         <View style={styles.sessionCard}>
-          <Text style={styles.sessionName}>{session.name}</Text>
+          <Text style={styles.sessionName}>
+            {assessment.moduleCode ? `${assessment.moduleCode} — ${assessment.name}` : assessment.name}
+          </Text>
+          <Text style={styles.sessionDetails}>{assessment.type || 'Type not set'}</Text>
           <Text style={styles.sessionDetails}>
-            {session.lab} · {session.date} · {session.time}
+            {venueName(assessment)} · {assessmentWhen(assessment)}
           </Text>
         </View>
 
         <Text style={styles.pageTitle}>Scan Student QR Code</Text>
         <Text style={styles.pageSubtitle}>Point the camera at the student's QR code.</Text>
+        {!!error && <Text style={styles.errorText}>{error}</Text>}
 
         {permission === null && <Text style={styles.mutedText}>Checking camera access...</Text>}
 
@@ -76,11 +142,11 @@ export default function ScanStudent({ navigation, route }) {
           />
         )}
 
-        {/* For testing without a real QR code */}
-        <TouchableOpacity style={styles.ghostButton} onPress={() => openStudentDetail(DEMO_STUDENT)}>
-          <Text style={styles.buttonText}>Use demo student</Text>
-        </TouchableOpacity>
-
+        {__DEV__ && (
+          <TouchableOpacity style={styles.ghostButton} onPress={() => openStudentDetail(DEMO_STUDENT)}>
+            <Text style={styles.buttonText}>Use demo student</Text>
+          </TouchableOpacity>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
@@ -95,8 +161,6 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingBottom: 40,
   },
-
-  // Session card
   sessionCard: {
     backgroundColor: '#122B63',
     borderWidth: 1.5,
@@ -115,8 +179,6 @@ const styles = StyleSheet.create({
     color: '#9AA6C4',
     marginTop: 4,
   },
-
-  // Page text
   pageTitle: {
     fontSize: 30,
     fontWeight: 'bold',
@@ -132,15 +194,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#9AA6C4',
   },
-
-  // Camera
+  errorText: {
+    color: '#FFB4AB',
+    marginBottom: 12,
+  },
   camera: {
     height: 340,
     borderRadius: 8,
     overflow: 'hidden',
   },
-
-  // Permission card
   card: {
     backgroundColor: '#122B63',
     borderWidth: 1.5,
@@ -153,8 +215,6 @@ const styles = StyleSheet.create({
     color: 'white',
     lineHeight: 22,
   },
-
-  // Buttons
   primaryButton: {
     height: 50,
     borderRadius: 8,

@@ -1,15 +1,19 @@
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Modal } from 'react-native';
-import { useState } from 'react';
+import React, { useCallback, useState } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Modal, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NavBar from '../../components/NavBar';
+import { request, unwrapList } from '../../api';
 
-// Used for previewing the page on its own. When you arrive from the session page,
-// the real session is passed in with navigation.navigate('LabMap', { session }).
-const DEFAULT_SESSION = { name: 'DIT (3rd Year): Networks 731', lab: 'Lab 03', date: 'Fri, 16 Oct', time: '10:00' };
+const DEFAULT_SESSION = {
+  name: 'DIT (3rd Year): Networks 731',
+  lab: 'Lab 03',
+  date: 'Fri, 16 Oct',
+  time: '10:00',
+};
 
-// Later this comes from the backend (the seat allocations for this exam).
-// status: verified, pending, vacant or faulty
-const PCS = [
+// Default fallback PCs
+const DEFAULT_PCS = [
   { number: 1, student: 'Mudanabula D.', status: 'verified' },
   { number: 2, student: 'Bukenya N.', status: 'verified' },
   { number: 3, student: 'Dauds E.', status: 'pending' },
@@ -38,14 +42,78 @@ const STATUS_STYLES = {
 
 export default function LabMap({ navigation, route }) {
   const session = route?.params?.session ?? DEFAULT_SESSION;
+  const venueId =
+    route?.params?.venueId ||
+    session?.venueId?._id ||
+    session?.venueId ||
+    session?.venue?._id ||
+    session?.venue;
+  const assessmentId = session?._id || session?.id;
+
+  const [pcs, setPcs] = useState(route?.params?.pcs ?? DEFAULT_PCS);
   const [selectedPc, setSelectedPc] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const loadSeats = useCallback(async () => {
+    let endpoint = null;
+    if (assessmentId) {
+      endpoint = `/api/assessments/${assessmentId}/seats`;
+    } else if (venueId) {
+      endpoint = `/api/venues/${venueId}/seats`;
+    }
+
+    if (!endpoint) return;
+    setLoading(true);
+    try {
+      const data = await request(endpoint);
+      const rawSeats = unwrapList(data, 'seats');
+      if (rawSeats.length > 0) {
+        const mapped = rawSeats.map((s, index) => {
+          const rawStatus = (s.status || s.condition || 'vacant').toLowerCase();
+          let status = 'vacant';
+          if (rawStatus === 'verified' || rawStatus === 'occupied' || rawStatus === 'attended') {
+            status = 'verified';
+          } else if (rawStatus === 'pending' || rawStatus === 'allocated') {
+            status = 'pending';
+          } else if (rawStatus === 'faulty' || rawStatus === 'broken' || rawStatus === 'maintenance') {
+            status = 'faulty';
+          }
+
+          const studentName =
+            s.studentName ||
+            (s.student ? `${s.student.firstName || ''} ${s.student.lastName || ''}`.trim() : '');
+
+          return {
+            id: s._id || s.id || index + 1,
+            number: s.number || s.seatNumber || (s.label ? s.label.replace(/[^0-9]/g, '') : index + 1),
+            student: status === 'faulty' ? '' : studentName,
+            status,
+            raw: s,
+          };
+        });
+        setPcs(mapped);
+      }
+    } catch (err) {
+      console.warn('Could not fetch seats from API, keeping existing PCs:', err);
+    } finally {
+      setLoading(false);
+    }
+  }, [assessmentId, venueId]);
+
+  useFocusEffect(
+    useCallback(() => {
+      loadSeats();
+      const refreshTimer = setInterval(loadSeats, 15000);
+      return () => clearInterval(refreshTimer);
+    }, [loadSeats])
+  );
 
   // How many PCs are in each status
   const counts = {
-    verified: PCS.filter((pc) => pc.status === 'verified').length,
-    pending: PCS.filter((pc) => pc.status === 'pending').length,
-    vacant: PCS.filter((pc) => pc.status === 'vacant').length,
-    faulty: PCS.filter((pc) => pc.status === 'faulty').length,
+    verified: pcs.filter((pc) => pc.status === 'verified').length,
+    pending: pcs.filter((pc) => pc.status === 'pending').length,
+    vacant: pcs.filter((pc) => pc.status === 'vacant').length,
+    faulty: pcs.filter((pc) => pc.status === 'faulty').length,
   };
 
   function reportIssueForSelectedPc() {
@@ -54,6 +122,8 @@ export default function LabMap({ navigation, route }) {
     navigation.navigate('ReportIssue', {
       session,
       pc: `PC ${pc.number}`,
+      seatId: pc.raw?._id,
+      venueId: pc.raw?.venueId || venueId,
     });
   }
 
@@ -62,21 +132,25 @@ export default function LabMap({ navigation, route }) {
     setSelectedPc(null);
     navigation.navigate('ExpelStudent', {
       session,
-      student: { name: pc.student, pc: `PC ${pc.number}` },
+      student: {
+        _id: pc.raw?.student?._id || pc.raw?.studentId,
+        name: pc.student,
+        pc: `PC ${pc.number}`,
+      },
     });
   }
 
   return (
-    <SafeAreaView style={styles.container} edges={['left', 'right', 'bottom']}>
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
       <NavBar alertsScreen="InvigilatorAlerts" profileScreen="InvigilatorProfile" />
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
-
         {/* Session details */}
         <View style={styles.sessionCard}>
           <Text style={styles.sessionName}>{session.name}</Text>
+          <Text style={styles.sessionDetails}>{session.type || 'Type not set'}</Text>
           <Text style={styles.sessionDetails}>
-            {session.lab} · {session.date} · {session.time}
+            {session.lab || session.labs || 'Lab'} · {session.date} · {session.time}
           </Text>
         </View>
 
@@ -89,20 +163,24 @@ export default function LabMap({ navigation, route }) {
             <View key={key} style={styles.legendItem}>
               <View style={[styles.legendDot, { backgroundColor: STATUS_STYLES[key].textColor }]} />
               <Text style={styles.legendText}>
-                {STATUS_STYLES[key].label} ({counts[key]})
+                {STATUS_STYLES[key].label} ({counts[key] || 0})
               </Text>
             </View>
           ))}
         </View>
 
+        {loading && (
+          <ActivityIndicator size="small" color="#FFFFFF" style={{ marginVertical: 12 }} />
+        )}
+
         {/* PC grid */}
         <View style={styles.grid}>
-          {PCS.map((pc) => {
-            const status = STATUS_STYLES[pc.status];
+          {pcs.map((pc) => {
+            const status = STATUS_STYLES[pc.status] || STATUS_STYLES.vacant;
 
             return (
               <TouchableOpacity
-                key={pc.number}
+                key={pc.id || pc.number}
                 style={[styles.pcTile, { backgroundColor: status.backgroundColor }]}
                 onPress={() => setSelectedPc(pc)}
               >
@@ -116,7 +194,6 @@ export default function LabMap({ navigation, route }) {
             );
           })}
         </View>
-
       </ScrollView>
 
       {/* PC details popup */}
@@ -133,16 +210,27 @@ export default function LabMap({ navigation, route }) {
                 <Text style={styles.modalTitle}>PC {selectedPc.number}</Text>
 
                 <View
-                  style={[styles.statusBadge, { backgroundColor: STATUS_STYLES[selectedPc.status].backgroundColor }]}
+                  style={[
+                    styles.statusBadge,
+                    { backgroundColor: (STATUS_STYLES[selectedPc.status] || STATUS_STYLES.vacant).backgroundColor },
+                  ]}
                 >
-                  <Text style={[styles.statusBadgeText, { color: STATUS_STYLES[selectedPc.status].textColor }]}>
-                    {STATUS_STYLES[selectedPc.status].label}
+                  <Text
+                    style={[
+                      styles.statusBadgeText,
+                      { color: (STATUS_STYLES[selectedPc.status] || STATUS_STYLES.vacant).textColor },
+                    ]}
+                  >
+                    {(STATUS_STYLES[selectedPc.status] || STATUS_STYLES.vacant).label}
                   </Text>
                 </View>
 
                 <Text style={styles.modalStudent}>
                   {selectedPc.student !== '' ? selectedPc.student : 'No student assigned'}
                 </Text>
+                {selectedPc.status === 'faulty' && selectedPc.raw?.faultyReason && (
+                  <Text style={styles.modalStudent}>Reason: {selectedPc.raw.faultyReason}</Text>
+                )}
 
                 {/* Every PC can have an issue reported, even a vacant or faulty one */}
                 <TouchableOpacity style={styles.reportButton} onPress={reportIssueForSelectedPc}>

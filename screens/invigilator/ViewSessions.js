@@ -1,53 +1,47 @@
+import React, { useEffect, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-
-const SESSIONS = [
-  {
-    id: '1',
-    name: 'Bachelor of Science in IT',
-    labs: 'Lab 01 & 02',
-    date: 'Fri, 16 Oct',
-    time: '08:00',
-    status: 'Upcoming',
-  },
-  {
-    id: '2',
-    name: 'DIT (1st Year)',
-    labs: 'Lab 03 & 04',
-    date: 'Fri, 16 Oct',
-    time: '09:00',
-    status: 'Upcoming',
-  },
-  {
-    id: '3',
-    name: 'DIT (2nd Year)',
-    labs: 'Lab 01 & 02',
-    date: 'Fri, 16 Oct',
-    time: '13:00',
-    status: 'Upcoming',
-  },
-  {
-    id: '4',
-    name: 'DIT (3rd Year)',
-    labs: 'Lab 03 & 04',
-    date: 'Fri, 16 Oct',
-    time: '10:00',
-    status: 'In progress',
-  },
-  {
-    id: '5',
-    name: 'BSc IT (3rd Year) & Articulation',
-    labs: 'Lab 05',
-    date: 'Mon, 19 Oct',
-    time: '08:00',
-    status: 'Upcoming',
-  },
-];
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View, ActivityIndicator } from 'react-native';
+import { request, unwrapList } from '../../api';
 
 export default function ViewSessions({ navigation }) {
+  const [sessions, setSessions] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    request('/api/assessments')
+      .then((data) => {
+        const list = unwrapList(data, 'assessments');
+        const mapped = list.map((item) => {
+          const rawStatus = (item.status || 'upcoming').toLowerCase();
+          const displayStatus =
+            rawStatus === 'in_progress'
+              ? 'In progress'
+              : rawStatus.charAt(0).toUpperCase() + rawStatus.slice(1);
+
+          return {
+            id: item._id,
+            _id: item._id,
+            name: item.name,
+            type: item.type || 'Type not set',
+            labs: item.venueId?.name || item.venueName || 'Main Lab',
+            venueId: item.venueId,
+            date: item.startsAt ? new Date(item.startsAt).toLocaleDateString() : '—',
+            time: item.startsAt
+              ? new Date(item.startsAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+              : '—',
+            status: displayStatus,
+            raw: item,
+          };
+        });
+        setSessions(mapped);
+      })
+      .catch(console.warn)
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
-    <SafeAreaView style={styles.container} edges={['left', 'right', 'bottom']}>
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
       <View style={styles.header}>
         <TouchableOpacity
           accessibilityLabel="Go back to dashboard"
@@ -58,64 +52,74 @@ export default function ViewSessions({ navigation }) {
         >
           <Ionicons name="arrow-back" size={22} color="#FFFFFF" />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>My Sessions</Text>
+        <Text style={styles.headerTitle}>Assessments</Text>
         <View style={styles.headerSpacer} />
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <Text style={styles.pageTitle}>Assigned sessions</Text>
+        <Text style={styles.pageTitle}>All assessments</Text>
         <Text style={styles.pageSubtitle}>
           Select a session to view its live lab map and check-in tools.
         </Text>
 
-        {SESSIONS.map((session) => {
-          const isCurrentSession = session.status === 'In progress';
+        {loading && (
+          <ActivityIndicator size="large" color="#FFFFFF" style={{ marginVertical: 30 }} />
+        )}
 
-          return (
-            <TouchableOpacity
-              key={session.id}
-              accessibilityLabel={`Open ${session.name} session`}
-              accessibilityRole="button"
-              onPress={() => navigation.navigate('SessionDetail', { session })}
-              style={[styles.sessionCard, isCurrentSession && styles.currentSessionCard]}
-            >
-              <View style={[styles.sessionIcon, isCurrentSession && styles.currentSessionIcon]}>
-                <Ionicons
-                  name="clipboard-outline"
-                  size={22}
-                  color={isCurrentSession ? '#FFFFFF' : '#9AA6C4'}
-                />
-              </View>
+        {!loading && sessions.length === 0 && (
+          <Text style={styles.emptyText}>No assessments are currently available.</Text>
+        )}
 
-              <View style={styles.sessionContent}>
-                <View style={styles.sessionHeading}>
-                  <Text style={styles.sessionName}>{session.name}</Text>
-                  <View
-                    style={[
-                      styles.statusBadge,
-                      isCurrentSession ? styles.inProgressBadge : styles.upcomingBadge,
-                    ]}
-                  >
-                    <Text
+        {!loading &&
+          sessions.map((session) => {
+            const isCurrentSession = session.status === 'In progress';
+
+            return (
+              <TouchableOpacity
+                key={session.id}
+                accessibilityLabel={`Open ${session.name} session`}
+                accessibilityRole="button"
+                onPress={() => navigation.navigate('SessionDetail', { session })}
+                style={[styles.sessionCard, isCurrentSession && styles.currentSessionCard]}
+              >
+                <View style={[styles.sessionIcon, isCurrentSession && styles.currentSessionIcon]}>
+                  <Ionicons
+                    name="clipboard-outline"
+                    size={22}
+                    color={isCurrentSession ? '#FFFFFF' : '#9AA6C4'}
+                  />
+                </View>
+
+                <View style={styles.sessionContent}>
+                  <View style={styles.sessionHeading}>
+                    <Text style={styles.sessionName}>{session.name}</Text>
+                    <View
                       style={[
-                        styles.statusText,
-                        isCurrentSession ? styles.inProgressText : styles.upcomingText,
+                        styles.statusBadge,
+                        isCurrentSession ? styles.inProgressBadge : styles.upcomingBadge,
                       ]}
                     >
-                      {session.status}
-                    </Text>
+                      <Text
+                        style={[
+                          styles.statusText,
+                          isCurrentSession ? styles.inProgressText : styles.upcomingText,
+                        ]}
+                      >
+                        {session.status}
+                      </Text>
+                    </View>
                   </View>
+                  <Text style={styles.sessionDetails}>{session.labs}</Text>
+                  <Text style={styles.sessionDetails}>{session.type}</Text>
+                  <Text style={styles.sessionSchedule}>
+                    {session.date} · {session.time}
+                  </Text>
                 </View>
-                <Text style={styles.sessionDetails}>{session.labs}</Text>
-                <Text style={styles.sessionSchedule}>
-                  {session.date} · {session.time}
-                </Text>
-              </View>
 
-              <Ionicons name="chevron-forward" size={20} color="#9AA6C4" />
-            </TouchableOpacity>
-          );
-        })}
+                <Ionicons name="chevron-forward" size={20} color="#9AA6C4" />
+              </TouchableOpacity>
+            );
+          })}
       </ScrollView>
     </SafeAreaView>
   );
@@ -166,6 +170,12 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     marginTop: 8,
     marginBottom: 20,
+  },
+  emptyText: {
+    color: '#9AA6C4',
+    fontSize: 15,
+    textAlign: 'center',
+    marginTop: 30,
   },
   sessionCard: {
     width: '100%',

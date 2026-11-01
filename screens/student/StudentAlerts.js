@@ -1,52 +1,69 @@
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Modal } from 'react-native';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { DeviceEventEmitter, View, Text, StyleSheet, TouchableOpacity, ScrollView, Modal, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NavBar from '../../components/NavBar';
-
-// Later this comes from the backend. For now it is hardcoded so the screen can be previewed.
-const STARTING_ALERTS = [
-  {
-    id: '1',
-    title: 'Lab 3 entrance opens early',
-    sender: 'Admin',
-    time: 'Today, 07:20',
-    message:
-      'Lab 3 will open 15 minutes early today due to expected high volume. Please arrive on time to avoid the queue and have your QR code ready.',
-    read: false,
-  },
-  {
-    id: '2',
-    title: 'Eligibility confirmed',
-    sender: 'System',
-    time: 'Yesterday, 14:02',
-    message:
-      'Your eligibility status for Database Systems (5 Oct) has been confirmed as Eligible. Your seat and QR code are ready.',
-    read: false,
-  },
-  {
-    id: '3',
-    title: 'Seat allocation ready',
-    sender: 'System',
-    time: '2 Oct, 09:15',
-    message: 'You have been allocated PC 24 in Lab 3 for Database Systems.',
-    read: true,
-  },
-];
+import { request, unwrapList } from '../../api';
+import { useAuth } from '../../context/AuthContext';
 
 export default function StudentAlerts() {
-  const [alerts, setAlerts] = useState(STARTING_ALERTS);
+  const { user } = useAuth();
+  const isInvigilator = user?.role && user.role !== 'student';
+  const [alerts, setAlerts] = useState([]);
   const [selectedAlert, setSelectedAlert] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [alertError, setAlertError] = useState('');
+
+  useEffect(() => {
+    request('/api/alerts')
+      .then((data) => {
+        const list = unwrapList(data, 'alerts');
+        const mapped = list.map((a) => ({
+          id: a._id || a.id || Math.random().toString(),
+          _id: a._id,
+          title: a.title || (a.senderId?.role
+            ? a.senderId.role.charAt(0).toUpperCase() + a.senderId.role.slice(1)
+            : a.kind === 'manual' ? 'Admin' : 'Notice'),
+          sender: a.sender || (a.senderId?.role
+            ? a.senderId.role.charAt(0).toUpperCase() + a.senderId.role.slice(1)
+            : 'Admin'),
+          time: a.createdAt
+            ? new Date(a.createdAt).toLocaleString([], { dateStyle: 'short', timeStyle: 'short' })
+            : 'Recently',
+          message: a.message || '',
+          read: !!a.read,
+          kind: a.kind,
+        }));
+        setAlerts(mapped);
+      })
+      .catch(console.warn)
+      .finally(() => setLoading(false));
+  }, []);
 
   // Open the full message and mark the alert as read
-  function openAlert(alert) {
+  async function openAlert(alert) {
+    setAlertError('');
     setSelectedAlert(alert);
-    setAlerts(alerts.map((a) => (a.id === alert.id ? { ...a, read: true } : a)));
+    if (alert.read || !alert._id) return;
+
+    try {
+      await request(`/api/alerts/${alert._id}/read`, { method: 'POST' });
+      setAlerts((current) => current.map((item) => (
+        item.id === alert.id ? { ...item, read: true } : item
+      )));
+      DeviceEventEmitter.emit('intelliseat:alerts-updated');
+    } catch (error) {
+      setAlertError(error.message || 'Could not save this alert as read.');
+    }
   }
 
   const unreadCount = alerts.filter((a) => !a.read).length;
 
   return (
-<SafeAreaView style={styles.container} edges={['left', 'right', 'bottom']}>      <NavBar />
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
+      <NavBar
+        alertsScreen={isInvigilator ? 'InvigilatorAlerts' : 'StudentAlert'}
+        profileScreen={isInvigilator ? 'InvigilatorProfile' : 'StudentProfile'}
+      />
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <Text style={styles.pageTitle}>Alerts</Text>
@@ -54,22 +71,27 @@ export default function StudentAlerts() {
           {unreadCount > 0 ? `You have ${unreadCount} unread alerts.` : 'You are all caught up.'}
         </Text>
 
-        {alerts.length === 0 && <Text style={styles.emptyText}>No alerts yet.</Text>}
+        {loading && (
+          <ActivityIndicator size="large" color="#FFFFFF" style={{ marginVertical: 30 }} />
+        )}
 
-        {alerts.map((alert) => (
-          <TouchableOpacity key={alert.id} style={styles.pod} onPress={() => openAlert(alert)}>
-            <View style={styles.podHeader}>
-              <Text style={styles.podTitle}>{alert.title}</Text>
-              {!alert.read && <View style={styles.unreadDot} />}
-            </View>
-            <Text style={styles.podPreview} numberOfLines={1}>
-              {alert.message}
-            </Text>
-            <Text style={styles.podMeta}>
-              {alert.time} · {alert.sender}
-            </Text>
-          </TouchableOpacity>
-        ))}
+        {!loading && alerts.length === 0 && <Text style={styles.emptyText}>No alerts yet.</Text>}
+
+        {!loading &&
+          alerts.map((alert) => (
+            <TouchableOpacity key={alert.id} style={styles.pod} onPress={() => openAlert(alert)}>
+              <View style={styles.podHeader}>
+                <Text style={styles.podTitle}>{alert.title}</Text>
+                {!alert.read && <View style={styles.unreadDot} />}
+              </View>
+              <Text style={styles.podPreview} numberOfLines={1}>
+                {alert.message}
+              </Text>
+              <Text style={styles.podMeta}>
+                {alert.time} · {alert.sender}
+              </Text>
+            </TouchableOpacity>
+          ))}
       </ScrollView>
 
       {/* Full message popup */}
@@ -88,6 +110,7 @@ export default function StudentAlerts() {
                   {selectedAlert.time} · {selectedAlert.sender}
                 </Text>
                 <Text style={styles.modalMessage}>{selectedAlert.message}</Text>
+                {alertError !== '' && <Text style={styles.errorText}>{alertError}</Text>}
               </>
             )}
 
@@ -192,6 +215,11 @@ const styles = StyleSheet.create({
     color: 'white',
     marginTop: 16,
     lineHeight: 24,
+  },
+  errorText: {
+    color: '#FF8C86',
+    fontSize: 13,
+    marginTop: 12,
   },
   closeButton: {
     height: 50,

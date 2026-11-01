@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, StatusBar, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, ScrollView, } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import TopLogoSection from '../../components/TopLogoSection';
+import { request } from '../../api';
 
 export const Palette = {
   bg: '#0B1E4A',          // Canvas outer background
@@ -14,15 +16,39 @@ export const Palette = {
   link: '#3B82F6',        // Link color
 };
 
-export default function ForgotPasswordScreen() {
-  const [email, setEmail] = useState('name@richfield.ac.za');
+export default function ForgotPasswordScreen({ navigation }) {
+  const [email, setEmail] = useState('');
   const [isFocused, setIsFocused] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  async function sendResetCode() {
+    const trimmed = email.trim().toLowerCase();
+    if (!trimmed) {
+      setError('Enter your registered email address.');
+      return;
+    }
+    setLoading(true);
+    setError('');
+    try {
+      await request('/api/auth/forgot-password', {
+        method: 'POST',
+        body: JSON.stringify({ email: trimmed }),
+      });
+      navigation.navigate('OTPVerification', { email: trimmed, purpose: 'password_reset' });
+    } catch (requestError) {
+      setError(requestError.message || 'Could not send a reset code.');
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
-    <KeyboardAvoidingView
-      style={styles.keyboardContainer}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-    >
+    <SafeAreaView style={styles.keyboardContainer} edges={['top', 'left', 'right', 'bottom']}>
+      <KeyboardAvoidingView
+        style={styles.keyboardContainer}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ScrollView
           contentContainerStyle={styles.scrollContainer}
@@ -70,18 +96,21 @@ export default function ForgotPasswordScreen() {
             </View>
 
             {/* Action Button */}
-            <TouchableOpacity style={styles.btn} activeOpacity={0.8}>
-              <Text style={styles.btnText}>Send reset code →</Text>
+            {!!error && <Text style={styles.errorText}>{error}</Text>}
+
+            <TouchableOpacity style={styles.btn} activeOpacity={0.8} onPress={sendResetCode} disabled={loading}>
+              <Text style={styles.btnText}>{loading ? 'Sending…' : 'Send reset code →'}</Text>
             </TouchableOpacity>
 
             {/* Back Link */}
-            <TouchableOpacity style={styles.linkContainer}>
+            <TouchableOpacity style={styles.linkContainer} onPress={() => navigation.navigate('Login')}>
               <Text style={styles.link}>← Back to login</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
       </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 
@@ -174,5 +203,11 @@ const styles = StyleSheet.create({
     color: Palette.link,
     fontSize: 13,
     fontWeight: '600',
+  },
+  errorText: {
+    color: '#FF8C86',
+    fontSize: 13,
+    marginBottom: 10,
+    textAlign: 'center',
   },
 });

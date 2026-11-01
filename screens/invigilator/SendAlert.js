@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { request } from '../../api';
 
 const DEFAULT_SESSION = {
   name: 'DIT (3rd Year): Networks 731',
@@ -15,8 +16,10 @@ export default function SendAlert({ navigation, route }) {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const assessmentId = session._id || session.id || session.raw?._id;
 
-  function handleSend() {
+  async function handleSend() {
     const trimmedMessage = message.trim();
 
     if (!trimmedMessage) {
@@ -24,14 +27,28 @@ export default function SendAlert({ navigation, route }) {
       return;
     }
 
-    // Later: send { session, message: trimmedMessage } to the backend.
-    setSent(true);
+    setSending(true);
     setError('');
-    setMessage('');
+    try {
+      await request('/api/alerts', {
+        method: 'POST',
+        body: JSON.stringify({
+          audienceType: 'assessment',
+          assessmentId,
+          message: trimmedMessage,
+        }),
+      });
+      setSent(true);
+      setMessage('');
+    } catch (requestError) {
+      setError(requestError.message || 'Failed to send alert.');
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
-    <SafeAreaView style={styles.container} edges={['left', 'right', 'bottom']}>
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
       <View style={styles.header}>
         <TouchableOpacity
           accessibilityLabel="Go back"
@@ -52,6 +69,7 @@ export default function SendAlert({ navigation, route }) {
       >
         <View style={styles.sessionCard}>
           <Text style={styles.sessionName}>{session.name}</Text>
+          <Text style={styles.sessionDetails}>{session.type || 'Type not set'}</Text>
           <Text style={styles.sessionDetails}>
             {session.lab} · {session.date} · {session.time}
           </Text>
@@ -98,12 +116,12 @@ export default function SendAlert({ navigation, route }) {
         <TouchableOpacity
           accessibilityLabel="Send alert to students"
           accessibilityRole="button"
-          disabled={!message.trim()}
+          disabled={!message.trim() || sending}
           onPress={handleSend}
-          style={[styles.sendButton, !message.trim() && styles.disabledButton]}
+          style={[styles.sendButton, (!message.trim() || sending) && styles.disabledButton]}
         >
           <Ionicons name="send-outline" size={19} color="#FFFFFF" />
-          <Text style={styles.buttonText}>Send Alert</Text>
+          <Text style={styles.buttonText}>{sending ? 'Sending…' : 'Send Alert'}</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>

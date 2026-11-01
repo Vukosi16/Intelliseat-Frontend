@@ -1,1 +1,8 @@
 node_modules
+.expo
+.expo/
+.expo/*
+.env
+.env.local
+!.env.example
+/dist

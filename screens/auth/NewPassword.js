@@ -12,19 +12,55 @@ import {
   Keyboard,
   ScrollView,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import TopLogoSection from '../../components/TopLogoSection';
 import { Palette } from './ForgotPassword';
+import { request } from '../../api';
+import { useAuth } from '../../context/AuthContext';
  
-export default function NewPasswordScreen() {
+export default function NewPasswordScreen({ navigation, route }) {
+  const setupToken = route?.params?.setupToken || '';
+  const { login } = useAuth();
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [focusedField, setFocusedField] = useState(null);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  async function updatePassword() {
+    if (password.length < 8 || !/[A-Za-z]/.test(password) || !/\d/.test(password)) {
+      setError('Use at least 8 characters with a letter and a number.');
+      return;
+    }
+    if (password !== confirmPassword) {
+      setError('Passwords do not match.');
+      return;
+    }
+    setLoading(true);
+    setError('');
+    try {
+      const result = await request('/api/auth/set-password', {
+        method: 'POST',
+        body: JSON.stringify({ setupToken, password }),
+      });
+      await login(result.user, result.token);
+    } catch (requestError) {
+      if (/expired|invalid.*token/i.test(requestError.message || '')) {
+        navigation.navigate('OTPVerification', { purpose: route?.params?.purpose || 'invite' });
+        return;
+      }
+      setError(requestError.message || 'Could not update password.');
+    } finally {
+      setLoading(false);
+    }
+  }
  
   return (
-    <KeyboardAvoidingView
-      style={styles.keyboardContainer}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-    >
+    <SafeAreaView style={styles.keyboardContainer} edges={['top', 'left', 'right', 'bottom']}>
+      <KeyboardAvoidingView
+        style={styles.keyboardContainer}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ScrollView
           contentContainerStyle={styles.scrollContainer}
@@ -87,17 +123,20 @@ export default function NewPasswordScreen() {
               />
             </View>
  
-            <TouchableOpacity style={styles.btn} activeOpacity={0.8}>
-              <Text style={styles.btnText}>Update password →</Text>
+            {!!error && <Text style={styles.errorText}>{error}</Text>}
+
+            <TouchableOpacity style={styles.btn} activeOpacity={0.8} onPress={updatePassword} disabled={loading}>
+              <Text style={styles.btnText}>{loading ? 'Updating…' : 'Update password →'}</Text>
             </TouchableOpacity>
  
-            <TouchableOpacity style={styles.linkContainer}>
+            <TouchableOpacity style={styles.linkContainer} onPress={() => navigation.navigate('Login')}>
               <Text style={styles.link}>← Back to login</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
       </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
  
@@ -197,6 +236,12 @@ const styles = StyleSheet.create({
     color: Palette.link,
     fontSize: 13,
     fontWeight: '600',
+  },
+  errorText: {
+    color: '#FF8C86',
+    fontSize: 13,
+    marginBottom: 10,
+    textAlign: 'center',
   },
 });
  

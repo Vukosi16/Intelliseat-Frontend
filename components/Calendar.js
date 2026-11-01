@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 
-export default function TwoWeekCalendar() {
+export default function TwoWeekCalendar({ dates: assessmentDates = [] }) {
 
-  const highlightedDates = [
-    '2026-10-02',
-    '2026-10-05',
-    '2026-10-09',
-    '2026-10-12',
-  ];
+  const highlightedDates = assessmentDates
+    .map((value) => {
+      if (!value) return null;
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return String(value).slice(0, 10);
+      return date.toISOString().split('T')[0];
+    })
+    .filter(Boolean);
 
   const today = new Date();
 
