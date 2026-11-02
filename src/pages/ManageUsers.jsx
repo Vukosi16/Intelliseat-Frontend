@@ -95,6 +95,8 @@ export default function ManageUsers({ users, onUpdate, onReactivate, onDelete, q
       department: selected.department || '',
       phone: selected.phone || '',
       clearanceStatus: selected.clearanceStatus || 'cleared',
+      eligibility: selected.eligibility || 'needs_review',
+      eligibilityReason: selected.eligibilityReason || '',
     })
     setError('')
     setNotice('')
@@ -116,6 +118,8 @@ export default function ManageUsers({ users, onUpdate, onReactivate, onDelete, q
           course: editForm.course,
           year: Number(editForm.year),
           clearanceStatus: editForm.clearanceStatus,
+          eligibility: editForm.eligibility,
+          eligibilityReason: editForm.eligibilityReason,
         }
         : {
           firstName: editForm.firstName,
@@ -293,6 +297,8 @@ export default function ManageUsers({ users, onUpdate, onReactivate, onDelete, q
                   <label className="field"><span>Qualification</span><select value={editForm.course} onChange={(event) => setEditForm({ ...editForm, course: event.target.value, year: '1' })} required>{editQualifications.map((qualification) => <option key={qualification.name} value={qualification.name}>{qualification.name}</option>)}</select></label>
                   <label className="field"><span>Year</span><select value={editForm.year} onChange={(event) => setEditForm({ ...editForm, year: event.target.value })} required>{Array.from({ length: editYearCount }, (_, index) => index + 1).map((year) => <option key={year} value={year}>Year {year}</option>)}</select></label>
                   <label className="field"><span>Financial clearance</span><select value={editForm.clearanceStatus} onChange={(event) => setEditForm({ ...editForm, clearanceStatus: event.target.value })}><option value="cleared">Cleared</option><option value="outstanding_fees">Outstanding fees</option><option value="documents_pending">Documents pending</option></select></label>
+                  <label className="field"><span>Eligibility</span><select value={editForm.eligibility} onChange={(event) => setEditForm({ ...editForm, eligibility: event.target.value })}><option value="eligible">Eligible</option><option value="needs_review">Needs review</option></select></label>
+                  <label className="field"><span>Eligibility reason</span><input value={editForm.eligibilityReason} onChange={(event) => setEditForm({ ...editForm, eligibilityReason: event.target.value })} placeholder="Optional review note" /></label>
                 </>
               ) : (
                 <>
