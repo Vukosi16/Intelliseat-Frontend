@@ -3,8 +3,6 @@ import FormField from '../components/FormField.jsx'
 import Notice from '../components/Notice.jsx'
 import PageHeading from '../components/PageHeading.jsx'
 
-const allowsExternalInvigilatorEmail = import.meta.env.VITE_ALLOW_NON_INSTITUTIONAL_INVIGILATOR_EMAILS === 'true'
-
 const emptyForm = {
   firstName: '',
   lastName: '',
@@ -52,7 +50,7 @@ export default function CreateUsers({ onCreate, qualifications = [] }) {
       return
     }
     const isInstitutionalEmail = /^[^\s@]+@my\.richfield\.ac\.za$/i.test(form.email.trim())
-    if (!isInstitutionalEmail && !(role === 'Invigilator' && allowsExternalInvigilatorEmail)) {
+    if (!isInstitutionalEmail && role !== 'Invigilator') {
       setError('Use an institutional @my.richfield.ac.za email address.')
       return
     }
@@ -130,11 +128,11 @@ export default function CreateUsers({ onCreate, qualifications = [] }) {
               required
             />
           </FormField>
-          <FormField label={role === 'Student' || !allowsExternalInvigilatorEmail ? 'Institutional email' : 'Email'}>
+          <FormField label={role === 'Student' ? 'Institutional email' : 'Email'}>
             <input
               name="email"
               type="email"
-              placeholder={role === 'Student' || !allowsExternalInvigilatorEmail
+              placeholder={role === 'Student'
                 ? 'studentnumber@my.richfield.ac.za'
                 : 'invigilator@example.com'}
               value={form.email}
@@ -142,11 +140,6 @@ export default function CreateUsers({ onCreate, qualifications = [] }) {
               required
             />
           </FormField>
-          {role === 'Invigilator' && allowsExternalInvigilatorEmail && (
-            <div className="notice notice-warning full-span" role="note">
-              Testing only: any valid email is allowed for invigilators. Disable this setting before production.
-            </div>
-          )}
           {role === 'Student' ? (
             <>
               <FormField label="Qualification">
