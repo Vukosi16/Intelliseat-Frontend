@@ -400,6 +400,14 @@ function App() {
     return updated
   }
 
+  async function resetUserPassword(userId, password) {
+    const result = await request(`/users/${userId}/password`, {
+      method: 'POST',
+      body: JSON.stringify({ password }),
+    })
+    return result
+  }
+
   async function reactivateUser(userId) {
     const updated = await request(`/users/${userId}`, {
       method: 'PATCH',
@@ -570,7 +578,7 @@ function App() {
       case 'users':
         return <CreateUsers onCreate={addUser} qualifications={qualifications} />
       case 'manage-users':
-        return <ManageUsers users={users} onUpdate={updateUser} onReactivate={reactivateUser} onDelete={deleteUser} qualifications={qualifications} />
+        return <ManageUsers users={users} onUpdate={updateUser} onResetPassword={resetUserPassword} onReactivate={reactivateUser} onDelete={deleteUser} qualifications={qualifications} />
       case 'eligibility':
         return (
           <Eligibility

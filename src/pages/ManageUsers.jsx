@@ -7,13 +7,15 @@ function fullName(user) {
   return [user.firstName, user.lastName].filter(Boolean).join(' ') || user.email
 }
 
-export default function ManageUsers({ users, onUpdate, onReactivate, onDelete, qualifications = [] }) {
+export default function ManageUsers({ users, onUpdate, onResetPassword, onReactivate, onDelete, qualifications = [] }) {
   const [role, setRole] = useState('student')
   const [search, setSearch] = useState('')
   const [qualificationFilter, setQualificationFilter] = useState('all')
   const [yearFilter, setYearFilter] = useState('all')
   const [selected, setSelected] = useState(null)
   const [editing, setEditing] = useState(false)
+  const [resettingPassword, setResettingPassword] = useState(false)
+  const [passwordForm, setPasswordForm] = useState({ password: '', confirmPassword: '' })
   const [editForm, setEditForm] = useState({})
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
@@ -101,6 +103,38 @@ export default function ManageUsers({ users, onUpdate, onReactivate, onDelete, q
     setError('')
     setNotice('')
     setEditing(true)
+  }
+
+  function startPasswordReset() {
+    setPasswordForm({ password: '', confirmPassword: '' })
+    setError('')
+    setNotice('')
+    setResettingPassword(true)
+  }
+
+  async function savePassword(event) {
+    event.preventDefault()
+    if (passwordForm.password.length < 8 || passwordForm.password.length > 72 || !/[A-Za-z]/.test(passwordForm.password) || !/\d/.test(passwordForm.password)) {
+      setError('Use 8-72 characters with at least one letter and one number.')
+      return
+    }
+    if (passwordForm.password !== passwordForm.confirmPassword) {
+      setError('Passwords do not match.')
+      return
+    }
+    setSaving(true)
+    setError('')
+    setNotice('')
+    try {
+      await onResetPassword(selected._id, passwordForm.password)
+      setPasswordForm({ password: '', confirmPassword: '' })
+      setResettingPassword(false)
+      setNotice('Password updated. The user can sign in with the new password.')
+    } catch (requestError) {
+      setError(requestError.message)
+    } finally {
+      setSaving(false)
+    }
   }
 
   async function saveEdit(event) {
@@ -280,6 +314,7 @@ export default function ManageUsers({ users, onUpdate, onReactivate, onDelete, q
             <div className="form-actions">
               <button type="button" className="button button-outline" onClick={() => setSelected(null)}>Close</button>
               {!editing && selected.isActive !== false && <button type="button" className="button button-primary" onClick={startEditing}>Edit</button>}
+              {!editing && !resettingPassword && <button type="button" className="button button-outline" onClick={startPasswordReset}>Set new password</button>}
               {!editing && selected.isActive !== false && <button type="button" className="button button-outline" onClick={() => deleteUser('inactive')} disabled={saving}>Make inactive</button>}
               {!editing && selected.isActive === false && <button type="button" className="button button-primary" onClick={reactivate} disabled={saving}>{saving ? 'Reactivating…' : 'Reactivate'}</button>}
               {!editing && <button type="button" className="button button-red" onClick={() => deleteUser('hard')} disabled={saving}>Hard delete</button>}
@@ -310,6 +345,16 @@ export default function ManageUsers({ users, onUpdate, onReactivate, onDelete, q
               <div className="form-actions full-span">
                 <button className="button button-primary" type="submit" disabled={saving}>{saving ? 'Saving…' : 'Save changes'}</button>
                 <button className="button button-outline" type="button" onClick={() => setEditing(false)}>Cancel</button>
+              </div>
+            </form>
+          ) : resettingPassword ? (
+            <form className="form-grid two-col" onSubmit={savePassword}>
+              <p className="muted full-span">The current password cannot be viewed. Set a new password for this account.</p>
+              <label className="field"><span>New password</span><input type="password" value={passwordForm.password} onChange={(event) => setPasswordForm({ ...passwordForm, password: event.target.value })} autoComplete="new-password" required /></label>
+              <label className="field"><span>Confirm new password</span><input type="password" value={passwordForm.confirmPassword} onChange={(event) => setPasswordForm({ ...passwordForm, confirmPassword: event.target.value })} autoComplete="new-password" required /></label>
+              <div className="form-actions full-span">
+                <button className="button button-primary" type="submit" disabled={saving}>{saving ? 'Updating…' : 'Update password'}</button>
+                <button className="button button-outline" type="button" onClick={() => setResettingPassword(false)}>Cancel</button>
               </div>
             </form>
           ) : (
