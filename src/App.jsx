@@ -9,6 +9,7 @@ import {
 } from './data/demoData.js'
 import { clearAuth, getStoredUser, request, setAuth } from './api.js'
 import { formatDate } from './date.js'
+import { formatAssessmentTitle } from './assessmentDisplay.js'
 
 const todayLabel = formatDate(new Date())
 import Alerts from './pages/Alerts.jsx'
@@ -69,7 +70,7 @@ function normalizeReport(report) {
   const status = assessment.status || 'upcoming'
 
   return {
-    module: `${assessment.moduleCode} — ${assessment.name}`.trim(),
+    module: formatAssessmentTitle(assessment),
     type: assessment.type || 'Type not set',
     lab: assessment.venue?.name || 'Unknown venue',
     date: assessment.date,

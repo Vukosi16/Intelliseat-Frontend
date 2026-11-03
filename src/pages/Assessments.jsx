@@ -3,6 +3,7 @@ import FormField from '../components/FormField.jsx'
 import Notice from '../components/Notice.jsx'
 import PageHeading from '../components/PageHeading.jsx'
 import { formatDate } from '../date.js'
+import { formatAssessmentTitle } from '../assessmentDisplay.js'
 
 export default function Assessments({
   assessments,
@@ -245,14 +246,14 @@ export default function Assessments({
                 key={assessment._id}
                 type="button"
                 onClick={() => { setActionError(''); onSelect(assessment._id) }}
-                aria-label={`View details for ${assessment.moduleCode} ${assessment.name}`}
+                aria-label={`View details for ${formatAssessmentTitle(assessment)}`}
               >
                 <span className="date-tile">
                   {formatDate(assessment.date).split(' ')[0]}
                   <small>{formatDate(assessment.date).split(' ')[1]}</small>
                 </span>
                 <div>
-                  <strong>{assessment.moduleCode} — {assessment.name}</strong>
+                  <strong>{formatAssessmentTitle(assessment)}</strong>
                   <small>{assessment.type || 'Type not set'}</small>
                   <small>{assessment.startTime}–{assessment.endTime} · {assessment.venue.name}</small>
                   <small>{assessment.status === 'cancelled' ? 'Cancelled' : 'Enrollment loaded from the module'}</small>
@@ -270,7 +271,7 @@ export default function Assessments({
         <section className="panel assessment-detail">
           <div className="panel-heading">
             <div>
-              <h2>{detail.moduleCode} — {detail.name}</h2>
+              <h2>{formatAssessmentTitle(detail)}</h2>
               <p className="muted">
                 {detail.type || 'Type not set'} · {formatDate(detail.date)} · {detail.startTime}–{detail.endTime} · {detail.venue?.name || 'Unassigned venue'}
               </p>
@@ -334,7 +335,7 @@ export default function Assessments({
           </div>
           <dl className="assessment-meta">
             <div><dt>Qualification</dt><dd>{detail.qualification || '—'} · Year {detail.qualificationYear || '—'}</dd></div>
-            <div><dt>Module</dt><dd>{detail.moduleCode || '—'} — {detail.moduleId?.name || detail.name}</dd></div>
+                <div><dt>Module</dt><dd>{detail.moduleId?.name || detail.name || '—'}</dd></div>
             <div><dt>Assessment type</dt><dd>{detail.type || 'Type not set'}</dd></div>
             <div><dt>Lab</dt><dd>{detail.venue?.name || 'Unassigned venue'}</dd></div>
             <div><dt>Date and time</dt><dd>{formatDate(detail.date)} · {detail.startTime || '--:--'}–{detail.endTime || '--:--'}</dd></div>
