@@ -440,6 +440,7 @@ function App() {
       venueId: assessment.venueId,
       invigilatorIds: [],
       instructions: assessment.instructions,
+      examPassword: assessment.examPassword,
     }
     const created = hasApi
       ? normalizeAssessment(await request('/assessments', { method: 'POST', body: JSON.stringify(payload) }))
@@ -473,6 +474,7 @@ function App() {
       venueId: assessment.venueId,
       invigilatorIds: [],
       instructions: assessment.instructions,
+      examPassword: assessment.examPassword,
     }
     const updated = hasApi
       ? normalizeAssessment(await request(`/assessments/${assessmentId}`, {

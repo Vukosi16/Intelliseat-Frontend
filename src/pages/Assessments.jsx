@@ -92,6 +92,7 @@ export default function Assessments({
         venueId: data.venueId,
         invigilatorId: data.invigilatorId || null,
         instructions: data.instructions,
+        examPassword: data.examPassword,
       }
       if (editing) {
         await onUpdate(editing._id, values)
@@ -215,6 +216,15 @@ export default function Assessments({
                 <option value="">Select a venue</option>
                 {(venues || []).map((venue) => <option key={venue._id} value={venue._id}>{venue.name}</option>)}
               </select>
+            </FormField>
+            <FormField label={assessmentType === 'Exam' ? 'Exam password *' : 'Exam password'}>
+              <input
+                name="examPassword"
+                type="text"
+                placeholder="Enter the password invigilators will use"
+                defaultValue={editing?.examPassword || ''}
+                required={assessmentType === 'Exam'}
+              />
             </FormField>
             <FormField label="Instructions" className="full-span">
               <textarea

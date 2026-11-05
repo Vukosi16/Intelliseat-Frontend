@@ -7,7 +7,6 @@ const emptyForm = {
   firstName: '',
   lastName: '',
   studentNumber: '',
-  staffNumber: '',
   email: '',
   course: '',
   year: '1',
@@ -39,14 +38,12 @@ export default function CreateUsers({ onCreate, qualifications = [] }) {
 
   async function submit(event) {
     event.preventDefault()
-    const number = role === 'Student' ? form.studentNumber : form.staffNumber
     if (!form.firstName.trim() || !form.lastName.trim()) {
       setError('First and last names are required.')
       return
     }
-    const validNumber = role === 'Student' ? /^\d{9}$/.test(number) : /^INV-\d+$/.test(number)
-    if (!validNumber) {
-      setError(role === 'Student' ? 'Student number must contain exactly 9 digits.' : 'Staff number must start with INV- followed by digits.')
+    if (role === 'Student' && !/^\d{9}$/.test(form.studentNumber)) {
+      setError('Student number must contain exactly 9 digits.')
       return
     }
     const isInstitutionalEmail = /^[^\s@]+@my\.richfield\.ac\.za$/i.test(form.email.trim())
@@ -62,13 +59,14 @@ export default function CreateUsers({ onCreate, qualifications = [] }) {
         lastName: form.lastName,
         ...(role === 'Student'
           ? { studentNumber: form.studentNumber, course: selectedCourse, year: Number(form.year), clearanceStatus: form.clearanceStatus }
-          : { staffNumber: form.staffNumber, department: form.department, phone: form.phone }),
+          : { department: form.department, phone: form.phone }),
         email: form.email.trim().toLowerCase(),
         role: role.toLowerCase(),
       })
+      const generatedStaffNumber = result?.user?.staffNumber
       setNotice(result?.inviteEmail === 'failed'
-        ? 'User created, but the invitation email could not be sent. Please resend it.'
-        : `Invitation sent to ${form.email}.`)
+        ? `User created${generatedStaffNumber ? ` with staff number ${generatedStaffNumber}` : ''}, but the invitation email could not be sent. Please resend it.`
+        : `Invitation sent to ${form.email}${generatedStaffNumber ? ` (staff number: ${generatedStaffNumber})` : ''}.`)
       setForm(emptyForm)
     } catch (requestError) {
       setError(requestError.message)
@@ -119,15 +117,17 @@ export default function CreateUsers({ onCreate, qualifications = [] }) {
               required
             />
           </FormField>
-          <FormField label={role === 'Student' ? 'Student number' : 'Staff number'}>
-            <input
-              name={role === 'Student' ? 'studentNumber' : 'staffNumber'}
-              placeholder={role === 'Student' ? '402568464' : 'INV-XXXXX'}
-              value={role === 'Student' ? form.studentNumber : form.staffNumber}
-              onChange={update}
-              required
-            />
-          </FormField>
+          {role === 'Student' && (
+            <FormField label="Student number">
+              <input
+                name="studentNumber"
+                placeholder="402568464"
+                value={form.studentNumber}
+                onChange={update}
+                required
+              />
+            </FormField>
+          )}
           <FormField label={role === 'Student' ? 'Institutional email' : 'Email'}>
             <input
               name="email"
